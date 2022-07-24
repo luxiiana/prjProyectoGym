@@ -4,7 +4,8 @@ package prjproyectogym;
 public class main {
 
     public static void main(String[] args) {
-        //hola
+        clsMenu clsM = new clsMenu();
+        clsM.menuPrincipal();
     }
     
 }
