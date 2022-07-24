@@ -31,13 +31,12 @@ public class clsMenu {
                             
                             break;
                         case "F":
-                            opcion = ""; //para que salga de do while
                             break;
                         default:
                             JOptionPane.showMessageDialog(null, "Opción no válida");
                             break;
                     }//fin de switch 2
-                    }while(!opcion.equals(""));
+                    }while(!opcion.equals("F"));
                     break;
                 case "B":
                     do{
@@ -60,13 +59,12 @@ public class clsMenu {
                             
                             break;
                         case "F":
-                            opcion = ""; //para que salga de do while
                             break;
                         default:
                             JOptionPane.showMessageDialog(null, "Opción no válida");
                             break;
                     }//fin de switch 2
-                    }while(!opcion.equals(""));
+                    }while(!opcion.equals("F"));
                     break;
                 case "S":
                     JOptionPane.showMessageDialog(null, "Gracias por utilizar el programa!");
