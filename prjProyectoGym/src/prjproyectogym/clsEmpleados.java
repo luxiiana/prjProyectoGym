@@ -318,31 +318,34 @@ public class clsEmpleados {
         String identificacion = "";
         String salir = "";
         int bandera = 0;
+        int j=0;
+        
 
         if (contadorE > 0) {
             do {
                 identificacion = JOptionPane.showInputDialog("Digite la identificacion del empleado");
-                for (int j = 0; j < contadorE; j++) { //i =5
-                    if (identificacion.equals(bdEmpleados[j].getIdentificacion())) {
-                        bandera = 1;
-                        JOptionPane.showMessageDialog(null,"Puesto de trabajo: "+bdEmpleados[j].getPuesto()+"\nNombre Completo: "+bdEmpleados[j].getNombreC()+"\nEdad: "+bdEmpleados[j].getEdad()+"\nSexo: "+bdEmpleados[j].getSexo()+"\nOrigen: "+bdEmpleados[j].getOrigen()+"\nIdentificacion: "+bdEmpleados[j].getIdentificacion()
-                        +"\nCorreo Electronico: "+bdEmpleados[j].getCorreoE()+"\nNumero Telefonico: "+bdEmpleados[j].getNumeroTelefonico());
-                    } else {
-                            JOptionPane.showMessageDialog(null, "! Identificacion no encontrada ¡");
-                            break;
-
-                        
-
+                for (int i=0; i < contadorE; i++) { //i =5
+                    if (bdEmpleados[i].getIdentificacion().equals(identificacion)) {
+                        bandera=1;
+                        j=i;
                     }
                 }
-                while (!salir.equals("NO") && !salir.equals("SI")) {
+                    if(bandera==1){
+                        JOptionPane.showMessageDialog(null,"Puesto de trabajo: "+bdEmpleados[j].getPuesto()+"\nNombre Completo: "+bdEmpleados[j].getNombreC()+"\nEdad: "+bdEmpleados[j].getEdad()+"\nSexo: "+bdEmpleados[j].getSexo()+"\nOrigen: "+bdEmpleados[j].getOrigen()+"\nIdentificacion: "+bdEmpleados[j].getIdentificacion()
+                        +"\nCorreo Electronico: "+bdEmpleados[j].getCorreoE()+"\nNumero Telefonico: "+bdEmpleados[j].getNumeroTelefonico());
+                    } else{
+                        JOptionPane.showMessageDialog(null, "! Identificacion no encontrada ¡");
+                    }
+                    
+                do{
                     salir = JOptionPane.showInputDialog(" Desea buscar otro empleado:\nSi\nNo").toUpperCase();
                     if (salir.equals("NO") || salir.equals("SI")) {
 
                     } else {
                         JOptionPane.showMessageDialog(null, "! Opcion no valilda ¡\nDigite una opcion correcta");
                     }
-                }
+            }while (!salir.equals("NO") && !salir.equals("SI"));
+                
             } while (!salir.equals("NO"));
         } else {
             JOptionPane.showMessageDialog(null, "No hay empleados registrados");
@@ -352,7 +355,7 @@ public class clsEmpleados {
 
     @Override
     public String toString() {
-        return     NombreC + "\t"+edad+"\t"+ identificacion + "\t" + origen + "\t" + correoE + "\t" + numeroTelefonico + "\t" + puesto  ;
+        return     NombreC + "\t"+edad+"\t"+ identificacion + "\t" + origen + "\t" + correoE + "\t" + numeroTelefonico + puesto  ;
     }
      
 }
