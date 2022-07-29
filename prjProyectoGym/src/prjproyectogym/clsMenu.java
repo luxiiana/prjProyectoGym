@@ -1,70 +1,75 @@
-
 package prjproyectogym;
 
 import javax.swing.JOptionPane;
 
 public class clsMenu {
-    public void menuPrincipal(){
-        String opcion = "";
+    clsEmpleados clsE = new clsEmpleados();
+
+    public void menuPrincipal() {
         
-        do{
+        
+        String opcion = "";
+
+        do {
             opcion = JOptionPane.showInputDialog("Digite la opción que desea: \nA. Administrar clientes \nB. Administrar empleados \nS. SALIR").toUpperCase();
-            switch(opcion){
+            switch (opcion) {
                 case "A":
-                    do{
+                    do {
                         opcion = JOptionPane.showInputDialog("Digite la opción que desea: \nA. Agregar cliente \nB. Editar cliente \nC. Eliminar cliente "
                                 + "\nD. Buscar cliente \nE. Ver lista de clientes \nF.Volver al menú principal").toUpperCase();
-                        switch (opcion){
-                        case "A":
-                            
-                            break;
-                        case "B":
-                            
-                            break;
-                        case "C":
-                            
-                            break;
-                        case "D":
-                            
-                            break;
-                        case "E":
-                            
-                            break;
-                        case "F":
-                            break;
-                        default:
-                            JOptionPane.showMessageDialog(null, "Opción no válida");
-                            break;
-                    }//fin de switch 2
-                    }while(!opcion.equals("F"));
+                        switch (opcion) {
+                            case "A":
+                                break;
+                            case "B":
+                                break;
+                            case "C":
+
+                                break;
+                            case "D":
+
+                                break;
+                            case "E":
+                                break;
+                            case "F":
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "Opción no válida");
+                                break;
+                        }//fin de switch 2
+                    } while (!opcion.equals("F"));
                     break;
                 case "B":
-                    do{
+                    do {
                         opcion = JOptionPane.showInputDialog("Digite la opción que desea: \nA. Agregar empleado \nB. Editar editar \nC. Eliminar empleado "
-                                + "\nD. Buscar empleado \nE. Ver lista de empleados \nF.Volver al menú principal").toUpperCase();
-                        switch (opcion){
-                        case "A":
+                                + "\nD. Buscar empleado \nE. Ver lista de empleados \nF. Volver al menú principal").toUpperCase();
+                        switch (opcion) {
                             
-                            break;
-                        case "B":
-                            
-                            break;
-                        case "C":
-                            
-                            break;
-                        case "D":
-                            
-                            break;
-                        case "E":
-                            
-                            break;
-                        case "F":
-                            break;
-                        default:
-                            JOptionPane.showMessageDialog(null, "Opción no válida");
-                            break;
-                    }//fin de switch 2
-                    }while(!opcion.equals("F"));
+                                
+                                
+                            case "A":
+                               clsE.AgregarEmpleado();
+                                break;
+                            case "B":
+
+                                break;
+                            case "C":
+
+                                break;
+                            case "D":
+                                clsE.BuscarEmpleado();
+
+                                break;
+                            case "E":
+                                clsE.ListaEmpleados();
+
+                                break;
+                            case "F":
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "Opción no válida");
+                                break;
+                        }//fin de switch 2
+                    } while (!opcion.equals("F"));
                     break;
                 case "S":
                     JOptionPane.showMessageDialog(null, "Gracias por utilizar el programa!");
@@ -73,8 +78,8 @@ public class clsMenu {
                     JOptionPane.showMessageDialog(null, "Opción no válida");
                     break;
             }//fin de switch1
-            
-        }while(!opcion.equals("S"));
-        
+
+        } while (!opcion.equals("S"));
+
     }//fin método
 }
