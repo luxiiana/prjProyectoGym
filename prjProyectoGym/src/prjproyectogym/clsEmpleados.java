@@ -107,6 +107,8 @@ public class clsEmpleados {
         int edad = 0;
         String controlador = "";
         int bandera = 0;
+        do{
+            try{
         do {
             nombre = JOptionPane.showInputDialog("Digite el nombre completo del empleado");
             if (nombre.length() > 5) {
@@ -308,6 +310,7 @@ public class clsEmpleados {
                 case "C":
                     controlador = "Z";
                     puesto = "Entrenador Personal";
+                    
                     break;
                 case "D":
                     controlador = "Z";
@@ -326,6 +329,10 @@ public class clsEmpleados {
         bdEmpleados[contadorE] = new clsEmpleados(nombre, identificacion, origen, correoE, telefono, puesto, edad, sexo);
         contadorE++;
         JOptionPane.showMessageDialog(null, "Empleado agregado correctamente");
+            }catch(Exception e ){
+                JOptionPane.showMessageDialog(null,  "Opcion invalida");
+            }
+        }while(bandera!=1);
     }
 
     public void ListaEmpleados() {
@@ -380,7 +387,7 @@ public class clsEmpleados {
 
     @Override
     public String toString() {
-        return puesto + " || " + NombreC + " || " + edad + " || " + sexo + " || " + origen + " || " + identificacion + " || " + correoE + " || " + numeroTelefonico;
+        return puesto + "  " + NombreC + " || " + edad + " || " + sexo + " || " + origen + " || " + identificacion + " || " + correoE + " || " + numeroTelefonico;
     }
 
 }

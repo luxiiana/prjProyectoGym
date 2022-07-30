@@ -11,11 +11,11 @@ public class clsMenu {
         String opcion = "";
         do {
             try {
-            opcion = JOptionPane.showInputDialog("Digite la opción que desea: \nA. Administrar clientes \nB. Administrar empleados \nS. SALIR").toUpperCase();
+            opcion = JOptionPane.showInputDialog("Digite la opción que desea: \nB. Administrar empleados \nS. SALIR").toUpperCase();
             switch (opcion) {
                 case "A":
                     do {
-                        opcion = JOptionPane.showInputDialog("Digite la opción que desea: \nA. Agregar cliente \nB. Editar cliente \nC. Eliminar cliente "
+                        opcion = JOptionPane.showInputDialog("Digite la opción que desea: \nA. Añadir cliente \nB. Editar cliente \nC. Eliminar cliente "
                                 + "\nD. Buscar cliente \nE. Ver lista de clientes \nF.Volver al menú principal").toUpperCase();
                         switch (opcion) {
                             case "A":
