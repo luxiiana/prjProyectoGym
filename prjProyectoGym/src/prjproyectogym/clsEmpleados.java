@@ -106,6 +106,7 @@ public class clsEmpleados {
         String nombre = "", identificacion = "", sexo = "", origen = "", correoE = "", telefono = "", puesto = "", controlador = "", edadS = "";
         int edad = 0;
         int bandera = 0;
+        boolean igual=false;
 
         //-----------------------PROGRAM PRINCIPAL--------------------------
         do {
@@ -158,7 +159,7 @@ public class clsEmpleados {
                 //Fin ciclo de edad---*/
                 //------------------SEXO DEL EMPLEADO-------------------------
                 while (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C")) { //pide edad empleado 
-                    sexo = JOptionPane.showInputDialog("Digite el sexo del empleado:\nA. Masculino\nB. Femenino\nC. Indefinido");
+                    sexo = JOptionPane.showInputDialog("Digite el sexo del empleado:\nA. Masculino\nB. Femenino\nC. Indefinido").toUpperCase();
                     if (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C")) {// si es null o diferente  a A,B,C entonces da error
                         JOptionPane.showMessageDialog(null, "OPCION INVALIDA");
                     }
@@ -202,7 +203,57 @@ public class clsEmpleados {
 
                 } while (!controlador.equals("Z"));*/
 
-                //-INCIO CEDULA EMPLEADO
+                //-----------------------INICIO CEDULA EMPL2EADO---------------------
+                while (origen.equals("") || !origen.equals("A") && !origen.equals("B")) {
+                    origen = JOptionPane.showInputDialog("Seleccion su tipo de Cedula:"
+                            + "\nA. Nacional"
+                            + "\nB. Extrangero").toUpperCase();
+                    if (origen.equals("") || !origen.equals("A") && !origen.equals("B")) {
+                        JOptionPane.showMessageDialog(null, "Tipo de cedula invalda");
+                    }
+                }
+                switch (origen) {
+                    case "A":
+                        origen = "Nacional";
+
+                        while (!clsF.esNumero(identificacion) || identificacion.length()!=9 || identificacion.charAt(0)=='0' || igual==true) {
+                            identificacion=JOptionPane.showInputDialog("Digite su numero de identificacion");
+                            
+                            for (int i = 0; i < bdEmpleados.length; i++) {
+                                if (identificacion.equals(bdEmpleados[i].getIdentificacion())) {
+                                    igual=false;
+                                }else{
+                                    JOptionPane.showMessageDialog(null, "Ya exite un empleado con ete numero de identificacion!");
+                                    igual=true;
+                                }
+                            }//fin for buscar igualdades
+                        }
+
+                        break;
+
+                    case "B":
+                        
+                        origen = "Extrangero";
+
+                        while (!clsF.esNumero(identificacion) || identificacion.length()!=12 || identificacion.charAt(0)=='0' || igual==true) {
+                            identificacion=JOptionPane.showInputDialog("Digite su numero de identificacion");
+                            
+                            for (int i = 0; i < bdEmpleados.length; i++) {
+                                if (identificacion.equals(bdEmpleados[i].getIdentificacion())) {
+                                    igual=false;
+                                }else{
+                                    JOptionPane.showMessageDialog(null, "Ya exite un empleado con ete numero de identificacion!");
+                                    igual=true;
+                                }
+                            }//fin for buscar igualdades
+                        }
+                        
+                        break;
+
+                }
+                //------------------------FIN CEDULA EMPLEADO--------------------------
+
+                /*//-INCIO CEDULA EMPLEADO
                 do {
                     controlador = " ";
                     controlador = JOptionPane.showInputDialog("A. Nacional\nB. Extranjero").toUpperCase();
@@ -301,8 +352,7 @@ public class clsEmpleados {
                     }
 
                 } while (!controlador.equals("Z"));
-                //--fin cedula empleado
-
+                //--fin cedula empleado*/
                 controlador = "";
                 bandera = 0;
                 do {
