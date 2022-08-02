@@ -4,12 +4,10 @@
  */
 package prjproyectogym;
 
-public class clsRutina {
-    
-    //ESTO ES PARA JORDAN
-    //arreglos/obttos con varas predeteminar
-    
-    //---uncio metodo agregar rutina
-    //cambiar rutina
+/**
+ *
+ * @author Derek
+ */
+public class cls_calculosCliente {
     
 }

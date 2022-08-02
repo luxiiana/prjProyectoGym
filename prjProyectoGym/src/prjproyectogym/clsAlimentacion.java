@@ -4,10 +4,6 @@
  */
 package prjproyectogym;
 
-/**
- *
- * @author DellLatE5470
- */
 public class clsAlimentacion {
     
 }

@@ -6,7 +6,9 @@ import vistas.JF_inicioSesion;
 public class clsMenu {
 
     clsEmpleados clsE = new clsEmpleados();
-
+    /*
+        añadir comprobar si usario tiene acceso al gym
+    */
     public void menuPrincipal() {
         String opcion = "";
         do {

@@ -118,16 +118,6 @@ public class clsEmpleados {
                         JOptionPane.showMessageDialog(null, "! Nombre invalido ¡\nDigite un nombre valido");
                     }
                 }//fin pedir nombre de empleado
-                /*
-                do {
-                    nombre = JOptionPane.showInputDialog("Digite el nombre completo del empleado");
-                    if (nombre.length() > 5) {
-                        controlador = "Z";
-                    } else {
-                        JOptionPane.showInputDialog("! Nombre invalido ¡\nDigite un nombre valido");
-                    }
-                } while (!controlador.equals("Z"));
-                //Fin ciclo Nombre-------------*/
 
                 //--------------------Pedir edad del empleado--------------------------
                 while (!clsF.esNumero(edadS) || !(Integer.parseInt(edadS) >= 18 && Integer.parseInt(edadS) <= 100)) { //Se comprueba si es numero
@@ -139,23 +129,6 @@ public class clsEmpleados {
                 edad = Integer.parseInt(edadS); //la edadS se convierta a numero
                 //------------------FIN edad-------------------------------------------
 
-                /*
-                do {
-                    controlador = "";
-                    try {
-                        edad = Integer.parseInt(JOptionPane.showInputDialog("Digite la edad el empleado"));
-                        if (edad >= 18 && edad <= 100) {
-                            controlador = "Z";
-                        } else {
-                            JOptionPane.showMessageDialog(null, "!Edad Invalida¡");
-                        }
-
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Valor invalido");
-                    }
-
-                } while (!controlador.equals("Z"));
-                //Fin ciclo de edad---*/
                 //------------------SEXO DEL EMPLEADO-------------------------
                 while (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C")) { //pide edad empleado 
                     sexo = JOptionPane.showInputDialog("Digite el sexo del empleado:\nA. Masculino\nB. Femenino\nC. Indefinido");
@@ -177,32 +150,12 @@ public class clsEmpleados {
 
                 }
                 //-----------------FIN SEXO EMPLEADO--------------------------
+                
+                //-INCIO CEDULA EMPLEADO  
                 /*
-                do {
-                    controlador = "";
-                    controlador = JOptionPane.showInputDialog("Digite el sexo del empleado:\nA. Masculino\nB. Femenino\nC. Indefinido").toUpperCase();
-                    switch (controlador) {
-                        case "A":
-                            controlador = "Z";
-                            sexo = "Masculino";
-                            break;
-                        case "B":
-                            controlador = "Z";
-                            sexo = "Femenino";
-                            break;
-                        case "C":
-                            controlador = "Z";
-                            sexo = "Indefinido";
-                            break;
-                        default:
-                            JOptionPane.showMessageDialog(null, "Opcion invalida");
-                            break;
-
-                    }
-
-                } while (!controlador.equals("Z"));*/
-
-                //-INCIO CEDULA EMPLEADO
+                    DIMEX []
+                    OTRO []
+                */
                 do {
                     controlador = " ";
                     controlador = JOptionPane.showInputDialog("A. Nacional\nB. Extranjero").toUpperCase();
@@ -343,6 +296,8 @@ public class clsEmpleados {
                         }
                     }
                 } while (!controlador.equals("Z"));
+                
+                //---Seleccion de puesto [hacer pequeño]
                 controlador = "";
                 do {
                     controlador = JOptionPane.showInputDialog("Seleccione el puesto de trabajo:\nA. Administrador(a)\nB. Instructor(a)\nC. Entrenador(a) personal\nD. Nutriologo(a)\nE. Conserje").toUpperCase();
@@ -433,6 +388,11 @@ public class clsEmpleados {
 
     } // Finaliza el metodo de buscar empleado.
 
+    
+    /*
+        EDITAR[]
+        Eliminar[]
+    */
     @Override
     public String toString() {
         return puesto + "  " + NombreC + " || " + edad + " || " + sexo + " || " + origen + " || " + identificacion + " || " + correoE + " || " + numeroTelefonico;
