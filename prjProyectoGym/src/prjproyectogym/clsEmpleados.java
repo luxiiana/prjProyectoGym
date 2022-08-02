@@ -106,7 +106,7 @@ public class clsEmpleados {
         String nombre = "", identificacion = "", sexo = "", origen = "", correoE = "", telefono = "", puesto = "", controlador = "", edadS = "";
         int edad = 0;
         int bandera = 0;
-        boolean igual=false;
+        boolean igual = false;
 
         //-----------------------PROGRAM PRINCIPAL--------------------------
         do {
@@ -177,6 +177,7 @@ public class clsEmpleados {
                         break;
 
                 }
+                JOptionPane.showMessageDialog(null, sexo);
                 //-----------------FIN SEXO EMPLEADO--------------------------
                 /*
                 do {
@@ -216,15 +217,15 @@ public class clsEmpleados {
                     case "A":
                         origen = "Nacional";
 
-                        while (!clsF.esNumero(identificacion) || identificacion.length()!=9 || identificacion.charAt(0)=='0' || igual==true) {
-                            identificacion=JOptionPane.showInputDialog("Digite su numero de identificacion");
-                            
+                        while (!clsF.esNumero(identificacion) && identificacion.length() != 9 && identificacion.charAt(0) == '0' ||  !igual == true) {
+                            identificacion = JOptionPane.showInputDialog("Digite su numero de identificacion");
+
                             for (int i = 0; i < bdEmpleados.length; i++) {
                                 if (identificacion.equals(bdEmpleados[i].getIdentificacion())) {
-                                    igual=false;
-                                }else{
+                                    igual = false;
+                                } else {
                                     JOptionPane.showMessageDialog(null, "Ya exite un empleado con ete numero de identificacion!");
-                                    igual=true;
+                                    igual = true;
                                 }
                             }//fin for buscar igualdades
                         }
@@ -232,22 +233,24 @@ public class clsEmpleados {
                         break;
 
                     case "B":
-                        
+
                         origen = "Extrangero";
 
-                        while (!clsF.esNumero(identificacion) || identificacion.length()!=12 || identificacion.charAt(0)=='0' || igual==true) {
-                            identificacion=JOptionPane.showInputDialog("Digite su numero de identificacion");
-                            
-                            for (int i = 0; i < bdEmpleados.length; i++) {
-                                if (identificacion.equals(bdEmpleados[i].getIdentificacion())) {
-                                    igual=false;
-                                }else{
-                                    JOptionPane.showMessageDialog(null, "Ya exite un empleado con ete numero de identificacion!");
-                                    igual=true;
-                                }
-                            }//fin for buscar igualdades
+                        while (!clsF.esNumero(identificacion) || identificacion.length() != 12 || identificacion.charAt(0) == '0' || igual == true) {
+                            identificacion = JOptionPane.showInputDialog("Digite su numero de identificacion");
+
+                            if (contadorE > 0) {
+                                for (int i = 0; i < bdEmpleados.length; i++) {
+                                    if (!identificacion.equals(bdEmpleados[i].getIdentificacion())) {
+                                        igual = false;
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Ya exite un empleado con este numero de identificacion!");
+                                        igual = true;
+                                    }
+                                }//fin for buscar igualdades
+                            }
                         }
-                        
+
                         break;
 
                 }
