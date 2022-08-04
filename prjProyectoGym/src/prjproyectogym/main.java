@@ -1,5 +1,7 @@
 package prjproyectogym;
 
+import java.awt.TextArea;
+import javax.swing.JOptionPane;
 import vistas.JF_inicioSesion;
 
 public class main {
@@ -10,9 +12,12 @@ public class main {
         //clsMenu clsM = new clsMenu();
         //clsM.menuPrincipal();
         //---INCIAR PROGRAMA CON INCIO SESION
-        JF_inicioSesion JFIS = new JF_inicioSesion();
-        JFIS.setVisible(true);
+        //JF_inicioSesion JFIS = new JF_inicioSesion();
+        //JFIS.setVisible(true);
+       clsRutina clsr= new clsRutina();
+       System.out.println(clsr.rurina1);
 
     }
+
 
 }

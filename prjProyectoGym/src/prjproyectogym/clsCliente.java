@@ -24,11 +24,11 @@ public class clsCliente {
     private String objetivo; //SubirPerso-bajarPeso-manternerPeso
     /*
         Formula hom= ((10*kg)+(6.25*alturacm)-(5*edad)+5)*1.5
-        Formula muj= Formula hom= ((10*kg)+(6.25*alturacm)-(5*edad)+161)*1.5
+        Formula muj= ((10*kg)+(6.25*alturacm)-(5*edad)+161)*1.5
      */
-    private float caloriasDiarias; //peso*altura
+    private float caloriasDiarias; 
     private float pesoKg; //input
-    private float estaturaCm; //input
+    private float estaturaMts; //input
 
     //private float pesoIdeal; FUTURA EMPLEMETACION
     //----------INSTANCIAS-------------------
@@ -51,7 +51,7 @@ public class clsCliente {
         this.objetivo = objetivo;
         this.caloriasDiarias = caloriasDiarias;
         this.pesoKg = pesoKg;
-        this.estaturaCm = estaturaCm;
+        this.estaturaMts = estaturaCm;
         this.rutina = rutina;
     }
 
@@ -135,12 +135,12 @@ public class clsCliente {
         this.pesoKg = pesoKg;
     }
 
-    public float getEstaturaCm() {
-        return estaturaCm;
+    public float getEstaturaMts() {
+        return estaturaMts;
     }
 
     public void setEstaturaCm(float estaturaCm) {
-        this.estaturaCm = estaturaCm;
+        this.estaturaMts = estaturaCm;
     }
 
     public clsRutina getRutina() {
@@ -230,7 +230,7 @@ public class clsCliente {
                     + "Objetivo=" + bdClientes[contadorC].getObjetivo()
                     + "CaloriasDiarias=" + bdClientes[contadorC].getCaloriasDiarias()
                     + "Peso Kg=" + bdClientes[contadorC].getPesoKg()
-                    + "Estatura=" + bdClientes[contadorC].getEstaturaCm());
+                    + "Estatura=" + bdClientes[contadorC].getEstaturaMts());
             contadorC++;
 
         } catch (Exception e) {

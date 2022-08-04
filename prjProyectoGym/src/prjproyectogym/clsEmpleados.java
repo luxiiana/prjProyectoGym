@@ -153,12 +153,13 @@ public class clsEmpleados {
 
                 //-INCIO CEDULA EMPLEADO  
                 /*
+                    Nacional[]
                     DIMEX []
                     OTRO []
                  */
                 do {
                     controlador = " ";
-                    controlador = JOptionPane.showInputDialog("A. Nacional\nB. Extranjero").toUpperCase();
+                    controlador = JOptionPane.showInputDialog("A. Nacional\nB. Dimex\nC. otro").toUpperCase();
                     if (controlador.equals("A") || controlador.equals("B")) {
                         switch (controlador) {
                             case "A":
@@ -244,6 +245,9 @@ public class clsEmpleados {
                                 } while (!controlador.equals("Z"));
 
                                 break;
+                            case "C":
+                                origen= "Extranjero";
+                                identificacion=JOptionPane.showInputDialog("Digite el numero de identificacion del empleado");
                             default:
                                 JOptionPane.showMessageDialog(null, "Opcion invalida");
                                 break;
