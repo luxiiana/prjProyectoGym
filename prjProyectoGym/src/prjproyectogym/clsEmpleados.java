@@ -150,12 +150,12 @@ public class clsEmpleados {
 
                 }
                 //-----------------FIN SEXO EMPLEADO--------------------------
-                
+
                 //-INCIO CEDULA EMPLEADO  
                 /*
                     DIMEX []
                     OTRO []
-                */
+                 */
                 do {
                     controlador = " ";
                     controlador = JOptionPane.showInputDialog("A. Nacional\nB. Extranjero").toUpperCase();
@@ -296,7 +296,7 @@ public class clsEmpleados {
                         }
                     }
                 } while (!controlador.equals("Z"));
-                
+
                 //---Seleccion de puesto [hacer pequeño]
                 controlador = "";
                 do {
@@ -388,11 +388,10 @@ public class clsEmpleados {
 
     } // Finaliza el metodo de buscar empleado.
 
-    
     /*
         EDITAR[]
         Eliminar[]
-    */
+     */
     @Override
     public String toString() {
         return puesto + "  " + NombreC + " || " + edad + " || " + sexo + " || " + origen + " || " + identificacion + " || " + correoE + " || " + numeroTelefonico;
