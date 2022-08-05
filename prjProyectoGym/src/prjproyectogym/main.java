@@ -15,7 +15,7 @@ public class main {
         //JF_inicioSesion JFIS = new JF_inicioSesion();
         //JFIS.setVisible(true);
        clsRutina clsr= new clsRutina();
-       System.out.println(clsr.rurina1);
+       JOptionPane.showMessageDialog(null, clsr.rutina6);
 
     }
 
