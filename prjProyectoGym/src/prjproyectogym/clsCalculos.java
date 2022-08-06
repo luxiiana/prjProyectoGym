@@ -2,7 +2,7 @@ package prjproyectogym;
 
 public class clsCalculos {
 
-    int PesoIdeal(float altura, String sexo) {
+    public int PesoIdeal(float altura, String sexo) {
         float p = 0;
         int pesoIdeal = 0;
         if (sexo.equalsIgnoreCase("Masculino")) {
@@ -15,7 +15,7 @@ public class clsCalculos {
         return pesoIdeal;
     }
 
-    int CaloriasDiarias(float peso, float altura, int edad, String sexo) {
+    public float CaloriasDiarias(float peso, float altura, int edad, String sexo) {
         int caloriasDiarias = 0;
         if (sexo.equalsIgnoreCase("Masculino")) {
             caloriasDiarias = (int) (((10 * peso) + (6.25 * (altura * 100)) - (5 * edad) + 5) * 1.55);
@@ -25,21 +25,21 @@ public class clsCalculos {
         return caloriasDiarias;
     }
 
-    int CaloriasObjetivo(String objetivo, int caloriasDiarias) {
+    public int CaloriasObjetivo(String objetivo, int caloriasDiarias) {
         int caloriasObjetivo = 0;
         if (objetivo.equalsIgnoreCase("Subir de peso")) {
             caloriasObjetivo = caloriasDiarias + 250;
         } else if (objetivo.equalsIgnoreCase("Bajar de peso")) {
             caloriasObjetivo = caloriasDiarias - 250;
-        } else if(objetivo.equalsIgnoreCase("Mantener peso")){
-            caloriasObjetivo=caloriasDiarias;
+        } else if (objetivo.equalsIgnoreCase("Mantener peso")) {
+            caloriasObjetivo = caloriasDiarias;
         }
         return caloriasObjetivo;
     }
-    float IMC(float altura, float peso){
-        float IMC=0;
-        IMC= (float) (Math.pow(altura, 2)/peso);
+
+    public float IMC(float altura, float peso) {
+        float IMC = 0;
+        IMC = (float) (Math.pow(altura, 2) / peso);
         return IMC;
-    } 
-} 
-    
+    }
+}//---fin clsCalculos----

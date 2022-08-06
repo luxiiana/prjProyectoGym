@@ -7,6 +7,8 @@ import vistas.JF_inicioSesion;
 public class main {
 
     public static void main(String[] args) {
+        
+        
 
         //---INICIAR DIRECTAMENTE EL PROGRAMA
         clsMenu clsM = new clsMenu();
@@ -19,6 +21,7 @@ public class main {
         //---------RUTINAS----------
         //clsRutina clsr = new clsRutina();
         //JOptionPane.showMessageDialog(null, clsr.rutina6);
+        ;
 
     }
 

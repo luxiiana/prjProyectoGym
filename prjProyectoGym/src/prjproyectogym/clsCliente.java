@@ -14,12 +14,11 @@ public class clsCliente {
     private String tipoDePase;
     private String entrenador;
     int contadorC = 0;
+    private float pago;
     /*  
-        Basico [] solo acceso a gym || no ucpa ningun calculo pago=1000
-        Max [] pichudo pero ocupa entrenado ||  no ocupa ningun calculo pago=2000
-        Ultra []  0 pichudo ocupa entrenar y rutina || si ocupatodo pago=3000
-     */
-    private float pago; //Predeterminado lee tipo de pase
+        Basico [] solo acceso a gym || no ucpa ningun calculo pago=10000
+        Max [] pichudo pero ocupa entrenado ||  no ocupa ningun calculo pago=15000
+        Ultra []  0 pichudo ocupa entrenar y rutina || si ocupatodo pago 20000    private float pago; //Predeterminado lee tipo de pase
 
     //----------INFO GYM---------------------
     private String somatotipo; //Eptomorfo-Mesomorfo-Endomorfo
@@ -28,16 +27,19 @@ public class clsCliente {
         Formula hom= ((10*kg)+(6.25*alturacm)-(5*edad)+5)*1.5
         Formula muj= ((10*kg)+(6.25*alturacm)-(5*edad)+161)*1.5
      */
+    private String somatotipo;
     private float caloriasDiarias;
     private float caloriasObjetivo;
     private float pesoKg; //input
     private float estaturaMts; //input
+    private String objetivo;
 
     //private float pesoIdeal; FUTURA EMPLEMETACION
     //----------INSTANCIAS-------------------
     clsRutina rutina;
     clsEmpleados clsE = new clsEmpleados();
     //clsAlimentacion PlanAlimentacion;
+    clsCalculos clsCalc = new clsCalculos();
 
     clsCliente bdClientes[] = new clsCliente[9999999];
     cls_funciones clsF = new cls_funciones();
@@ -64,11 +66,11 @@ public class clsCliente {
         this.rutina = rutina;
     }
 
-    public String getNombreC() {
+    public String getNombreC() { // return cliente1 nombre jJordan
         return nombreC;
     }
 
-    public void setNombreC(String nombreC) {
+    public void setNombreC(String nombreC) { 
         this.nombreC = nombreC;
     }
 
@@ -399,35 +401,42 @@ public class clsCliente {
         }
 
         switch (tipoDePase) {
-            case "A":
+            case "A": //----PASE BASICO-------
                 tipoDePase = "Basico";
-                pago = 1000;
+                pago = 10000;
+                //---Se crea el cliente-----
+                bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, origen, telefono, tipoDePase, null, pago, null, null, 0, 0, 0, 0, null);
+
                 JOptionPane.showMessageDialog(null, "USUARIO CREADO");
                 break;
-            case "B":
+            case "B": //----PASE MAX---------
                 tipoDePase = "Max";
-                pago = 2000;
-                //---
+                pago = 15000;
+                /*------ASIGNACION DE ENTRENADOR-----------
                 int cantE = clsE.contadorE;
-              
+                 */
+
+                //----Se crea el cliente-----
+                bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, origen, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null);
+
                 break;
 
-            case "C":
+            case "C": //--------PASE ULTRA------------
                 tipoDePase = "Ultra";
-                pago = 3000;
+                pago = 20000;
                 //---------SOMATIPO------------------------------------
                 while (somatotipo.equals("") || !somatotipo.equals("A") && !somatotipo.equals("B") && !somatotipo.equals("C")) {
                     somatotipo = clsF.cadena("Digite su tipo de Somatotipo"
-                            + "\nA. Eptomorfo"
-                            + "\nB. Mesomorfo"
-                            + "\nC. Endomorfo");
+                            + "\nA. Ectomorfo: Contextura delgada, extremidades largas, dificil ganar peso, poco porcentaje de grasa"
+                            + "\nB. Mesomorfo: Cuerpo atletico, facil de ganar musculo, facil perder grasa(bendecido por los dioses) "
+                            + "\nC. Endomorfo: Contextura gruesa, baja estatura, facil acumulamiento de grasa, dificil perder peso ").toUpperCase();
                     if (somatotipo.equals("") || !somatotipo.equals("A") && !somatotipo.equals("B") && !somatotipo.equals("C")) {
                         JOptionPane.showMessageDialog(null, "Opcion invalida");
                     }
                 }
                 switch (somatotipo) {
                     case "A":
-                        somatotipo = "Eptomorfo";
+                        somatotipo = "Ectomorfo";
                         break;
                     case "B":
                         somatotipo = "Mesomorfo";
@@ -437,47 +446,73 @@ public class clsCliente {
                         break;
                 }
 
-                //-------------------------------------------------------
                 //---------OBJETIVO------------------------------------
                 while (objetivo.equals("") || !objetivo.equals("A") && !objetivo.equals("B") && !objetivo.equals("C")) {
                     objetivo = clsF.cadena("Digite el obejtivo"
                             + "\nA. Subir de peso"
                             + "\nB. Bajar de peso"
-                            + "\nC. Mantener peso");
+                            + "\nC. Mantener peso").toUpperCase();
                     if (objetivo.equals("") || !objetivo.equals("A") && !objetivo.equals("B") && !objetivo.equals("C")) {
                         JOptionPane.showMessageDialog(null, "Opcion invalida");
                     }
                 }
                 switch (objetivo) {
                     case "A":
-                        objetivo = "Eptomorfo";
+                        objetivo = "Subir de peso";
                         break;
                     case "B":
-                        objetivo = "Mesomorfo";
+                        objetivo = "Bajar de peso";
                         break;
                     case "C":
-                        objetivo = "Endomorfo";
+                        objetivo = "Mantener de peso";
                         break;
+                }//----FIN OBJETIVO
+
+                //-------PesoKg------------
+                while (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0) {
+                    pesoKgS = JOptionPane.showInputDialog("Digite su peso en Kg");
+                    if (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0) {
+                        JOptionPane.showMessageDialog(null, "Dato invalido");
+                    }
                 }
-                
+                pesoKg = Float.parseFloat(pesoKgS);
+                //----------------------FIN PESO----
+
+                //-------EstaturaCm------------
+                while (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0 && Float.parseFloat(pesoKgS) >= 500) {
+                    estaturaCmS = JOptionPane.showInputDialog("Digite su estatura en cm");
+                    if (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0) {
+                        JOptionPane.showMessageDialog(null, "Dato invalido");
+                    }
+                }
+                estaturaCm = (Float.parseFloat(estaturaCmS)) / 100;
+                //-------------FIN ESTATURA CM------------
+                //----------Calorias Diarias------------
+                caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
+                //---------FIN CLAORIAS DIARIAS-----
+                //--CALORIAS OBJETIVO
+                bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, origen, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
+
                 break;
-        }
-        //-----------------------------------------------------
+        }///--------------FIN PASESE----------------
+
         //-------------CREACION DEL OBEJTO CLIENTE--------------------
-        bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, origen, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
+        //bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, origen, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
         JOptionPane.showMessageDialog(null, "Nombre=" + bdClientes[contadorC].getNombreC()
-                + "Identificacion=" + bdClientes[contadorC].getIdentificacion()
-                + "Sexo=" + bdClientes[contadorC].getSexo()
-                + "edad=" + bdClientes[contadorC].getEdad()
-                + "Origen=" + bdClientes[contadorC].getOrigen()
-                + "telefono=" + bdClientes[contadorC].getTelefono()
-                + "Tipo de Pase=" + bdClientes[contadorC].getTipoDePase()
-                + "Pago=" + bdClientes[contadorC].getPago()
-                + "Somatipo=" + bdClientes[contadorC].getSomatotipo()
-                + "Objetivo=" + bdClientes[contadorC].getObjetivo()
-                + "CaloriasDiarias=" + bdClientes[contadorC].getCaloriasDiarias()
-                + "Peso Kg=" + bdClientes[contadorC].getPesoKg()
-                + "Estatura=" + bdClientes[contadorC].getEstaturaMts());
+                + "\nIdentificacion=" + bdClientes[contadorC].getIdentificacion()
+                + "\nSexo=" + bdClientes[contadorC].getSexo()
+                + "\nedad=" + bdClientes[contadorC].getEdad()
+                + "\nOrigen=" + bdClientes[contadorC].getOrigen()
+                + "\ntelefono=" + bdClientes[contadorC].getTelefono()
+                + "\nTipo de Pase=" + bdClientes[contadorC].getTipoDePase()
+                + "\nPago=" + bdClientes[contadorC].getPago()
+                + "\nSomatipo=" + bdClientes[contadorC].getSomatotipo()
+                + "\nObjetivo=" + bdClientes[contadorC].getObjetivo()
+                + "\nCalorias Diarias=" + bdClientes[contadorC].getCaloriasDiarias()
+                + "\nCalorias Objetivo=" + bdClientes[contadorC].getCaloriasObjetivo()
+                + "\nPeso Kg=" + bdClientes[contadorC].getPesoKg()
+                + "\nEstatura=" + bdClientes[contadorC].getEstaturaMts()
+                + "\nRUTINA=" + bdClientes[contadorC].getRutina());
         contadorC++;
 
     }//fin agregar

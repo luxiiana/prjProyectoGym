@@ -34,7 +34,7 @@ public class cls_funciones {
     //----Validacion de numero-----
     public boolean esNumero(String dato){
         try {
-            Integer.parseInt(dato);
+            Float.parseFloat(dato);
             return true;
         } catch (NumberFormatException datofe) {
             return false;
