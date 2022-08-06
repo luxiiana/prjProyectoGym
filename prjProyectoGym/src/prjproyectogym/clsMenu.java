@@ -54,6 +54,7 @@ public class clsMenu {
                                     clsE.AgregarEmpleado();
                                     break;
                                 case "B":
+                                    clsE.editarEmpleado();
 
                                     break;
                                 case "C":
