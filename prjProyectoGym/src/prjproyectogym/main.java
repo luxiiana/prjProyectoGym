@@ -11,13 +11,15 @@ public class main {
         //---INICIAR DIRECTAMENTE EL PROGRAMA
         //clsMenu clsM = new clsMenu();
         //clsM.menuPrincipal();
+        
         //---INCIAR PROGRAMA CON INCIO SESION
-       // JF_inicioSesion JFIS = new JF_inicioSesion();
-       // JFIS.setVisible(true);
-       clsRutina clsr= new clsRutina();
-       JOptionPane.showMessageDialog(null, clsr.rutina6);
+         JF_inicioSesion JFIS = new JF_inicioSesion();
+         JFIS.setVisible(true);
+        
+        //---------RUTINAS----------
+        //clsRutina clsr = new clsRutina();
+        //JOptionPane.showMessageDialog(null, clsr.rutina6);
 
     }
-
 
 }

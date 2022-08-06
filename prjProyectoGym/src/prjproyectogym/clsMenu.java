@@ -5,10 +5,13 @@ import vistas.JF_inicioSesion;
 
 public class clsMenu {
 
+    //------INSTANCIAS-------
+    clsCliente clsC = new clsCliente();
     clsEmpleados clsE = new clsEmpleados();
+
     /*
         añadir comprobar si usario tiene acceso al gym
-    */
+     */
     public void menuPrincipal() {
         String opcion = "";
         do {
@@ -21,6 +24,7 @@ public class clsMenu {
                                     + "\nD. Buscar cliente \nE. Ver lista de clientes \nF.Volver al menú principal").toUpperCase();
                             switch (opcion) {
                                 case "A":
+                                    clsC.agregarCliente();
                                     break;
                                 case "B":
                                     break;

@@ -6,6 +6,13 @@ package prjproyectogym;
 
 public class clsRutina {
 
+    public clsRutina() {
+    }
+
+    
+    
+    
+    
     String rutina1 = "Dia 1 = Cuerpo completo\n"
             + "Sentadilla 4x12\n"
             + "Flexion plantar 4x15\n"
@@ -14,6 +21,7 @@ public class clsRutina {
             + "Dominadas 3x10\n"
             + "Curl bicep 3x10\n"
             + "Ext tricep 3x10";
+    
     String rutina2 = "Dia 1 = Cuerpo completo         Dia 2 = Cuerpo completo\n"
             + "Sentadilla 4x12                         Sentadilla 4x12\n"
             + "Flexion plantar 4x15                 Flexion plantar 4x15\n"
