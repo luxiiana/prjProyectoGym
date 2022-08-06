@@ -1,6 +1,7 @@
 package prjproyectogym;
 
 import java.awt.TextArea;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 
 public class clsEmpleados {
@@ -130,7 +131,7 @@ public class clsEmpleados {
 
             //------------------SEXO DEL EMPLEADO-------------------------
             while (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C")) { //pide edad empleado 
-                sexo = JOptionPane.showInputDialog("Digite el sexo del empleado:\nA. Masculino\nB. Femenino\nC. Indefinido");
+                sexo = JOptionPane.showInputDialog("Digite el sexo del empleado:\nA. Masculino\nB. Femenino\nC. Indefinido").toUpperCase();
                 if (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C")) {// si es null o diferente  a A,B,C entonces da error
                     JOptionPane.showMessageDialog(null, "OPCION INVALIDA");
                 }
@@ -380,8 +381,8 @@ public class clsEmpleados {
                     bandera=0;
                     String opcion = "";
                     while (!opcion.equals("S")) {
-                        opcion = JOptionPane.showInputDialog(null, "A. Puesto de trabajo: " + bdEmpleados[posc].getPuesto() + "\nB. Nombre Completo: " + bdEmpleados[posc].getNombreC() + "\nC. Edad: " + bdEmpleados[posc].getEdad() + "\nD. Sexo: " + bdEmpleados[posc].getSexo() + "origen: " + bdEmpleados[posc].getOrigen() + "\nE. Identificacion: " + bdEmpleados[posc].getIdentificacion()
-                                + "\nF. Correo Electronico: " + bdEmpleados[posc].getCorreoE() + "\nG. Numero Telefonico: " + bdEmpleados[posc].getNumeroTelefonico() + "\nS. Salir");
+                        opcion = JOptionPane.showInputDialog(null, "A. Puesto de trabajo: " + bdEmpleados[posc].getPuesto() + "\nB. Nombre Completo: " + bdEmpleados[posc].getNombreC() + "\nC. Edad: " + bdEmpleados[posc].getEdad() + "\nD. Sexo: " + bdEmpleados[posc].getSexo() + "\nOrigen: " + bdEmpleados[posc].getOrigen() + "\nE. Identificacion: " + bdEmpleados[posc].getIdentificacion()
+                                + "\nF. Correo Electronico: " + bdEmpleados[posc].getCorreoE() + "\nG. Numero Telefonico: " + bdEmpleados[posc].getNumeroTelefonico() + "\nS. Salir").toUpperCase(Locale.ITALY);
 
                         switch (opcion) {
                             case "A":
@@ -417,7 +418,7 @@ public class clsEmpleados {
                                 String sexo = "";
                                 //------------------SEXO DEL EMPLEADO-------------------------
                                 while (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C")) { //pide edad empleado 
-                                    sexo = JOptionPane.showInputDialog("Digite el sexo del empleado:\nA. Masculino\nB. Femenino\nC. Indefinido");
+                                    sexo = JOptionPane.showInputDialog("Digite el sexo del empleado:\nA. Masculino\nB. Femenino\nC. Indefinido").toUpperCase();
                                     if (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C")) {// si es null o diferente  a A,B,C entonces da error
                                         JOptionPane.showMessageDialog(null, "OPCION INVALIDA");
                                     }
