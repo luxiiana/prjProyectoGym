@@ -373,9 +373,11 @@ public class clsEmpleados {
                 for (int i = 0; i < contadorE; i++) {
                     if (bdEmpleados[i].getIdentificacion().equals(identificacion)) {
                         posc = i;
-                    }
+                        bandera=1;
+                    } 
                 }
-                if (posc >= 0) {
+                if (bandera==1) {
+                    bandera=0;
                     String opcion = "";
                     while (!opcion.equals("S")) {
                         opcion = JOptionPane.showInputDialog(null, "A. Puesto de trabajo: " + bdEmpleados[posc].getPuesto() + "\nB. Nombre Completo: " + bdEmpleados[posc].getNombreC() + "\nC. Edad: " + bdEmpleados[posc].getEdad() + "\nD. Sexo: " + bdEmpleados[posc].getSexo() + "origen: " + bdEmpleados[posc].getOrigen() + "\nE. Identificacion: " + bdEmpleados[posc].getIdentificacion()
