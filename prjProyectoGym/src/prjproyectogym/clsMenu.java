@@ -57,7 +57,7 @@ public class clsMenu {
 
                                     break;
                                 case "C":
-
+                                    clsE.eliminarEmpleado();
                                     break;
                                 case "D":
                                     clsE.BuscarEmpleado();
