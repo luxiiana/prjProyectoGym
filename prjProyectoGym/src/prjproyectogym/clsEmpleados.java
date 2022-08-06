@@ -631,7 +631,7 @@ public class clsEmpleados {
             JOptionPane.showMessageDialog(null, "No hay empleados registrados");
         }
 
-    }
+    }// FIN DEL METODO DE EDITAR EMPLEADO
 
     public void eliminarEmpleado() {
         if (contadorE > 0) {
