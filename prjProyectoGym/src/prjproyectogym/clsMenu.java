@@ -12,7 +12,7 @@ public class clsMenu {
     /*
         añadir comprobar si usario tiene acceso al gym
      */
-    public void menuPrincipal() {
+    public void menuPrincipal() { //Luciana
         String opcion = "";
         do {
             try {
