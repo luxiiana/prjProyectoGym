@@ -470,12 +470,13 @@ public class clsCliente {
 
                 //-------EstaturaCm------------
                 while (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0 && Float.parseFloat(pesoKgS) >= 500) {
-                    estaturaCmS = JOptionPane.showInputDialog("Digite su estatura en cm");
-                    if (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0) {
+                    estaturaCmS = JOptionPane.showInputDialog("Digite su estatura en mts");
+                    if (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0 ) {
                         JOptionPane.showMessageDialog(null, "Dato invalido");
                     }
                 }
-                estaturaCm = (Float.parseFloat(estaturaCmS)) / 100;
+                estaturaCm = (Float.parseFloat(estaturaCmS));
+                
                 //-------------FIN ESTATURA CM------------
                 //----------Calorias Diarias------------
                 caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
