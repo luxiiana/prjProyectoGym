@@ -505,7 +505,7 @@ public class clsCliente {
                 }
             }
 
-            JOptionPane.showMessageDialog(null, new TextArea("Cleinte" + "\t" + "Identificacion" + "\t" + "Sexo" + "\t" + "Edad" + "\t" + "Telefono" + "\t" + "Tipo pase" + "\t" + "Pago" + mensaje)); // nada mas falta poner las divisiones que faltan 
+            JOptionPane.showMessageDialog(null, new TextArea("Cliente" + "\t" + "Identificacion" + "\t" + "Sexo" + "\t" + "Edad" + "\t" + "Telefono" + "\t" + "Tipo pase" + "\t" + "Pago" + mensaje)); // nada mas falta poner las divisiones que faltan 
 
             //Meter un while para que solanmente seleccione un numero de '1' al numero maximo de cleintes que hay registrados y no puede aceptar letras hacer el m,ismo while de edad
             //clienteSeleccionado=Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de cliente que desea editar"));
