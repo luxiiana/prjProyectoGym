@@ -16,7 +16,7 @@ public class clsMenu {
         String opcion = "";
         do {
             try {
-                opcion = JOptionPane.showInputDialog("Digite la opción que desea:\nA. Administrar Cliente \nB. Administrar empleados \nS. SALIR").toUpperCase();
+                opcion = JOptionPane.showInputDialog("Digite la opción que desea:\nA. Administrar Cliente \nB. Administrar empleados \nS. CERRAR SESION").toUpperCase();
                 switch (opcion) {
                     case "A":
                         do {
@@ -27,6 +27,7 @@ public class clsMenu {
                                     clsC.agregarCliente();
                                     break;
                                 case "B":
+                                    clsC.editarCliente();
                                     break;
                                 case "C":
 

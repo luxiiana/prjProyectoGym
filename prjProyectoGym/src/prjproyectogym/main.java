@@ -11,11 +11,14 @@ public class main {
         
 
         //---INICIAR DIRECTAMENTE EL PROGRAMA
-        clsCalculos c = new clsCalculos();
-        float calorias =c.CaloriasDiarias(93, 1.83f, 19,"Masculino");
-        System.out.println(calorias);
         clsMenu clsM = new clsMenu();
         clsM.menuPrincipal();
+        
+        //Pruebas calculos--
+        //clsCalculos c = new clsCalculos();
+        //float calorias =c.CaloriasDiarias(93, 1.83f, 19,"Masculino");
+        //System.out.println(calorias);
+        
         
         //---INCIAR PROGRAMA CON INCIO SESION
         //JF_inicioSesion JFIS = new JF_inicioSesion();
