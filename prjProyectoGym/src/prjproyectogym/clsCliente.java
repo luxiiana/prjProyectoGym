@@ -489,7 +489,7 @@ public class clsCliente {
     public void editarCliente() { //Luciana
         //------Variables------
         String mensaje = "", entrenador = "", nombre = "", identificacion = "", sexo = "", edadS = "", telefono = "", tipoDePase = "", somatotipo = "", objetivo = "", caloriasDiariasS = "", pesoKgS = "", estaturaCmS = "", pagoS = "", controlador = "";
-        int edad = 0, bandera = 0, clienteSeleccionado = 0;
+        int edad = 0, bandera = 0, clienteSeleccionado = 0, posc = 0;
         float pago = 0, caloriasDiarias = 0, pesoKg = 0, estaturaCm = 0, caloriasObjetivo = 0;
 
         //------------PROGRAMA---------------
@@ -501,261 +501,275 @@ public class clsCliente {
             //clienteSeleccionado=Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de cliente que desea editar"));
             //------Menú de opciones a editar------
             //en este menu debe aceptar en ves del contadorC debe ir el 'numero de cliente seleccionado'
-            char opc = JOptionPane.showInputDialog("a. Nombre:" + bdClientes[contadorC].getNombreC()
-                    + "\nb. Identificacion:" + bdClientes[contadorC].getIdentificacion()
-                    + "\nc. Sexo:" + bdClientes[contadorC].getSexo()
-                    + "\nd. Edad:" + bdClientes[contadorC].getEdad()
-                    + "\ne. Teléfono:" + bdClientes[contadorC].getTelefono()
-                    + "\nf. Tipo de Pase:" + bdClientes[contadorC].getTipoDePase()
-                    + "\ng. Pago:" + bdClientes[contadorC].getPago()
-                    + "\nh. Somatipo:" + bdClientes[contadorC].getSomatotipo()
-                    + "\ni. Objetivo:" + bdClientes[contadorC].getObjetivo()
-                    + "\nj. Calorias Diarias:" + bdClientes[contadorC].getCaloriasDiarias()
-                    + "\nk. Calorias Objetivo:" + bdClientes[contadorC].getCaloriasObjetivo()
-                    + "\nl. Peso Kg:" + bdClientes[contadorC].getPesoKg()
-                    + "\nm. Estatura:" + bdClientes[contadorC].getEstaturaMts()
-                    + "\nn. RUTINA:" + bdClientes[contadorC].getRutina()).charAt(0);
+            
+            identificacion = JOptionPane.showInputDialog("Escriba el número de cédula del cliente a editar: ");
+            for (int i = 0; i < contadorC; i++) {
+                if (bdClientes[i].getIdentificacion().equals(identificacion)) {
+                    posc = i;
+                    bandera = 1;
+                }
+            }
+            
+            if(bandera == 1){
+                char opc = JOptionPane.showInputDialog("a. Nombre:" + bdClientes[posc].getNombreC()
+                        + "\nb. Identificacion:" + bdClientes[posc].getIdentificacion()
+                        + "\nc. Sexo:" + bdClientes[posc].getSexo()
+                        + "\nd. Edad:" + bdClientes[posc].getEdad()
+                        + "\ne. Teléfono:" + bdClientes[posc].getTelefono()
+                        + "\nf. Tipo de Pase:" + bdClientes[posc].getTipoDePase()
+                        + "\ng. Pago:" + bdClientes[posc].getPago()
+                        + "\nh. Somatipo:" + bdClientes[posc].getSomatotipo()
+                        + "\ni. Objetivo:" + bdClientes[posc].getObjetivo()
+                        + "\nj. Calorias Diarias:" + bdClientes[posc].getCaloriasDiarias()
+                        + "\nk. Calorias Objetivo:" + bdClientes[posc].getCaloriasObjetivo()
+                        + "\nl. Peso Kg:" + bdClientes[posc].getPesoKg()
+                        + "\nm. Estatura:" + bdClientes[posc].getEstaturaMts()
+                        + "\nn. RUTINA:" + bdClientes[posc].getRutina()).charAt(0);
 
-            switch (opc) {
+                switch (opc) {
 
-                case 'a': //editar nombre
+                    case 'a': //editar nombre
 
-                    do {
-                        //poner en el mismo input el nombre actual del cliente, simplificar codigo! notar errores en pasos ya que modifica sin haber hecho comprobacioens
-                        //Pide nombre nuevo:
-                        nombre = JOptionPane.showInputDialog("Digite el nuevo nombre, completo, del cliente: ");
-                        bdClientes[contadorC].setNombreC(nombre);//aqui igualemente seleciona con contadorC y no se puede, tiene que ser con el numero de lciente que quiere editar
-                        if (nombre.length() < 5 || nombre.equals("")) {
-                            //Si el nombre que se introdujo es menor a 5 caracteres se le muestra el siguiente mensaje 
-                            JOptionPane.showMessageDialog(null, "El nombre no pudo ser editado \nDigite un nombre valido");
-                        } else {
-                            //Muestra nombre actualizado:
-                            JOptionPane.showMessageDialog(null, "Nombre correctamente editado \nNuevo nombre es: " + bdClientes[contadorC].getNombreC());
-                        }
-                    } while (nombre.length() < 5 || nombre.equals("")); //fin pedir nombre de Cliente
-                    break;
+                        do {
+                            //poner en el mismo input el nombre actual del cliente, simplificar codigo! notar errores en pasos ya que modifica sin haber hecho comprobacioens
+                            //Pide nombre nuevo:
+                            nombre = JOptionPane.showInputDialog("Digite el nuevo nombre, completo, del cliente: ");
+                            bdClientes[posc].setNombreC(nombre);//aqui igualemente seleciona con contadorC y no se puede, tiene que ser con el numero de lciente que quiere editar
+                            if (nombre.length() < 5 || nombre.equals("")) {
+                                //Si el nombre que se introdujo es menor a 5 caracteres se le muestra el siguiente mensaje 
+                                JOptionPane.showMessageDialog(null, "El nombre no pudo ser editado \nDigite un nombre valido");
+                            } else {
+                                //Muestra nombre actualizado:
+                                JOptionPane.showMessageDialog(null, "Nombre correctamente editado \nNuevo nombre es: " + bdClientes[posc].getNombreC());
+                            }
+                        } while (nombre.length() < 5 || nombre.equals("")); //fin pedir nombre de Cliente
+                        break;
 
-                case 'b':
-                    do {
-                        controlador = " ";
-                        controlador = JOptionPane.showInputDialog("Seleccione su nuevo tipo de Identificacion: "
-                                + "\nA. Nacional\nB. Dimex\nC. Otro").toUpperCase();
+                    case 'b':
+                        do {
+                            controlador = " ";
+                            controlador = JOptionPane.showInputDialog("Seleccione su nuevo tipo de Identificacion: "
+                                    + "\nA. Nacional\nB. Dimex\nC. Otro").toUpperCase();
 
-                        if (controlador.equals("A") || controlador.equals("B")) {
-                            switch (controlador) {
-                                case "A": //Si es Nacional y usa cédula de nacional
-                                    controlador = "";
-                                    bandera = 0;
-                                    do {
+                            if (controlador.equals("A") || controlador.equals("B")) {
+                                switch (controlador) {
+                                    case "A": //Si es Nacional y usa cédula de nacional
+                                        controlador = "";
+                                        bandera = 0;
                                         do {
-                                            identificacion = JOptionPane.showInputDialog("Digite el nuevo número de cédula de 9 dígitos del cliente:");
-                                            bdClientes[contadorC].setIdentificacion(identificacion);
-                                            if (identificacion.length() == 9 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
-                                                for (int j = 1; j < identificacion.length(); j++) {
-                                                    if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
-                                                        bandera = 1;
+                                            do {
+                                                identificacion = JOptionPane.showInputDialog("Digite el nuevo número de cédula de 9 dígitos del cliente:");
+                                                bdClientes[posc].setIdentificacion(identificacion);
+                                                if (identificacion.length() == 9 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
+                                                    for (int j = 1; j < identificacion.length(); j++) {
+                                                        if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
+                                                            bandera = 1;
+                                                        } else {
+                                                            bandera = 0;
+                                                            JOptionPane.showMessageDialog(null, "¡Número de cédula invalido!\nDigite un numero de cédula válido");
+                                                            break;
+                                                        }
+                                                    }
+
+                                                } else {
+                                                    JOptionPane.showMessageDialog(null, "!Número de cédula inválido!\nDigite un número de cédula válido");
+                                                }
+                                                bdClientes[posc].getIdentificacion(); //obtiene el ID para mostrarla
+                                                JOptionPane.showMessageDialog(null, "Su nueva identificación es: " + identificacion);
+                                            } while (bandera != 1);
+                                            if (contadorC == 0) {
+                                                controlador = "Z";
+                                            } else {
+                                                for (int k = 0; k < contadorC; k++) {
+                                                    if (!identificacion.equals(bdClientes[k].getIdentificacion())) {
+                                                        controlador = "Z";
                                                     } else {
+                                                        controlador = "";
+                                                        JOptionPane.showMessageDialog(null, "¡El número de cédula ya fue registrado! \nVerifique e intente de nuevo");
                                                         bandera = 0;
-                                                        JOptionPane.showMessageDialog(null, "¡Número de cédula invalido!\nDigite un numero de cédula válido");
                                                         break;
                                                     }
-                                                }
 
-                                            } else {
-                                                JOptionPane.showMessageDialog(null, "!Número de cédula inválido!\nDigite un número de cédula válido");
+                                                }
                                             }
-                                            bdClientes[contadorC].getIdentificacion(); //obtiene el ID para mostrarla
-                                            JOptionPane.showMessageDialog(null, "Su nueva identificación es: " + identificacion);
-                                        } while (bandera != 1);
-                                        if (contadorC == 0) {
-                                            controlador = "Z";
-                                        } else {
-                                            for (int k = 0; k < contadorC; k++) {
-                                                if (!identificacion.equals(bdClientes[k].getIdentificacion())) {
-                                                    controlador = "Z";
+
+                                        } while (!controlador.equals("Z"));
+                                        break;
+                                    case "B": //si es extranjero y usa DIMEX
+                                        controlador = "";
+                                        bandera = 0;
+                                        do {
+                                            do {
+                                                identificacion = JOptionPane.showInputDialog("Digite el nuevo número de cédula de 12 dígitos del empleado: ");
+                                                bdClientes[posc].setIdentificacion(identificacion);
+                                                if (identificacion.length() == 12 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
+                                                    for (int j = 1; j < identificacion.length(); j++) {
+                                                        if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
+                                                            bandera = 1;
+                                                        } else {
+                                                            bandera = 0;
+                                                            JOptionPane.showMessageDialog(null, "¡Número de cédula inválido!\nDigite un número de cédula válido");
+                                                            break;
+                                                        }
+                                                    }
+
                                                 } else {
-                                                    controlador = "";
-                                                    JOptionPane.showMessageDialog(null, "¡El número de cédula ya fue registrado! \nVerifique e intente de nuevo");
-                                                    bandera = 0;
-                                                    break;
+                                                    JOptionPane.showMessageDialog(null, "¡Número de cédula inválido!\nDigite un número de cédula válido");
                                                 }
+                                                bdClientes[posc].getIdentificacion(); //obtiene el nuevo ID para mostrarla
+                                                JOptionPane.showMessageDialog(null, "Su nueva identificación es: " + identificacion);
 
+                                            } while (bandera != 1);
+                                            if (contadorC == 0) {
+                                                controlador = "Z";
+                                            } else {
+                                                for (int k = 0; k < contadorC; k++) {
+                                                    if (!identificacion.equals(bdClientes[k].getIdentificacion())) {
+                                                        controlador = "Z";
+                                                    } else {
+                                                        controlador = "";
+                                                        JOptionPane.showMessageDialog(null, "¡El número de cédula ya fue registrado! \nVerifique eh intente de nuevo");
+                                                        bandera = 0;
+                                                        break;
+                                                    }
+
+                                                }
                                             }
-                                        }
 
-                                    } while (!controlador.equals("Z"));
+                                        } while (!controlador.equals("Z"));
+
+                                        break;
+                                    case "C":
+                                        identificacion = JOptionPane.showInputDialog("Digite el número de identificacion de 12 dígitos máximo del empleado");
+                                        bdClientes[posc].setIdentificacion(identificacion);
+                                        bdClientes[posc].getIdentificacion(); //obtiene el nuevo ID para mostrarla
+                                        JOptionPane.showMessageDialog(null, "Su nueva identificación es: " + identificacion);
+                                        break;
+                                    default:
+                                        JOptionPane.showMessageDialog(null, "Opcion inválida");
+                                        break;
+                                }
+                                controlador = "Z";
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Opcion inválida");
+                            }
+
+                        } while (!controlador.equals("Z"));
+                        break;
+
+                    case 'c':
+                        do {
+                            sexo = JOptionPane.showInputDialog("Digite el nuevo sexo del cliente:\nA. Masculino\nB. Femenino \nC.No binario").toUpperCase();
+                            bdClientes[posc].setSexo(sexo);
+                            switch (sexo) {
+                                case "A":
+                                    sexo = "Masculino";
+                                    bdClientes[posc].getSexo();
+                                    JOptionPane.showMessageDialog(null, "El nuevo sexo es: " + sexo);
                                     break;
-                                case "B": //si es extranjero y usa DIMEX
-                                    controlador = "";
-                                    bandera = 0;
-                                    do {
-                                        do {
-                                            identificacion = JOptionPane.showInputDialog("Digite el nuevo número de cédula de 12 dígitos del empleado: ");
-                                            bdClientes[contadorC].setIdentificacion(identificacion);
-                                            if (identificacion.length() == 12 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
-                                                for (int j = 1; j < identificacion.length(); j++) {
-                                                    if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
-                                                        bandera = 1;
-                                                    } else {
-                                                        bandera = 0;
-                                                        JOptionPane.showMessageDialog(null, "¡Número de cédula inválido!\nDigite un número de cédula válido");
-                                                        break;
-                                                    }
-                                                }
-
-                                            } else {
-                                                JOptionPane.showMessageDialog(null, "¡Número de cédula inválido!\nDigite un número de cédula válido");
-                                            }
-                                            bdClientes[contadorC].getIdentificacion(); //obtiene el nuevo ID para mostrarla
-                                            JOptionPane.showMessageDialog(null, "Su nueva identificación es: " + identificacion);
-
-                                        } while (bandera != 1);
-                                        if (contadorC == 0) {
-                                            controlador = "Z";
-                                        } else {
-                                            for (int k = 0; k < contadorC; k++) {
-                                                if (!identificacion.equals(bdClientes[k].getIdentificacion())) {
-                                                    controlador = "Z";
-                                                } else {
-                                                    controlador = "";
-                                                    JOptionPane.showMessageDialog(null, "¡El número de cédula ya fue registrado! \nVerifique eh intente de nuevo");
-                                                    bandera = 0;
-                                                    break;
-                                                }
-
-                                            }
-                                        }
-
-                                    } while (!controlador.equals("Z"));
-
+                                case "B":
+                                    sexo = "Femenino";
+                                    bdClientes[posc].getSexo();
+                                    JOptionPane.showMessageDialog(null, "El nuevo sexo es: " + sexo);
                                     break;
                                 case "C":
-                                    identificacion = JOptionPane.showInputDialog("Digite el número de identificacion de 12 dígitos máximo del empleado");
-                                    bdClientes[contadorC].setIdentificacion(identificacion);
-                                    bdClientes[contadorC].getIdentificacion(); //obtiene el nuevo ID para mostrarla
-                                    JOptionPane.showMessageDialog(null, "Su nueva identificación es: " + identificacion);
-                                    break;
-                                default:
-                                    JOptionPane.showMessageDialog(null, "Opcion inválida");
+                                    sexo = "No binario";
+                                    bdClientes[posc].getSexo();
+                                    JOptionPane.showMessageDialog(null, "El nuevo sexo es: " + sexo);
                                     break;
                             }
-                            controlador = "Z";
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Opcion inválida");
-                        }
+                            if (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C")) {// si es null o diferente  a A,B,C entonces da error
+                                JOptionPane.showMessageDialog(null, "OPCIÓN INVÁLIDA");
+                            }
+                        } while (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C"));
+                        break;
 
-                    } while (!controlador.equals("Z"));
-                    break;
-
-                case 'c':
-                    do {
-                        sexo = JOptionPane.showInputDialog("Digite el nuevo sexo del cliente:\nA. Masculino\nB. Femenino \nC.No binario").toUpperCase();
-                        bdClientes[contadorC].setSexo(sexo);
-                        switch (sexo) {
-                            case "A":
-                                sexo = "Masculino";
-                                bdClientes[contadorC].getSexo();
-                                JOptionPane.showMessageDialog(null, "El nuevo sexo es: " + sexo);
-                                break;
-                            case "B":
-                                sexo = "Femenino";
-                                bdClientes[contadorC].getSexo();
-                                JOptionPane.showMessageDialog(null, "El nuevo sexo es: " + sexo);
-                                break;
-                            case "C":
-                                sexo = "No binario";
-                                bdClientes[contadorC].getSexo();
-                                JOptionPane.showMessageDialog(null, "El nuevo sexo es: " + sexo);
-                                break;
-                        }
-                        if (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C")) {// si es null o diferente  a A,B,C entonces da error
-                            JOptionPane.showMessageDialog(null, "OPCIÓN INVÁLIDA");
-                        }
-                    } while (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C"));
-                    break;
-
-                case 'd':
-                    do {
-                        edadS = JOptionPane.showInputDialog("Digite la nueva edad del cliente: ");
-                        if (!clsF.esNumero(edadS) || !(Integer.parseInt(edadS) >= 18 && Integer.parseInt(edadS) <= 100)) {
-                            JOptionPane.showMessageDialog(null, "EDAD INVLIDA");
-                        }
-                    } while (!clsF.esNumero(edadS) || !(Integer.parseInt(edadS) >= 18 && Integer.parseInt(edadS) <= 100)); //Se comprueba si es número
-                    edad = Integer.parseInt(edadS); //la edadS se convierta a numero
-                    bdClientes[contadorC].setEdad(edad);
-                    bdClientes[contadorC].getEdad();
-                    JOptionPane.showMessageDialog(null, "La nueva edad del cliente es: " + edad);
-                    break;
-
-                case 'e':
-                    controlador = "";
-                    bandera = 0;
-                    do {
+                    case 'd':
                         do {
-                            telefono = JOptionPane.showInputDialog("Digite el nuevo número de teléfono del cliente"
-                                    + "\nDebe empezar con 6, 7 o 8 y un máximo de 8 dígitos: ");
-                            bdClientes[contadorC].setTelefono(telefono);
-                            if (telefono.length() == 8) { // Numero telefonico tiene que tener 8 digitos.
-                                if ((int) telefono.charAt(0) == 56 || (int) telefono.charAt(0) == 55 || (int) telefono.charAt(0) == 54) { // Evaluando  que tiene  que empezar con 8, 7 o 6, de acuerdo a las compañias que hay en el pais.
-                                    for (int j = 1; j < telefono.length(); j++) { // Ciclo para recorrer desde la posición 2
-                                        if ((int) telefono.charAt(j) > 47 && (int) telefono.charAt(j) < 58) {// Evaluar que esten entre el 0 al 9, ya que se hizo con código ASCII.
-                                            bandera = 1;
-                                            bdClientes[contadorC].getTelefono();
-                                            JOptionPane.showMessageDialog(null, "El nuevo número de teléfono es: "); //muestra nuevo número
-                                        } else {
-                                            bandera = 0;
-                                            JOptionPane.showMessageDialog(null, "¡Teléfono inválido! \nDigite un número de teléfono válido");
-                                            break;
-                                        }
-                                    }
+                            edadS = JOptionPane.showInputDialog("Digite la nueva edad del cliente: ");
+                            if (!clsF.esNumero(edadS) || !(Integer.parseInt(edadS) >= 18 && Integer.parseInt(edadS) <= 100)) {
+                                JOptionPane.showMessageDialog(null, "EDAD INVLIDA");
+                            }
+                        } while (!clsF.esNumero(edadS) || !(Integer.parseInt(edadS) >= 18 && Integer.parseInt(edadS) <= 100)); //Se comprueba si es número
+                        edad = Integer.parseInt(edadS); //la edadS se convierta a numero
+                        bdClientes[posc].setEdad(edad);
+                        bdClientes[posc].getEdad();
+                        JOptionPane.showMessageDialog(null, "La nueva edad del cliente es: " + edad);
+                        break;
 
+                    case 'e':
+                        controlador = "";
+                        bandera = 0;
+                        do {
+                            do {
+                                telefono = JOptionPane.showInputDialog("Digite el nuevo número de teléfono del cliente"
+                                        + "\nDebe empezar con 6, 7 o 8 y un máximo de 8 dígitos: ");
+                                bdClientes[posc].setTelefono(telefono);
+                                if (telefono.length() == 8) { // Numero telefonico tiene que tener 8 digitos.
+                                    if ((int) telefono.charAt(0) == 56 || (int) telefono.charAt(0) == 55 || (int) telefono.charAt(0) == 54) { // Evaluando  que tiene  que empezar con 8, 7 o 6, de acuerdo a las compañias que hay en el pais.
+                                        for (int j = 1; j < telefono.length(); j++) { // Ciclo para recorrer desde la posición 2
+                                            if ((int) telefono.charAt(j) > 47 && (int) telefono.charAt(j) < 58) {// Evaluar que esten entre el 0 al 9, ya que se hizo con código ASCII.
+                                                bandera = 1;
+                                                bdClientes[posc].getTelefono();
+                                                JOptionPane.showMessageDialog(null, "El nuevo número de teléfono es: "); //muestra nuevo número
+                                            } else {
+                                                bandera = 0;
+                                                JOptionPane.showMessageDialog(null, "¡Teléfono inválido! \nDigite un número de teléfono válido");
+                                                break;
+                                            }
+                                        }
+
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "¡Teléfono invalido! \nDigite un número de telefono valido");
+                                    }
                                 } else {
                                     JOptionPane.showMessageDialog(null, "¡Teléfono invalido! \nDigite un número de telefono valido");
                                 }
+                            } while (bandera != 1);
+                            if (contadorC == 0) {
+                                controlador = "Z";
                             } else {
-                                JOptionPane.showMessageDialog(null, "¡Teléfono invalido! \nDigite un número de telefono valido");
-                            }
-                        } while (bandera != 1);
-                        if (contadorC == 0) {
-                            controlador = "Z";
-                        } else {
-                            for (int k = 0; k < contadorC; k++) { // Ciclo para recorrer las posiciones del arreglo.
-                                if (!telefono.equals(bdClientes[k].getTelefono())) { //Evaluar si hay un numero telefonico igual en los empleados agregados.
-                                    controlador = "Z";
-                                } else {
-                                    controlador = "";
-                                    JOptionPane.showMessageDialog(null, "¡El número de teléfono ya fue registrado! \nVerifique e intente de nuevo");
-                                    bandera = 0;
-                                    break;
+                                for (int k = 0; k < contadorC; k++) { // Ciclo para recorrer las posiciones del arreglo.
+                                    if (!telefono.equals(bdClientes[k].getTelefono())) { //Evaluar si hay un numero telefonico igual en los empleados agregados.
+                                        controlador = "Z";
+                                    } else {
+                                        controlador = "";
+                                        JOptionPane.showMessageDialog(null, "¡El número de teléfono ya fue registrado! \nVerifique e intente de nuevo");
+                                        bandera = 0;
+                                        break;
+                                    }
+
                                 }
-
                             }
-                        }
-                    } while (!controlador.equals("Z"));
-                    break;
-                case 'f':
-                    //aqui deben haber varios if's donde dependiendo del tipo de pase se puedan editar sus atributos, en caso de el tipo de pase sea basico y pase a max automaticamente se le piden los datos que hacen falta
-                    //si pasa de max a basico automaticamente se le borran los datos que no ocupa y asi con las demas combinaciones
-                    break;
-                case 'g':
-                    break;
-                case 'h':
-                    break;
-                case 'i':
-                    break;
-                case 'j':
-                    break;
-                case 'k':
-                    break;
-                case 'l':
-                    break;
-                case 'm':
-                    break;
-                case 'n':
-                    //rutina queda pendiente
-                    break;
+                        } while (!controlador.equals("Z"));
+                        break;
+                    case 'f':
+                        //aqui deben haber varios if's donde dependiendo del tipo de pase se puedan editar sus atributos, en caso de el tipo de pase sea basico y pase a max automaticamente se le piden los datos que hacen falta
+                        //si pasa de max a basico automaticamente se le borran los datos que no ocupa y asi con las demas combinaciones
+                        break;
+                    case 'g':
+                        break;
+                    case 'h':
+                        break;
+                    case 'i':
+                        break;
+                    case 'j':
+                        break;
+                    case 'k':
+                        break;
+                    case 'l':
+                        break;
+                    case 'm':
+                        break;
+                    case 'n':
+                        //rutina queda pendiente
+                        break;
 
-            }//fin switch
+                }//fin switch
+            }//fin if de bandera
+            else{
+                JOptionPane.showMessageDialog(null, "Cliente inexistente");
+            }
         }//fin else
 
     }//fin editar clientes
