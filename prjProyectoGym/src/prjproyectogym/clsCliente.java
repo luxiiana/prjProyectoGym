@@ -33,6 +33,10 @@ public class clsCliente {
     private float pesoKg; //input
     private float estaturaMts; //input
     private String objetivo;
+    private float IMC; // HAY UN METODO PARA CALCULARLA TE FALTA ESTO DEREKKKKKKKKKKKKKKK
+    /////
+    ////
+    ///
 
     //private float pesoIdeal; FUTURA EMPLEMETACION
     //----------INSTANCIAS-------------------
