@@ -496,17 +496,7 @@ public class clsCliente {
         if (contadorC == 0) {
             JOptionPane.showMessageDialog(null, "NO HAY CLIENTES EXISTENTES");
         } else {
-            //----------MOSTRAR CLIENTES------------------
-            for (int i = 0; i < bdClientes.length; i++) {
-                if (bdClientes[i] != null) {
-                    mensaje = mensaje + "[" + (i + 1) + "] " + bdClientes[i].getNombreC() + "\t " + bdClientes[i].getIdentificacion() + "\t " + bdClientes[i].getSexo() + "\t " + bdClientes[i].getEdad() + "\t " + bdClientes[i].getTelefono()
-                            + "\t " + bdClientes[i].getTipoDePase() + "\t " + bdClientes[i].getPago() + "\t" + bdClientes[i].getSomatotipo() + "\t" + bdClientes[i].getObjetivo() + "\t" + bdClientes[i].getCaloriasDiarias()
-                            + "\t" + bdClientes[i].getCaloriasObjetivo() + "\t" + bdClientes[i].getPesoKg() + "\t" + bdClientes[i].estaturaMts + "\n";
-                }
-            }
-
-            JOptionPane.showMessageDialog(null, new TextArea("Cliente" + "\t" + "Identificacion" + "\t" + "Sexo" + "\t" + "Edad" + "\t" + "Telefono" + "\t" + "Tipo pase" + "\t" + "Pago" + mensaje)); // nada mas falta poner las divisiones que faltan 
-
+            
             //Meter un while para que solanmente seleccione un numero de '1' al numero maximo de cleintes que hay registrados y no puede aceptar letras hacer el m,ismo while de edad
             //clienteSeleccionado=Integer.parseInt(JOptionPane.showInputDialog("Digite el numero de cliente que desea editar"));
             //------Menú de opciones a editar------
