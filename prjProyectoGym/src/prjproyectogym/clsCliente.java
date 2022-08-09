@@ -693,7 +693,6 @@ public class clsCliente {
                         } while (!clsF.esNumero(edadS) || !(Integer.parseInt(edadS) >= 18 && Integer.parseInt(edadS) <= 100)); //Se comprueba si es número
                         edad = Integer.parseInt(edadS); //la edadS se convierta a numero
                         bdClientes[posc].setEdad(edad);
-                        bdClientes[posc].getEdad();
                         JOptionPane.showMessageDialog(null, "La nueva edad del cliente es: " + edad);
                         break;
 
@@ -703,7 +702,7 @@ public class clsCliente {
                         do {
                             do {
                                 telefono = JOptionPane.showInputDialog("Digite el nuevo número de teléfono del cliente"
-                                        + "\nDebe empezar con 6, 7 o 8 y un máximo de 8 dígitos: ");
+                                        + "\nDebe empezar con 6, 7 o 8 y un debe contener un máximo de 8 dígitos: ");
                                 bdClientes[posc].setTelefono(telefono);
                                 if (telefono.length() == 8) { // Numero telefonico tiene que tener 8 digitos.
                                     if ((int) telefono.charAt(0) == 56 || (int) telefono.charAt(0) == 55 || (int) telefono.charAt(0) == 54) { // Evaluando  que tiene  que empezar con 8, 7 o 6, de acuerdo a las compañias que hay en el pais.
@@ -743,9 +742,125 @@ public class clsCliente {
                             }
                         } while (!controlador.equals("Z"));
                         break;
-                    case 'f':
+                    case 'f': //tipo de pase
                         //aqui deben haber varios if's donde dependiendo del tipo de pase se puedan editar sus atributos, en caso de el tipo de pase sea basico y pase a max automaticamente se le piden los datos que hacen falta
                         //si pasa de max a basico automaticamente se le borran los datos que no ocupa y asi con las demas combinaciones
+                        tipoDePase = bdClientes[posc].getTipoDePase();
+                        JOptionPane.showMessageDialog(null, "Su pase actual es: " + tipoDePase);
+                        do{
+                            tipoDePase = JOptionPane.showInputDialog("Selecciones su nuevo tipo de pase:"
+                                    + "\nA. Basico"
+                                    + "\nB. Max"
+                                    + "\nC. Ultra").toUpperCase();
+                        }while (tipoDePase.equals("") || !tipoDePase.equals("A") && !tipoDePase.equals("B") && !tipoDePase.equals("C"));
+                        bdClientes[posc].setTipoDePase(tipoDePase);
+                        switch(tipoDePase){
+                            case "A":
+                                tipoDePase = "Basico";
+                                pago = 10000;
+                                JOptionPane.showMessageDialog(null, "Su pase ahora es básico");
+                                bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, null, pago, null, null, 0, 0, 0, 0, null);
+                                break;
+                            case "B":
+                                tipoDePase = "Max";
+                                pago = 15000;
+                                JOptionPane.showMessageDialog(null, "Su pase ahora es Max");
+                                //Falta lógica para asignar entrenador
+                                bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null);
+                                break;
+                            case "C":
+                                tipoDePase = "Ultra";
+                                pago = 20000;
+                                JOptionPane.showMessageDialog(null, "Su pase ahora es Ultra");
+                                break;
+                        }
+                        //-----SOMATOTIPO-----
+                        do{
+                            somatotipo = clsF.cadena("Digite el nuevo tipo de somatotipo del cliente: "
+                                    + "\nA. Ectomorfo: Contextura delgada, extremidades largas, dificil ganar peso, poco porcentaje de grasa"
+                                    + "\nB. Mesomorfo: Cuerpo atletico, facil de ganar musculo, facil perder grasa(bendecido por los dioses) "
+                                    + "\nC. Endomorfo: Contextura gruesa, baja estatura, facil acumulamiento de grasa, dificil perder peso ").toUpperCase();
+                            
+                            if (somatotipo.equals("") || !somatotipo.equals("A") && !somatotipo.equals("B") && !somatotipo.equals("C")) {
+                                JOptionPane.showMessageDialog(null, "Opcion inválida");
+                            }//fin if
+                            
+                        }while (somatotipo.equals("") || !somatotipo.equals("A") && !somatotipo.equals("B") && !somatotipo.equals("C"));
+                        
+                        switch (somatotipo) {
+                            case "A":
+                                somatotipo = "Ectomorfo";
+                                bdClientes[posc].setSomatotipo(somatotipo);
+                                JOptionPane.showMessageDialog(null, "Su nuevo somatotipo: " + somatotipo);
+                                break;
+                            case "B":
+                                somatotipo = "Mesomorfo";
+                                bdClientes[posc].setSomatotipo(somatotipo);
+                                JOptionPane.showMessageDialog(null, "Su nuevo somatotipo: " + somatotipo);
+                                break;
+                            case "C":
+                                somatotipo = "Endomorfo";
+                                bdClientes[posc].setSomatotipo(somatotipo);
+                                JOptionPane.showMessageDialog(null, "Su nuevo somatotipo: " + somatotipo);
+                                break;
+                        }
+
+                        //---------OBJETIVO------------------------------------
+                        do{
+                            objetivo = clsF.cadena("Digite el nuevo objetivo del cliente: "
+                                    + "\nA. Subir de peso"
+                                    + "\nB. Bajar de peso"
+                                    + "\nC. Mantener peso").toUpperCase();
+                            if (objetivo.equals("") || !objetivo.equals("A") && !objetivo.equals("B") && !objetivo.equals("C")) {
+                                JOptionPane.showMessageDialog(null, "Opcion invalida");
+                            }
+                        }while (objetivo.equals("") || !objetivo.equals("A") && !objetivo.equals("B") && !objetivo.equals("C"));
+                        
+                        switch (objetivo) {
+                            case "A":
+                                objetivo = "Subir de peso";
+                                bdClientes[posc].setObjetivo(objetivo);
+                                JOptionPane.showMessageDialog(null, "Su nuevo objetivo es: " + objetivo);
+                                break;
+                            case "B":
+                                objetivo = "Bajar de peso";
+                                bdClientes[posc].setObjetivo(objetivo);
+                                JOptionPane.showMessageDialog(null, "Su nuevo objetivo es: " + objetivo);
+                                break;
+                            case "C":
+                                objetivo = "Mantener de peso";
+                                bdClientes[posc].setObjetivo(objetivo);
+                                JOptionPane.showMessageDialog(null, "Su nuevo objetivo es: " + objetivo);
+                                break;
+                        }//----FIN OBJETIVO
+
+                        //-------PesoKg------------
+                        do{
+                            pesoKgS = JOptionPane.showInputDialog("Digite el nuevo peso en Kg: ");
+                            if (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0) {
+                                JOptionPane.showMessageDialog(null, "Dato invalido");
+                            }
+                        }while (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0);
+                        pesoKg = Float.parseFloat(pesoKgS);
+                        bdClientes[posc].setPesoKg(pesoKg);
+                        JOptionPane.showMessageDialog(null, "Su nuevo peso es de: " + pesoKg + " Kg");
+                        //----------------------FIN PESO----
+
+                        //-------EstaturaCm------------
+                        while (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0 && Float.parseFloat(pesoKgS) >= 500) {
+                            estaturaCmS = JOptionPane.showInputDialog("Digite su estatura en mts");
+                            if (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0) {
+                                JOptionPane.showMessageDialog(null, "Dato invalido");
+                            }
+                        }
+                        estaturaCm = (Float.parseFloat(estaturaCmS));
+
+                        //-------------FIN ESTATURA CM------------
+                        //----------Calorias Diarias------------
+                        caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
+                        //---------FIN CLAORIAS DIARIAS-----
+                        //--CALORIAS OBJETIVO
+                        bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
                         break;
                     case 'g':
                         break;
@@ -764,7 +879,6 @@ public class clsCliente {
                     case 'n':
                         //rutina queda pendiente
                         break;
-
                 }//fin switch
             }//fin if de bandera
             else{
