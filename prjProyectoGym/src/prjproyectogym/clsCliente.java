@@ -521,14 +521,11 @@ public class clsCliente {
                         + "\nd. Edad:" + bdClientes[posc].getEdad()
                         + "\ne. Teléfono:" + bdClientes[posc].getTelefono()
                         + "\nf. Tipo de Pase:" + bdClientes[posc].getTipoDePase()
-                        + "\ng. Pago:" + bdClientes[posc].getPago()
-                        + "\nh. Somatipo:" + bdClientes[posc].getSomatotipo()
-                        + "\ni. Objetivo:" + bdClientes[posc].getObjetivo()
-                        + "\nj. Calorias Diarias:" + bdClientes[posc].getCaloriasDiarias()
-                        + "\nk. Calorias Objetivo:" + bdClientes[posc].getCaloriasObjetivo()
-                        + "\nl. Peso Kg:" + bdClientes[posc].getPesoKg()
-                        + "\nm. Estatura:" + bdClientes[posc].getEstaturaMts()
-                        + "\nn. RUTINA:" + bdClientes[posc].getRutina()).charAt(0);
+                        + "\ng. Somatipo:" + bdClientes[posc].getSomatotipo()
+                        + "\nh. Objetivo:" + bdClientes[posc].getObjetivo()
+                        + "\ni. Peso Kg:" + bdClientes[posc].getPesoKg()
+                        + "\nj. Estatura:" + bdClientes[posc].getEstaturaMts()
+                        + "\nk. RUTINA:" + bdClientes[posc].getRutina()).charAt(0);
 
                 switch (opc) {
 
@@ -549,7 +546,7 @@ public class clsCliente {
                         } while (nombre.length() < 5 || nombre.equals("")); //fin pedir nombre de Cliente
                         break;
 
-                    case 'b':
+                    case 'b': //Identificación:
                         do {
                             controlador = " ";
                             controlador = JOptionPane.showInputDialog("Seleccione su nuevo tipo de Identificacion: "
@@ -564,6 +561,7 @@ public class clsCliente {
                                             do {
                                                 identificacion = JOptionPane.showInputDialog("Digite el nuevo número de cédula de 9 dígitos del cliente:");
                                                 bdClientes[posc].setIdentificacion(identificacion);
+                                                JOptionPane.showMessageDialog(null, "Su nuevo número de identificación es: " + identificacion);
                                                 if (identificacion.length() == 9 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
                                                     for (int j = 1; j < identificacion.length(); j++) {
                                                         if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
@@ -606,6 +604,7 @@ public class clsCliente {
                                             do {
                                                 identificacion = JOptionPane.showInputDialog("Digite el nuevo número de cédula de 12 dígitos del empleado: ");
                                                 bdClientes[posc].setIdentificacion(identificacion);
+                                                JOptionPane.showMessageDialog(null, "Su nuevo número de identificación es: " + identificacion);
                                                 if (identificacion.length() == 12 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
                                                     for (int j = 1; j < identificacion.length(); j++) {
                                                         if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
@@ -661,7 +660,7 @@ public class clsCliente {
                         } while (!controlador.equals("Z"));
                         break;
 
-                    case 'c':
+                    case 'c': //Sexo:
                         do {
                             sexo = JOptionPane.showInputDialog("Digite el nuevo sexo del cliente:\nA. Masculino\nB. Femenino \nC.No binario").toUpperCase();
                             bdClientes[posc].setSexo(sexo);
@@ -669,7 +668,7 @@ public class clsCliente {
                                 case "A":
                                     sexo = "Masculino";
                                     bdClientes[posc].getSexo();
-                                    JOptionPane.showMessageDialog(null, "El nuevo sexo es: " + sexo);
+                                    JOptionPane.showMessageDialog(null, "El nuevo sexo es: " + sexo); 
                                     break;
                                 case "B":
                                     sexo = "Femenino";
@@ -688,7 +687,7 @@ public class clsCliente {
                         } while (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C"));
                         break;
 
-                    case 'd':
+                    case 'd': //Edad:
                         do {
                             edadS = JOptionPane.showInputDialog("Digite la nueva edad del cliente: ");
                             if (!clsF.esNumero(edadS) || !(Integer.parseInt(edadS) >= 18 && Integer.parseInt(edadS) <= 100)) {
@@ -698,9 +697,13 @@ public class clsCliente {
                         edad = Integer.parseInt(edadS); //la edadS se convierta a numero
                         bdClientes[posc].setEdad(edad);
                         JOptionPane.showMessageDialog(null, "La nueva edad del cliente es: " + edad);
+                        
+                        caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
+                        bdClientes[posc].setCaloriasDiarias(caloriasDiarias);
+                        JOptionPane.showMessageDialog(null, "Sus calorías diarias ahora son de: " + caloriasDiarias);
                         break;
 
-                    case 'e':
+                    case 'e': //Teléfono:
                         controlador = "";
                         bandera = 0;
                         do {
@@ -746,9 +749,8 @@ public class clsCliente {
                             }
                         } while (!controlador.equals("Z"));
                         break;
+                        
                     case 'f': //tipo de pase
-                        //aqui deben haber varios if's donde dependiendo del tipo de pase se puedan editar sus atributos, en caso de el tipo de pase sea basico y pase a max automaticamente se le piden los datos que hacen falta
-                        //si pasa de max a basico automaticamente se le borran los datos que no ocupa y asi con las demas combinaciones
                         tipoDePase = bdClientes[posc].getTipoDePase();
                         JOptionPane.showMessageDialog(null, "Su pase actual es: " + tipoDePase);
                         do{
@@ -763,14 +765,14 @@ public class clsCliente {
                                 tipoDePase = "Basico";
                                 pago = 10000;
                                 JOptionPane.showMessageDialog(null, "Su pase ahora es básico");
-                                bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, null, pago, null, null, 0, 0, 0, 0, null);
+                                bdClientes[posc] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, null, pago, null, null, 0, 0, 0, 0, null);
                                 break;
                             case "B":
                                 tipoDePase = "Max";
                                 pago = 15000;
                                 JOptionPane.showMessageDialog(null, "Su pase ahora es Max");
                                 //Falta lógica para asignar entrenador
-                                bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null);
+                                bdClientes[posc] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null);
                                 break;
                             case "C":
                                 tipoDePase = "Ultra";
@@ -778,19 +780,20 @@ public class clsCliente {
                                 JOptionPane.showMessageDialog(null, "Su pase ahora es Ultra");
                                 break;
                         }
-                        //-----SOMATOTIPO-----
-                        do{
+                        
+                    case 'g': //Somatotipo:
+                        do {
                             somatotipo = clsF.cadena("Digite el nuevo tipo de somatotipo del cliente: "
                                     + "\nA. Ectomorfo: Contextura delgada, extremidades largas, dificil ganar peso, poco porcentaje de grasa"
                                     + "\nB. Mesomorfo: Cuerpo atletico, facil de ganar musculo, facil perder grasa(bendecido por los dioses) "
                                     + "\nC. Endomorfo: Contextura gruesa, baja estatura, facil acumulamiento de grasa, dificil perder peso ").toUpperCase();
-                            
+
                             if (somatotipo.equals("") || !somatotipo.equals("A") && !somatotipo.equals("B") && !somatotipo.equals("C")) {
                                 JOptionPane.showMessageDialog(null, "Opcion inválida");
                             }//fin if
-                            
-                        }while (somatotipo.equals("") || !somatotipo.equals("A") && !somatotipo.equals("B") && !somatotipo.equals("C"));
-                        
+
+                        } while (somatotipo.equals("") || !somatotipo.equals("A") && !somatotipo.equals("B") && !somatotipo.equals("C"));
+
                         switch (somatotipo) {
                             case "A":
                                 somatotipo = "Ectomorfo";
@@ -808,9 +811,10 @@ public class clsCliente {
                                 JOptionPane.showMessageDialog(null, "Su nuevo somatotipo: " + somatotipo);
                                 break;
                         }
-
-                        //---------OBJETIVO------------------------------------
-                        do{
+                        break;
+                        
+                    case 'h': //Objetivo:
+                        do {
                             objetivo = clsF.cadena("Digite el nuevo objetivo del cliente: "
                                     + "\nA. Subir de peso"
                                     + "\nB. Bajar de peso"
@@ -818,8 +822,8 @@ public class clsCliente {
                             if (objetivo.equals("") || !objetivo.equals("A") && !objetivo.equals("B") && !objetivo.equals("C")) {
                                 JOptionPane.showMessageDialog(null, "Opcion invalida");
                             }
-                        }while (objetivo.equals("") || !objetivo.equals("A") && !objetivo.equals("B") && !objetivo.equals("C"));
-                        
+                        } while (objetivo.equals("") || !objetivo.equals("A") && !objetivo.equals("B") && !objetivo.equals("C"));
+
                         switch (objetivo) {
                             case "A":
                                 objetivo = "Subir de peso";
@@ -836,51 +840,47 @@ public class clsCliente {
                                 bdClientes[posc].setObjetivo(objetivo);
                                 JOptionPane.showMessageDialog(null, "Su nuevo objetivo es: " + objetivo);
                                 break;
-                        }//----FIN OBJETIVO
-
-                        //-------PesoKg------------
-                        do{
+                        }
+                        
+                        bdClientes[posc] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
+                        caloriasObjetivo = clsCalc.CaloriasObjetivo(objetivo, caloriasDiarias);
+                        bdClientes[posc].setCaloriasObjetivo(caloriasObjetivo);
+                        JOptionPane.showMessageDialog(null, "Las nuevas calorías según su nuevo objetivo son: " + caloriasObjetivo);
+                        break;
+                        
+                    case 'i': //Peso en Kg:
+                        do {
                             pesoKgS = JOptionPane.showInputDialog("Digite el nuevo peso en Kg: ");
                             if (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0) {
                                 JOptionPane.showMessageDialog(null, "Dato invalido");
                             }
-                        }while (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0);
+                        } while (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0);
                         pesoKg = Float.parseFloat(pesoKgS);
                         bdClientes[posc].setPesoKg(pesoKg);
                         JOptionPane.showMessageDialog(null, "Su nuevo peso es de: " + pesoKg + " Kg");
-                        //----------------------FIN PESO----
-
-                        //-------EstaturaCm------------
-                        while (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0 && Float.parseFloat(pesoKgS) >= 500) {
-                            estaturaCmS = JOptionPane.showInputDialog("Digite su estatura en mts");
-                            if (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0) {
-                                JOptionPane.showMessageDialog(null, "Dato invalido");
-                            }
-                        }
-                        estaturaCm = (Float.parseFloat(estaturaCmS));
-
-                        //-------------FIN ESTATURA CM------------
-                        //----------Calorias Diarias------------
+                        
                         caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
-                        //---------FIN CLAORIAS DIARIAS-----
-                        //--CALORIAS OBJETIVO
-                        bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
+                        bdClientes[posc].setCaloriasDiarias(caloriasDiarias);
+                        JOptionPane.showMessageDialog(null, "Sus calorías diarias ahora son de: " + caloriasDiarias);
                         break;
-                    case 'g':
-                        break;
-                    case 'h':
-                        break;
-                    case 'i':
-                        break;
+                        
                     case 'j':
+                        do {
+                            estaturaCmS = JOptionPane.showInputDialog("Digite su nueva estatura en centímetros: ");
+                            if (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0) {
+                                JOptionPane.showMessageDialog(null, "Dato inválido");
+                            }
+                        } while (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0 && Float.parseFloat(pesoKgS) >= 500);
+                        estaturaCm = (Float.parseFloat(estaturaCmS));
+                        bdClientes[posc].setEstaturaCm(estaturaCm);
+                        JOptionPane.showMessageDialog(null, "Su nueva estatura es: " + estaturaCm);
+                        
+                        caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
+                        bdClientes[posc].setCaloriasDiarias(caloriasDiarias);
+                        JOptionPane.showMessageDialog(null, "Sus calorías diarias ahora son de: " + caloriasDiarias);
                         break;
+                        
                     case 'k':
-                        break;
-                    case 'l':
-                        break;
-                    case 'm':
-                        break;
-                    case 'n':
                         //rutina queda pendiente
                         break;
                 }//fin switch
@@ -891,7 +891,7 @@ public class clsCliente {
         }//fin else
 
     }//fin editar clientes
-public void eliminarCliente() {
+     public void eliminarCliente() {
         if (contadorC > 0) {
             String valor = JOptionPane.showInputDialog("Digite la identificación de la persona a eliminar:");
             int posc = -1;
