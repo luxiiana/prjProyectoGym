@@ -887,5 +887,37 @@ public class clsCliente {
         }//fin else
 
     }//fin editar clientes
+public void eliminarCliente() {
+        if (contadorC > 0) {
+            String valor = JOptionPane.showInputDialog("Digite la identificación de la persona a eliminar:");
+            int posc = -1;
+            for (int i = 0; i < contadorC; i++) {
+                if (bdClientes[i].getIdentificacion().equalsIgnoreCase(valor)) {
+                    posc = i;
+                    break;
+                }
+            }
+            if (posc == -1) {
+                JOptionPane.showMessageDialog(null, "! No se encontro el numero de identificacion ¡");
+            } else {
+                String opcion = "";
+                while (!opcion.equals("NO")) {
+                    opcion = JOptionPane.showInputDialog(null, "Desea eliminar a: " + bdClientes[posc].getNombreC() + "\nSi\nNo").toUpperCase();
+                    if (opcion.equals("SI")) {
+                        for (int i = posc; i < contadorC - 1; i++) {
+                            bdClientes[i] = bdClientes[i + 1];
+                        }
+                        bdClientes[contadorC] = null;
+                        contadorC = contadorC - 1;
+                        JOptionPane.showMessageDialog(null, "Cliente eliminado correctamente");
+                        opcion = "NO";
+                    } //  if 
+                }// WHILE 
+            } // encontro la identificacion else
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay empleados registrados");
+        }
+    } // fin del metodo eliminar cliente
 
+ 
 }//fin clsClientes

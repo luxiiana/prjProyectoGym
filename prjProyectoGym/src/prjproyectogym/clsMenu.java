@@ -30,7 +30,7 @@ public class clsMenu {
                                     clsC.editarCliente();
                                     break;
                                 case "C":
-
+                                    clsC.eliminarCliente();
                                     break;
                                 case "D":
 
