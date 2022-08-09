@@ -200,6 +200,7 @@ public class clsCliente {
                         do {
                             do {
                                 identificacion = JOptionPane.showInputDialog("Digite el numero de cedula del Cliente");
+                                bdClientes[contadorC].setIdentificacion(identificacion);
                                 if (identificacion.length() == 9 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
                                     for (int j = 1; j < identificacion.length(); j++) {
                                         if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
@@ -241,6 +242,7 @@ public class clsCliente {
                         do {
                             do {
                                 identificacion = JOptionPane.showInputDialog("Digite el numero de cedula del empleado");
+                                bdClientes[contadorC].setIdentificacion(identificacion);
                                 if (identificacion.length() == 12 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
                                     for (int j = 1; j < identificacion.length(); j++) {
                                         if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
@@ -278,7 +280,8 @@ public class clsCliente {
                         break;
                     case "C":
                         origen = "Extranjero";
-                        identificacion = JOptionPane.showInputDialog("Digite el numero de identificacion del empleado");
+                        identificacion = JOptionPane.showInputDialog("Digite el numero de identificacion del cliente: ");
+                        bdClientes[contadorC].setIdentificacion(identificacion);
                     default:
                         JOptionPane.showMessageDialog(null, "Opcion invalida");
                         break;
@@ -291,9 +294,10 @@ public class clsCliente {
         } while (!controlador.equals("Z"));
         //--fin cedula empleado
 
-        //--------------------Pedir edad del empleado--------------------------
+        //--------------------Pedir edad del cliente--------------------------
         while (!clsF.esNumero(edadS) || !(Integer.parseInt(edadS) >= 18 && Integer.parseInt(edadS) <= 100)) { //Se comprueba si es numero
             edadS = JOptionPane.showInputDialog("Digite su edad:");
+            bdClientes[contadorC].setEdad(edad);
             if (!clsF.esNumero(edadS) || !(Integer.parseInt(edadS) >= 18 && Integer.parseInt(edadS) <= 100)) {
                 JOptionPane.showMessageDialog(null, "EDAD INVALIDA");
             }
@@ -301,7 +305,7 @@ public class clsCliente {
         edad = Integer.parseInt(edadS); //la edadS se convierta a numero
         //------------------FIN edad-------------------------------------------
 
-        //------------------SEXO DEL EMPLEADO-------------------------
+        //------------------SEXO DEL CLIENTE-------------------------
         while (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B")) { //pide edad empleado 
             sexo = JOptionPane.showInputDialog("Digite el sexo del Cliente:\nA. Masculino\nB. Femenino").toUpperCase();
             if (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B")) {// si es null o diferente  a A,B,C entonces da error
@@ -312,20 +316,23 @@ public class clsCliente {
         switch (sexo) {
             case "A":
                 sexo = "Masculino";
+                bdClientes[contadorC].setSexo(sexo);
                 break;
             case "B":
                 sexo = "Femenino";
+                bdClientes[contadorC].setSexo(sexo);
                 break;
 
         }
 
-        //-----------------FIN SEXO EMPLEADO--------------------------
+        //-----------------FIN SEXO CLIENTE--------------------------
         //------------------NUMERO TELEFONICO
         controlador = "";
         bandera = 0;
         do {
             do {
-                telefono = JOptionPane.showInputDialog("Digite el numero de telefono del cliente");
+                telefono = JOptionPane.showInputDialog("Digite el numero de telefono del cliente: ");
+                bdClientes[contadorC].setTelefono(telefono);
                 if (telefono.length() == 8) { // Numero telefonico tiene que tener 8 digitos.
                     if ((int) telefono.charAt(0) == 56 || (int) telefono.charAt(0) == 55 || (int) telefono.charAt(0) == 54) { // Evaluando  que tiene  que empezar con 8, 7 o 6, de acuerdo a las compañias que hay en el pais.
                         for (int j = 1; j < telefono.length(); j++) { // Ciclo para recorrer desde la posición 2
@@ -408,12 +415,15 @@ public class clsCliente {
                 switch (somatotipo) {
                     case "A":
                         somatotipo = "Ectomorfo";
+                        bdClientes[contadorC].setSomatotipo(somatotipo);
                         break;
                     case "B":
                         somatotipo = "Mesomorfo";
+                        bdClientes[contadorC].setSomatotipo(somatotipo);
                         break;
                     case "C":
                         somatotipo = "Endomorfo";
+                        bdClientes[contadorC].setSomatotipo(somatotipo);
                         break;
                 }
 
@@ -430,47 +440,54 @@ public class clsCliente {
                 switch (objetivo) {
                     case "A":
                         objetivo = "Subir de peso";
+                        bdClientes[contadorC].setObjetivo(objetivo);
                         break;
                     case "B":
                         objetivo = "Bajar de peso";
+                        bdClientes[contadorC].setObjetivo(objetivo);
                         break;
                     case "C":
                         objetivo = "Mantener de peso";
+                        bdClientes[contadorC].setObjetivo(objetivo);
                         break;
                 }//----FIN OBJETIVO
 
                 //-------PesoKg------------
                 while (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0) {
-                    pesoKgS = JOptionPane.showInputDialog("Digite su peso en Kg");
+                    pesoKgS = JOptionPane.showInputDialog("Digite su peso en Kg: ");
                     if (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0) {
                         JOptionPane.showMessageDialog(null, "Dato invalido");
                     }
                 }
                 pesoKg = Float.parseFloat(pesoKgS);
+                bdClientes[contadorC].setPesoKg(pesoKg);
                 //----------------------FIN PESO----
 
                 //-------EstaturaCm------------
                 while (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0 && Float.parseFloat(pesoKgS) >= 500) {
-                    estaturaCmS = JOptionPane.showInputDialog("Digite su estatura en mts");
+                    estaturaCmS = JOptionPane.showInputDialog("Digite su estatura en cm: ");
                     if (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0) {
                         JOptionPane.showMessageDialog(null, "Dato invalido");
                     }
                 }
                 estaturaCm = (Float.parseFloat(estaturaCmS));
+                bdClientes[contadorC].setEstaturaCm(estaturaCm);
 
                 //-------------FIN ESTATURA CM------------
                 //----------Calorias Diarias------------
                 caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
+                bdClientes[contadorC].setCaloriasDiarias(caloriasDiarias);
                 //---------FIN CLAORIAS DIARIAS-----
                 //--CALORIAS OBJETIVO
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
-
+                bdClientes[contadorC].setCaloriasObjetivo(caloriasObjetivo);
+                
                 break;
         }///--------------FIN PASESE----------------
 
         //-------------CREACION DEL OBJETO CLIENTE--------------------
         //bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
-        /*mensaje para probar como se crear
+        //mensaje para probar como se crear
         JOptionPane.showMessageDialog(null, "Nombre=" + bdClientes[contadorC].getNombreC()
                 + "\nIdentificacion=" + bdClientes[contadorC].getIdentificacion()
                 + "\nSexo=" + bdClientes[contadorC].getSexo()
@@ -485,7 +502,6 @@ public class clsCliente {
                 + "\nPeso Kg=" + bdClientes[contadorC].getPesoKg()
                 + "\nEstatura=" + bdClientes[contadorC].getEstaturaMts()
                 + "\nRUTINA=" + bdClientes[contadorC].getRutina());
-         */
         contadorC++;
 
     }//fin agregar
@@ -675,13 +691,8 @@ public class clsCliente {
                                     bdClientes[posc].getSexo();
                                     JOptionPane.showMessageDialog(null, "El nuevo sexo es: " + sexo);
                                     break;
-                                case "C":
-                                    sexo = "No binario";
-                                    bdClientes[posc].getSexo();
-                                    JOptionPane.showMessageDialog(null, "El nuevo sexo es: " + sexo);
-                                    break;
                             }
-                            if (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C")) {// si es null o diferente  a A,B,C entonces da error
+                            if (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B")) {// si es null o diferente  a A,B,C entonces da error
                                 JOptionPane.showMessageDialog(null, "OPCIÓN INVÁLIDA");
                             }
                         } while (sexo.equals("") || !sexo.equals("A") && !sexo.equals("B") && !sexo.equals("C"));
