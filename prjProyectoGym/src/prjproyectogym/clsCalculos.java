@@ -25,8 +25,8 @@ public class clsCalculos {
         return caloriasDiarias;
     }
 
-    public int CaloriasObjetivo(String objetivo, int caloriasDiarias) {
-        int caloriasObjetivo = 0;
+    public float CaloriasObjetivo(String objetivo, float caloriasDiarias) {
+        float caloriasObjetivo = 0;
         if (objetivo.equalsIgnoreCase("Subir de peso")) {
             caloriasObjetivo = caloriasDiarias + 250;
         } else if (objetivo.equalsIgnoreCase("Bajar de peso")) {
