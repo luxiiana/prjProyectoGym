@@ -951,4 +951,44 @@ public class clsCliente {
         }
     } // fin del metodo eliminar cliente
 
-}//fin clsClientes
+    public void BuscarCliente() {
+        String identificacion = "";
+        String salir = "";
+        int bandera = 0;
+        int j = 0;
+
+        if (contadorC > 0) {
+            do {
+                identificacion = JOptionPane.showInputDialog("Digite la identificacion del cliente");
+                for (int i = 0; i < contadorC; i++) {
+                    if (bdClientes[i].getIdentificacion().equals(identificacion)) {
+                        bandera = 1;
+                        j = i;
+                    }
+                }
+                if (bandera == 1) {
+                    JOptionPane.showMessageDialog(null, "Nombre Completo: " + bdClientes[j].getNombreC() + "\nEdad: " + bdClientes[j].getEdad()
+                            + "\nSexo: " + bdClientes[j].getSexo() + "\nIdentificacion: " + bdClientes[j].getIdentificacion()
+                            + "\nObjetivo: " + bdClientes[j].getObjetivo() + "\nCalorías diarias: " + bdClientes[j].getCaloriasDiarias() + "\n"
+                            + "\nSomatotipo: " + bdClientes[j].getSomatotipo() + "\nNombre del entrenador: " + bdClientes[j].getEntrenador()
+                            + "\nTipo de pase: " + bdClientes[j].getTipoDePase() + "\nPeso en Kg: " + bdClientes[j].getPesoKg() + "kg"
+                            + "\nEstatura: " + bdClientes[j].getEstaturaMts() + "cm" + "\nTipo de pago:¢" + bdClientes[j].getPago()); //***Falta agregar correo y telefono*** 
+                } else {
+                    JOptionPane.showMessageDialog(null, "! Identificacion no encontrada ¡");
+                }
+
+                do {
+                    salir = JOptionPane.showInputDialog(" Desea buscar otro cliente:\nSi\nNo").toUpperCase();
+                    if (salir.equals("NO") || salir.equals("SI")) {
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "! Opcion no valilda ¡\nDigite una opcion correcta");
+                    }
+                } while (!salir.equals("NO") && !salir.equals("SI"));
+
+            } while (!salir.equals("NO"));
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay empleados registrados");
+        }//fin clsClientes
+    }
+}

@@ -33,7 +33,7 @@ public class clsMenu {
                                     clsC.eliminarCliente();
                                     break;
                                 case "D":
-
+                                    clsC.BuscarCliente();
                                     break;
                                 case "E":
                                     break;
