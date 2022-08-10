@@ -873,13 +873,12 @@ public class clsCliente {
                                 break;
                         }
 
-                        bdClientes[posc].getPesoKg();
-                        bdClientes[posc].getEstaturaMts();
-                        bdClientes[posc].getEdad();
-                        bdClientes[posc].getSexo();
-                        caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
-                        bdClientes[posc].setCaloriasDiarias(caloriasDiarias);
-                        JOptionPane.showMessageDialog(null, "Sus calorías diarias ahora son de: " + caloriasDiarias);
+                        bdClientes[posc] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
+                        bdClientes[posc].getObjetivo();
+                        bdClientes[posc].getCaloriasDiarias();
+                        caloriasObjetivo = clsCalc.CaloriasObjetivo(objetivo, caloriasDiarias);
+                        bdClientes[posc].setCaloriasObjetivo(caloriasObjetivo);
+                        JOptionPane.showMessageDialog(null, "Sus calorías diarias según su objetivo ahora son de: " + caloriasObjetivo);
                         break;
 
                     case 'i': //Peso en Kg:
