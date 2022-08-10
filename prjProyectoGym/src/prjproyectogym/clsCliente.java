@@ -725,6 +725,10 @@ public class clsCliente {
                         bdClientes[posc].setEdad(edad);
                         JOptionPane.showMessageDialog(null, "La nueva edad del cliente es: " + edad);
 
+                        bdClientes[posc].getPesoKg();
+                        bdClientes[posc].getEstaturaMts();
+                        bdClientes[posc].getEdad();
+                        bdClientes[posc].getSexo();
                         caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
                         bdClientes[posc].setCaloriasDiarias(caloriasDiarias);
                         JOptionPane.showMessageDialog(null, "Sus calorías diarias ahora son de: " + caloriasDiarias);
@@ -869,10 +873,13 @@ public class clsCliente {
                                 break;
                         }
 
-                        bdClientes[posc] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
-                        caloriasObjetivo = clsCalc.CaloriasObjetivo(objetivo, caloriasDiarias);
-                        bdClientes[posc].setCaloriasObjetivo(caloriasObjetivo);
-                        JOptionPane.showMessageDialog(null, "Las nuevas calorías según su nuevo objetivo son: " + caloriasObjetivo);
+                        bdClientes[posc].getPesoKg();
+                        bdClientes[posc].getEstaturaMts();
+                        bdClientes[posc].getEdad();
+                        bdClientes[posc].getSexo();
+                        caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
+                        bdClientes[posc].setCaloriasDiarias(caloriasDiarias);
+                        JOptionPane.showMessageDialog(null, "Sus calorías diarias ahora son de: " + caloriasDiarias);
                         break;
 
                     case 'i': //Peso en Kg:
@@ -886,10 +893,13 @@ public class clsCliente {
                         bdClientes[posc].setPesoKg(pesoKg);
                         JOptionPane.showMessageDialog(null, "Su nuevo peso es de: " + pesoKg + " Kg");
 
+                        bdClientes[posc].getPesoKg();
+                        bdClientes[posc].getEstaturaMts();
+                        bdClientes[posc].getEdad();
+                        bdClientes[posc].getSexo();
                         caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
                         bdClientes[posc].setCaloriasDiarias(caloriasDiarias);
                         JOptionPane.showMessageDialog(null, "Sus calorías diarias ahora son de: " + caloriasDiarias);
-                        break;
 
                     case 'j':
                         do {
@@ -902,6 +912,10 @@ public class clsCliente {
                         bdClientes[posc].setEstaturaCm(estaturaCm);
                         JOptionPane.showMessageDialog(null, "Su nueva estatura es: " + estaturaCm);
 
+                        bdClientes[posc].getPesoKg();
+                        bdClientes[posc].getEstaturaMts();
+                        bdClientes[posc].getEdad();
+                        bdClientes[posc].getSexo();
                         caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
                         bdClientes[posc].setCaloriasDiarias(caloriasDiarias);
                         JOptionPane.showMessageDialog(null, "Sus calorías diarias ahora son de: " + caloriasDiarias);
