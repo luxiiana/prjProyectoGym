@@ -4,15 +4,117 @@
  */
 package prjproyectogym;
 
+import javax.swing.JOptionPane;
+
 public class clsRutina {
 
+    //-----VARIABLES RUTINA--------
+    private int diasEjercicio; //El admin pone cuantos dias debe hacer ejercicios pero no cuales asi que el cliente puede elegir cuales dias 
+    private String tiempoEjercicio;
+
+    private int diasDescanso; // dias descanso = 6diasSemana-dias Ejercicio
+    private String Ejercicios; // aqui el admin escribe que deberia hacer el cliente
+    
+    //--------INSTANCIAs------
+    cls_funciones clsF = new cls_funciones();
+    
+    
+    //------- CONSTRUCTOR VACIO--------
     public clsRutina() {
     }
 
+    //--------CONSTRUCTIR LLENO-------------
+    public clsRutina(int diasEjercicio, String tiempoEjercicio, int diasDescanso, String Ejercicios) {
+        this.diasEjercicio = diasEjercicio;
+        this.tiempoEjercicio = tiempoEjercicio;
+        this.diasDescanso = diasDescanso;
+        this.Ejercicios = Ejercicios;
+    }
+    
+    //--------GETTERS & SETTERS
     
     
     
     
+
+    public int getDiasEjercicio() {
+        return diasEjercicio;
+    }
+
+    public void setDiasEjercicio(int diasEjercicio) {
+        this.diasEjercicio = diasEjercicio;
+    }
+
+    public String getTiempoEjercicio() {
+        return tiempoEjercicio;
+    }
+
+    public void setTiempoEjercicio(String tiempoEjercicio) {
+        this.tiempoEjercicio = tiempoEjercicio;
+    }
+
+    public int getDiasDescanso() {
+        return diasDescanso;
+    }
+
+    public void setDiasDescanso(int diasDescanso) {
+        this.diasDescanso = diasDescanso;
+    }
+
+    public String getEjercicios() {
+        return Ejercicios;
+    }
+
+    public void setEjercicios(String Ejercicios) {
+        this.Ejercicios = Ejercicios;
+    }
+    
+    
+    
+    //-------------------------METODOS CRUD---------------------------------
+    public void agregarRutina(clsRutina rutina){
+        
+        //--variables--
+        int diasEjerc=0,diasDesc=0;
+        String tiempoEjerc="", Ejercicio="",diasEjerS="",tiempoEjercicioS="";
+        
+        
+        //-------EJERCICIOS
+        while(Ejercicio.isBlank() && Ejercicio.length()<10){
+            Ejercicio=JOptionPane.showInputDialog("Digite los ejercicios para el Cliente");
+            if(Ejercicio.isBlank() && Ejercicio.length()<10){
+                JOptionPane.showMessageDialog(null, "EJERCICIOS INVALIDOS");
+            }
+        }
+        //------DIAS EJERCICIOS
+        while(!clsF.esNumero(diasEjerS) ||  Integer.parseInt(diasEjerS)<1 && Integer.parseInt(diasEjerS)>6){
+            diasEjerS=JOptionPane.showInputDialog("DIGITA LA CANTIDAD DE DIAS A EJERCITARSE");
+            if(!clsF.esNumero(diasEjerS) ||  Integer.parseInt(diasEjerS)<1 && Integer.parseInt(diasEjerS)>6){
+                JOptionPane.showMessageDialog(null, "Dias a ejercitarse INVALIDO");
+            }
+        }
+        diasEjerc=Integer.parseInt(diasEjerS);
+        
+        //------Tiempo descanso
+        diasDesc=6-diasEjerc;
+        
+        //-----TIEMPO DE EJERCICIO-----
+        //while(tiempoEjerc.isBlank() && tiempoEjerc.length()<){
+            
+        //}
+        
+        
+        //---CREACION RUTINA----
+        rutina.setEjercicios(Ejercicio);
+        rutina.setDiasEjercicio(diasEjerc);
+        rutina.setDiasDescanso(diasDesc);
+        rutina.setTiempoEjercicio(tiempoEjerc);
+    }
+    
+    
+}//fin clsRutina
+
+/*
     String rutina1 = "Dia 1 = Cuerpo completo\n"
             + "Sentadilla 4x12\n"
             + "Flexion plantar 4x15\n"
@@ -59,4 +161,4 @@ public class clsRutina {
             + "Ext tricep 3x12               Curl Bicep 3x12           Curl femoral 4x12                  Ext tricep 3x12               Curl Bicep 3x12            Curl femoral 4x12\n"
             + "Ext a una mano 4x10    Curl martillo 3x10        Extension Plantar 4x12       Ext a una mano 4x10    Curl martillo 3x10         Extension Plantar 4x12\n"
             + "RompeCraneos 3x12    Curl inverso 3x12        Ext Plantar sentado 3x15    RompeCraneos 3x12    Curl inverso 3x12         Ext Plantar sentado 3x15\n";
-}
+     */

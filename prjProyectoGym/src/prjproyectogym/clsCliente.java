@@ -40,9 +40,11 @@ public class clsCliente {
 
     //private float pesoIdeal; FUTURA EMPLEMETACION
     //----------INSTANCIAS-------------------
+    public clsRutina clsR = new clsRutina();
     clsRutina rutina;
+    
     clsEmpleados clsE = new clsEmpleados();
-    //clsAlimentacion PlanAlimentacion;
+    
     clsCalculos clsCalc = new clsCalculos();
 
     clsCliente bdClientes[] = new clsCliente[9999999];
@@ -412,7 +414,9 @@ public class clsCliente {
                 /*------ASIGNACION DE ENTRENADOR-----------
                 int cantE = clsE.contadorE;
                  */
-
+                
+                
+               
                 //----Se crea el cliente-----
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null);
 
@@ -490,15 +494,19 @@ public class clsCliente {
                 }
                 estaturaCm = (Float.parseFloat(estaturaCmS));
 
-                //-------------FIN ESTATURA CM------------
+               
                 //----------Calorias Diarias------------
                 caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
-                //---------FIN CLAORIAS DIARIAS-----
+                
+                
+                 //-----CREACION DE RUTINA-----
+                rutina=new clsRutina();
+                clsR.agregarRutina(rutina);
                 //--CALORIAS OBJETIVO
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
 
                 break;
-        }///--------------FIN PASESE----------------
+        }///--------------FIN PASES----------------
 
         //-------------CREACION DEL OBJETO CLIENTE--------------------
         //bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
@@ -516,7 +524,11 @@ public class clsCliente {
                 + "\nCalorias Objetivo=" + bdClientes[contadorC].getCaloriasObjetivo()
                 + "\nPeso Kg=" + bdClientes[contadorC].getPesoKg()
                 + "\nEstatura=" + bdClientes[contadorC].getEstaturaMts()
-                + "\nRUTINA=" + bdClientes[contadorC].getRutina());
+                + "\n--------------RUTINA------------------"
+                + "\nEJERCICIOS=" + bdClientes[contadorC].rutina.getEjercicios()
+                + "\nTIEMPO DE EJERCICIOS: "+bdClientes[contadorC].rutina.getTiempoEjercicio()
+                + "\nDIAS PARA EJERCITARSE: "+bdClientes[contadorC].rutina.getDiasEjercicio()
+                + "\nDIAS DESCANSO: "+bdClientes[contadorC].rutina.getDiasDescanso());
         contadorC++;
 
     }//fin agregar
