@@ -526,7 +526,6 @@ public class clsCliente {
                 + "\nEstatura=" + bdClientes[contadorC].getEstaturaMts()
                 + "\n--------------RUTINA------------------"
                 + "\nEJERCICIOS=" + bdClientes[contadorC].rutina.getEjercicios()
-                + "\nTIEMPO DE EJERCICIOS: "+bdClientes[contadorC].rutina.getTiempoEjercicio()
                 + "\nDIAS PARA EJERCITARSE: "+bdClientes[contadorC].rutina.getDiasEjercicio()
                 + "\nDIAS DESCANSO: "+bdClientes[contadorC].rutina.getDiasDescanso());
         contadorC++;
