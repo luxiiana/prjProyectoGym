@@ -42,9 +42,9 @@ public class clsCliente {
     //----------INSTANCIAS-------------------
     public clsRutina clsR = new clsRutina();
     clsRutina rutina;
-    
+
     clsEmpleados clsE = new clsEmpleados();
-    
+
     clsCalculos clsCalc = new clsCalculos();
 
     clsCliente bdClientes[] = new clsCliente[9999999];
@@ -414,9 +414,7 @@ public class clsCliente {
                 /*------ASIGNACION DE ENTRENADOR-----------
                 int cantE = clsE.contadorE;
                  */
-                
-                
-               
+
                 //----Se crea el cliente-----
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null);
 
@@ -494,13 +492,11 @@ public class clsCliente {
                 }
                 estaturaCm = (Float.parseFloat(estaturaCmS));
 
-               
                 //----------Calorias Diarias------------
                 caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
-                
-                
-                 //-----CREACION DE RUTINA-----
-                rutina=new clsRutina();
+
+                //-----CREACION DE RUTINA-----
+                rutina = new clsRutina();
                 clsR.agregarRutina(rutina);
                 //--CALORIAS OBJETIVO
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
@@ -508,8 +504,6 @@ public class clsCliente {
                 break;
         }///--------------FIN PASES----------------
 
-        //-------------CREACION DEL OBJETO CLIENTE--------------------
-        //bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
         //mensaje para probar como se crear
         JOptionPane.showMessageDialog(null, "Nombre=" + bdClientes[contadorC].getNombreC()
                 + "\nIdentificacion=" + bdClientes[contadorC].getIdentificacion()
@@ -524,10 +518,10 @@ public class clsCliente {
                 + "\nCalorias Objetivo=" + bdClientes[contadorC].getCaloriasObjetivo()
                 + "\nPeso Kg=" + bdClientes[contadorC].getPesoKg()
                 + "\nEstatura=" + bdClientes[contadorC].getEstaturaMts()
-                + "\n--------------RUTINA------------------"
-                + "\nEJERCICIOS=" + bdClientes[contadorC].rutina.getEjercicios()
-                + "\nDIAS PARA EJERCITARSE: "+bdClientes[contadorC].rutina.getDiasEjercicio()
-                + "\nDIAS DESCANSO: "+bdClientes[contadorC].rutina.getDiasDescanso());
+                + "\nDIAS PARA EJERCITARSE: " + bdClientes[contadorC].rutina.getDiasEjercicio()
+                + "\nDIAS DESCANSO: " + bdClientes[contadorC].rutina.getDiasDescanso()
+                + "\n---------------------------RUTINA------------------------------------------"
+                + "\nEJERCICIOS=" + bdClientes[contadorC].rutina.getEjercicios());
         contadorC++;
 
     }//fin agregar
