@@ -15,7 +15,7 @@ public class clsMenu {
     public void menuPrincipal() { //Luciana
         String opcion = "";
         do {
-            try {
+          
                 opcion = JOptionPane.showInputDialog("Digite la opción que desea:\nA. Administrar Cliente \nB. Administrar empleados \nS. CERRAR SESION").toUpperCase();
                 switch (opcion) {
                     case "A":
@@ -86,10 +86,7 @@ public class clsMenu {
                         break;
                 }//fin de switch1
 
-            } catch (Exception w) {
-                JOptionPane.showMessageDialog(null, "Opcion invalida");
-
-            }
+         
         } while (!opcion.equals("S"));
 
     }//fin método

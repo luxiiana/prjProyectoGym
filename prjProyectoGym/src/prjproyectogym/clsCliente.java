@@ -33,7 +33,7 @@ public class clsCliente {
     private float pesoKg; //input
     private float estaturaMts; //input
     private String objetivo;
-    private float IMC; // HAY UN METODO PARA CALCULARLA TE FALTA ESTO DEREKKKKKKKKKKKKKKK
+    private int IMC; // HAY UN METODO PARA CALCULARLA TE FALTA ESTO DEREKKKKKKKKKKKKKKK
     /////
     ////
     ///
@@ -45,7 +45,7 @@ public class clsCliente {
 
     clsEmpleados clsE = new clsEmpleados();
 
-    clsCalculos clsCalc = new clsCalculos();
+    
 
     clsCliente bdClientes[] = new clsCliente[9999999];
     cls_funciones clsF = new cls_funciones();
@@ -53,7 +53,7 @@ public class clsCliente {
     public clsCliente() {
     }
 
-    public clsCliente(String nombreC, String identificacion, String sexo, int edad, String telefono, String tipoDePase, String entrenador, float pago, String somatotipo, String objetivo, float caloriasDiarias, float caloriasObjetivo, float pesoKg, float estaturaCm, clsRutina rutina) {
+    public clsCliente(String nombreC, String identificacion, String sexo, int edad, String telefono, String tipoDePase, String entrenador, float pago, String somatotipo, String objetivo, float caloriasDiarias, float caloriasObjetivo, float pesoKg, float estaturaCm, clsRutina rutina, int IMC) {
         this.nombreC = nombreC;
         this.identificacion = identificacion;
         this.sexo = sexo;
@@ -69,10 +69,19 @@ public class clsCliente {
         this.pesoKg = pesoKg;
         this.estaturaMts = estaturaCm;
         this.rutina = rutina;
+        this.IMC = IMC;
+    }
+
+    public float getIMC() {
+        return IMC;
     }
 
     ////------------------------GETTERS AND SETTER------------------------------------------
-    public String getNombreC() { // return cliente1 nombre jJordan
+    public void setIMC(int IMC) {
+        this.IMC = IMC;
+    }
+
+    public String getNombreC() {
         return nombreC;
     }
 
@@ -404,9 +413,10 @@ public class clsCliente {
                 tipoDePase = "Basico";
                 pago = 10000;
                 //---Se crea el cliente-----
-                bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, null, pago, null, null, 0, 0, 0, 0, null);
+                bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, null, pago, null, null, 0, 0, 0, 0, null, 0);
 
                 JOptionPane.showMessageDialog(null, "USUARIO CREADO");
+                contadorC++;
                 break;
             case "B": //----PASE MAX---------
                 tipoDePase = "Max";
@@ -416,8 +426,8 @@ public class clsCliente {
                  */
 
                 //----Se crea el cliente-----
-                bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null);
-
+                bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null, 0);
+                contadorC++;
                 break;
 
             case "C": //--------PASE ULTRA------------
@@ -493,13 +503,15 @@ public class clsCliente {
                 estaturaCm = (Float.parseFloat(estaturaCmS));
 
                 //----------Calorias Diarias------------
-                caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
+                caloriasDiarias = clsF.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
+                caloriasObjetivo = clsF.CaloriasObjetivo(objetivo, caloriasDiarias);
 
                 //-----CREACION DE RUTINA-----
                 rutina = new clsRutina();
                 clsR.agregarRutina(rutina);
+                int IMC = clsF.IMC(estaturaCm/100, pesoKg);
                 //--CALORIAS OBJETIVO
-                bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
+                bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina, IMC);
 
                 break;
         }///--------------FIN PASES----------------
@@ -520,8 +532,9 @@ public class clsCliente {
                 + "\nEstatura=" + bdClientes[contadorC].getEstaturaMts()
                 + "\nDIAS PARA EJERCITARSE: " + bdClientes[contadorC].rutina.getDiasEjercicio()
                 + "\nDIAS DESCANSO: " + bdClientes[contadorC].rutina.getDiasDescanso()
+                + "\nIMC: " + bdClientes[contadorC].getIMC()
                 + "\n---------------------------RUTINA------------------------------------------"
-                + "\nEJERCICIOS=" + bdClientes[contadorC].rutina.getEjercicios());
+                + "\n" + bdClientes[contadorC].rutina.getEjercicios());
         contadorC++;
 
     }//fin agregar
@@ -734,7 +747,7 @@ public class clsCliente {
                         bdClientes[posc].getEstaturaMts();
                         bdClientes[posc].getEdad();
                         bdClientes[posc].getSexo();
-                        caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
+                        caloriasDiarias = clsF.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
                         bdClientes[posc].setCaloriasDiarias(caloriasDiarias);
                         JOptionPane.showMessageDialog(null, "Sus calorías diarias ahora son de: " + caloriasDiarias);
                         break;
@@ -801,14 +814,14 @@ public class clsCliente {
                                 tipoDePase = "Basico";
                                 pago = 10000;
                                 JOptionPane.showMessageDialog(null, "Su pase ahora es básico");
-                                bdClientes[posc] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, null, pago, null, null, 0, 0, 0, 0, null);
+                                bdClientes[posc] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, null, pago, null, null, 0, 0, 0, 0, null, 0);
                                 break;
                             case "B":
                                 tipoDePase = "Max";
                                 pago = 15000;
                                 JOptionPane.showMessageDialog(null, "Su pase ahora es Max");
                                 //Falta lógica para asignar entrenador
-                                bdClientes[posc] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null);
+                                bdClientes[posc] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null, 0);
                                 break;
                             case "C":
                                 tipoDePase = "Ultra";
@@ -878,10 +891,10 @@ public class clsCliente {
                                 break;
                         }
 
-                        bdClientes[posc] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina);
+                        bdClientes[posc] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina, 0);
                         bdClientes[posc].getObjetivo();
                         bdClientes[posc].getCaloriasDiarias();
-                        caloriasObjetivo = clsCalc.CaloriasObjetivo(objetivo, caloriasDiarias);
+                        caloriasObjetivo = clsF.CaloriasObjetivo(objetivo, caloriasDiarias);
                         bdClientes[posc].setCaloriasObjetivo(caloriasObjetivo);
                         JOptionPane.showMessageDialog(null, "Sus calorías diarias según su objetivo ahora son de: " + caloriasObjetivo);
                         break;
@@ -901,7 +914,7 @@ public class clsCliente {
                         bdClientes[posc].getEstaturaMts();
                         bdClientes[posc].getEdad();
                         bdClientes[posc].getSexo();
-                        caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
+                        caloriasDiarias = clsF.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
                         bdClientes[posc].setCaloriasDiarias(caloriasDiarias);
                         JOptionPane.showMessageDialog(null, "Sus calorías diarias ahora son de: " + caloriasDiarias);
 
@@ -920,7 +933,7 @@ public class clsCliente {
                         bdClientes[posc].getEstaturaMts();
                         bdClientes[posc].getEdad();
                         bdClientes[posc].getSexo();
-                        caloriasDiarias = clsCalc.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
+                        caloriasDiarias = clsF.CaloriasDiarias(pesoKg, estaturaCm, edad, sexo);
                         bdClientes[posc].setCaloriasDiarias(caloriasDiarias);
                         JOptionPane.showMessageDialog(null, "Sus calorías diarias ahora son de: " + caloriasDiarias);
                         break;
@@ -978,19 +991,33 @@ public class clsCliente {
         if (contadorC > 0) {
             do {
                 identificacion = JOptionPane.showInputDialog("Digite la identificacion del cliente");
+                
                 for (int i = 0; i < contadorC; i++) {
                     if (bdClientes[i].getIdentificacion().equals(identificacion)) {
                         bandera = 1;
                         j = i;
                     }
                 }
+                System.out.println(identificacion);
                 if (bandera == 1) {
-                    JOptionPane.showMessageDialog(null, "Nombre Completo: " + bdClientes[j].getNombreC() + "\nEdad: " + bdClientes[j].getEdad()
-                            + "\nSexo: " + bdClientes[j].getSexo() + "\nIdentificacion: " + bdClientes[j].getIdentificacion()
-                            + "\nObjetivo: " + bdClientes[j].getObjetivo() + "\nCalorías diarias: " + bdClientes[j].getCaloriasDiarias() + "\n"
-                            + "\nSomatotipo: " + bdClientes[j].getSomatotipo() + "\nNombre del entrenador: " + bdClientes[j].getEntrenador()
-                            + "\nTipo de pase: " + bdClientes[j].getTipoDePase() + "\nPeso en Kg: " + bdClientes[j].getPesoKg() + "kg"
-                            + "\nEstatura: " + bdClientes[j].getEstaturaMts() + "cm" + "\nTipo de pago:¢" + bdClientes[j].getPago()); //***Falta agregar correo y telefono*** 
+                JOptionPane.showMessageDialog(null, "Nombre=" + bdClientes[j].getNombreC()
+                + "\nIdentificacion=" + bdClientes[j].getIdentificacion()
+                + "\nSexo=" + bdClientes[j].getSexo()
+                + "\nedad=" + bdClientes[j].getEdad()
+                + "\ntelefono=" + bdClientes[j].getTelefono()
+                + "\nTipo de Pase=" + bdClientes[j].getTipoDePase()
+                + "\nPago=" + bdClientes[j].getPago()
+                + "\nSomatipo=" + bdClientes[j].getSomatotipo()
+                + "\nObjetivo=" + bdClientes[j].getObjetivo()
+                + "\nCalorias Diarias=" + bdClientes[j].getCaloriasDiarias()
+                + "\nCalorias Objetivo=" + bdClientes[j].getCaloriasObjetivo()
+                + "\nPeso Kg=" + bdClientes[j].getPesoKg()
+                + "\nEstatura=" + bdClientes[j].getEstaturaMts()
+                + "\nDIAS PARA EJERCITARSE: " + bdClientes[j].rutina.getDiasEjercicio()
+                + "\nDIAS DESCANSO: " + bdClientes[j].rutina.getDiasDescanso()
+                + "\nIMC: " + bdClientes[j].getIMC()
+                + "\n---------------------------RUTINA------------------------------------------"
+                + "\n" + bdClientes[j].rutina.getEjercicios()); 
                 } else {
                     JOptionPane.showMessageDialog(null, "! Identificacion no encontrada ¡");
                 }
