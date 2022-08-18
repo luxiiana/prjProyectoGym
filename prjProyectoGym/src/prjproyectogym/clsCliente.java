@@ -44,7 +44,6 @@ public class clsCliente {
     clsRutina rutina;
 
     clsEmpleados clsE = new clsEmpleados();
-
     clsCliente bdClientes[] = new clsCliente[9999999];
     cls_funciones clsF = new cls_funciones();
 
@@ -419,10 +418,8 @@ public class clsCliente {
             case "B": //----PASE MAX---------
                 tipoDePase = "Max";
                 pago = 15000;
-                /*------ASIGNACION DE ENTRENADOR-----------
-                int cantE = clsE.contadorE;
-                 */
-
+                //------ASIGNACION DE ENTRENADOR-----------
+                
                 //----Se crea el cliente-----
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null, 0);
 
@@ -1012,6 +1009,14 @@ public class clsCliente {
                                     + "\nPago= " + bdClientes[j].getPago());
                             break;
                         case "Max":
+                            JOptionPane.showMessageDialog(null, "Nombre=" + bdClientes[j].getNombreC()
+                                    + "\nIdentificacion=" + bdClientes[j].getIdentificacion()
+                                    + "\nSexo=" + bdClientes[j].getSexo()
+                                    + "\nedad=" + bdClientes[j].getEdad()
+                                    + "\ntelefono=" + bdClientes[j].getTelefono()
+                                    + "\nTipo de Pase=" + bdClientes[j].getTipoDePase()
+                                    + "\nPago= " + bdClientes[j].getPago()
+                                    +"\nEntrenador= ");
                             break;
                         case "Ultra":
                             JOptionPane.showMessageDialog(null, "Nombre=" + bdClientes[j].getNombreC()

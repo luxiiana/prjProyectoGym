@@ -319,6 +319,7 @@ public class clsEmpleados {
                 imprimir += bdEmpleados[i].toString() + "\n";
             }
             JOptionPane.showMessageDialog(null, imprimir);
+           
         } else {
             JOptionPane.showMessageDialog(null, "No hay empleados agregados");
         }
@@ -667,6 +668,7 @@ public class clsEmpleados {
             JOptionPane.showMessageDialog(null, "No hay empleados registrados");
         }
     } // fin del metodo
+
 
     @Override
     public String toString() {

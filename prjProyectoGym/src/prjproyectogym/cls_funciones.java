@@ -6,11 +6,9 @@ package prjproyectogym;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Derek
- */
+
 public class cls_funciones {
+    
     
         //----Inicio Cadena 
     public String cadena(String dato){
@@ -89,5 +87,6 @@ public class cls_funciones {
         System.out.println(IMC);
         return IMC;
     }
+    
 
 }//----fin cls_funciones------
