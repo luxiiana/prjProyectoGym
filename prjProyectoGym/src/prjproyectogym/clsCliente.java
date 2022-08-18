@@ -45,8 +45,6 @@ public class clsCliente {
 
     clsEmpleados clsE = new clsEmpleados();
 
-    
-
     clsCliente bdClientes[] = new clsCliente[9999999];
     cls_funciones clsF = new cls_funciones();
 
@@ -416,7 +414,7 @@ public class clsCliente {
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, null, pago, null, null, 0, 0, 0, 0, null, 0);
 
                 JOptionPane.showMessageDialog(null, "USUARIO CREADO");
-                contadorC++;
+
                 break;
             case "B": //----PASE MAX---------
                 tipoDePase = "Max";
@@ -427,7 +425,7 @@ public class clsCliente {
 
                 //----Se crea el cliente-----
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null, 0);
-                contadorC++;
+
                 break;
 
             case "C": //--------PASE ULTRA------------
@@ -509,7 +507,7 @@ public class clsCliente {
                 //-----CREACION DE RUTINA-----
                 rutina = new clsRutina();
                 clsR.agregarRutina(rutina);
-                int IMC = clsF.IMC(estaturaCm/100, pesoKg);
+                int IMC = clsF.IMC(estaturaCm / 100, pesoKg);
                 //--CALORIAS OBJETIVO
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina, IMC);
 
@@ -517,7 +515,7 @@ public class clsCliente {
         }///--------------FIN PASES----------------
 
         //mensaje para probar como se crear
-        JOptionPane.showMessageDialog(null, "Nombre=" + bdClientes[contadorC].getNombreC()
+        /*JOptionPane.showMessageDialog(null, "Nombre=" + bdClientes[contadorC].getNombreC()
                 + "\nIdentificacion=" + bdClientes[contadorC].getIdentificacion()
                 + "\nSexo=" + bdClientes[contadorC].getSexo()
                 + "\nedad=" + bdClientes[contadorC].getEdad()
@@ -534,7 +532,7 @@ public class clsCliente {
                 + "\nDIAS DESCANSO: " + bdClientes[contadorC].rutina.getDiasDescanso()
                 + "\nIMC: " + bdClientes[contadorC].getIMC()
                 + "\n---------------------------RUTINA------------------------------------------"
-                + "\n" + bdClientes[contadorC].rutina.getEjercicios());
+                + "\n" + bdClientes[contadorC].rutina.getEjercicios());*/
         contadorC++;
 
     }//fin agregar
@@ -987,37 +985,58 @@ public class clsCliente {
         String salir = "";
         int bandera = 0;
         int j = 0;
+        String tipoPase = "";
 
         if (contadorC > 0) {
             do {
                 identificacion = JOptionPane.showInputDialog("Digite la identificacion del cliente");
-                
+
                 for (int i = 0; i < contadorC; i++) {
                     if (bdClientes[i].getIdentificacion().equals(identificacion)) {
                         bandera = 1;
                         j = i;
+                        tipoPase = bdClientes[j].getTipoDePase();
+
                     }
                 }
-                System.out.println(identificacion);
+
                 if (bandera == 1) {
-                JOptionPane.showMessageDialog(null, "Nombre=" + bdClientes[j].getNombreC()
-                + "\nIdentificacion=" + bdClientes[j].getIdentificacion()
-                + "\nSexo=" + bdClientes[j].getSexo()
-                + "\nedad=" + bdClientes[j].getEdad()
-                + "\ntelefono=" + bdClientes[j].getTelefono()
-                + "\nTipo de Pase=" + bdClientes[j].getTipoDePase()
-                + "\nPago=" + bdClientes[j].getPago()
-                + "\nSomatipo=" + bdClientes[j].getSomatotipo()
-                + "\nObjetivo=" + bdClientes[j].getObjetivo()
-                + "\nCalorias Diarias=" + bdClientes[j].getCaloriasDiarias()
-                + "\nCalorias Objetivo=" + bdClientes[j].getCaloriasObjetivo()
-                + "\nPeso Kg=" + bdClientes[j].getPesoKg()
-                + "\nEstatura=" + bdClientes[j].getEstaturaMts()
-                + "\nDIAS PARA EJERCITARSE: " + bdClientes[j].rutina.getDiasEjercicio()
-                + "\nDIAS DESCANSO: " + bdClientes[j].rutina.getDiasDescanso()
-                + "\nIMC: " + bdClientes[j].getIMC()
-                + "\n---------------------------RUTINA------------------------------------------"
-                + "\n" + bdClientes[j].rutina.getEjercicios()); 
+                    switch (tipoPase) {
+                        case "Basico":
+                            JOptionPane.showMessageDialog(null, "Nombre=" + bdClientes[j].getNombreC()
+                                    + "\nIdentificacion=" + bdClientes[j].getIdentificacion()
+                                    + "\nSexo=" + bdClientes[j].getSexo()
+                                    + "\nedad=" + bdClientes[j].getEdad()
+                                    + "\ntelefono=" + bdClientes[j].getTelefono()
+                                    + "\nTipo de Pase=" + bdClientes[j].getTipoDePase()
+                                    + "\nPago= " + bdClientes[j].getPago());
+                            break;
+                        case "Max":
+                            break;
+                        case "Ultra":
+                            JOptionPane.showMessageDialog(null, "Nombre=" + bdClientes[j].getNombreC()
+                                    + "\nIdentificacion=" + bdClientes[j].getIdentificacion()
+                                    + "\nSexo=" + bdClientes[j].getSexo()
+                                    + "\nedad=" + bdClientes[j].getEdad()
+                                    + "\ntelefono=" + bdClientes[j].getTelefono()
+                                    + "\nTipo de Pase=" + bdClientes[j].getTipoDePase()
+                                    + "\nPago=" + bdClientes[j].getPago()
+                                    + "\nSomatipo=" + bdClientes[j].getSomatotipo()
+                                    + "\nObjetivo=" + bdClientes[j].getObjetivo()
+                                    + "\nCalorias Diarias=" + bdClientes[j].getCaloriasDiarias()
+                                    + "\nCalorias Objetivo=" + bdClientes[j].getCaloriasObjetivo()
+                                    + "\nPeso Kg=" + bdClientes[j].getPesoKg()
+                                    + "\nEstatura=" + bdClientes[j].getEstaturaMts()
+                                    + "\nDIAS PARA EJERCITARSE: " + bdClientes[j].rutina.getDiasEjercicio()
+                                    + "\nDIAS DESCANSO: " + bdClientes[j].rutina.getDiasDescanso()
+                                    + "\nIMC: " + bdClientes[j].getIMC()
+                                    + "\n---------------------------RUTINA------------------------------------------"
+                                    + "\n" + bdClientes[j].rutina.getEjercicios());
+                            break;
+                        default:
+                            break;
+
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "! Identificacion no encontrada ¡");
                 }
