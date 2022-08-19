@@ -670,14 +670,17 @@ public class clsEmpleados {
         }
     } // fin del metodo
 
-public String asignarEntrenador(){
-    String nombre="";
-    int posc= (int)(Math.random()*contadorE);
-    nombre = bdEmpleados[posc].getNombreC();
-    return nombre;
-    // 
-}
-
+    public String asignarEntrenador() {
+        String nombre = "";
+        if (contadorE == 0) {
+            nombre = "No asignado";
+        } else if (contadorE > 0) {
+            int posc = (int) (Math.random() * contadorE);
+            nombre = bdEmpleados[posc].getNombreC();
+        }
+        return nombre;
+        
+    }//----FIN ASIGNAR ENTRENADOR
 
     @Override
     public String toString() {

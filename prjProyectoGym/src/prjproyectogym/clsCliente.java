@@ -42,6 +42,7 @@ public class clsCliente {
     //----------INSTANCIAS-------------------
     public clsRutina clsR = new clsRutina();
     clsRutina rutina;
+    
 
     clsEmpleados clsE = new clsEmpleados();
     clsCliente bdClientes[] = new clsCliente[9999999];
@@ -419,7 +420,7 @@ public class clsCliente {
                 tipoDePase = "Max";
                 pago = 15000;
                 //------ASIGNACION DE ENTRENADOR-----------cñ
-
+                entrenador=clsE.asignarEntrenador();
                 //----Se crea el cliente-----
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null, 0);
                 JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
