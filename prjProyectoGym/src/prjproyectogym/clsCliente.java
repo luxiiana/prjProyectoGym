@@ -1706,7 +1706,7 @@ public class clsCliente {
                                     + "\ntelefono=" + bdClientes[j].getTelefono()
                                     + "\nTipo de Pase=" + bdClientes[j].getTipoDePase()
                                     + "\nPago= " + bdClientes[j].getPago()
-                                    + "\nEntrenador= ");
+                                    + "\nEntrenador= " +bdClientes[j].getEntrenador());
                             break;
                         case "Ultra":
                             JOptionPane.showMessageDialog(null, "Nombre=" + bdClientes[j].getNombreC()
@@ -1715,6 +1715,7 @@ public class clsCliente {
                                     + "\nedad=" + bdClientes[j].getEdad()
                                     + "\ntelefono=" + bdClientes[j].getTelefono()
                                     + "\nTipo de Pase=" + bdClientes[j].getTipoDePase()
+                                    + "\nEntrenador= " +bdClientes[j].getEntrenador()
                                     + "\nPago=" + bdClientes[j].getPago()
                                     + "\nSomatipo=" + bdClientes[j].getSomatotipo()
                                     + "\nObjetivo=" + bdClientes[j].getObjetivo()
