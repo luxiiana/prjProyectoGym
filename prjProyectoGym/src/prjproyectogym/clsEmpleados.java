@@ -669,10 +669,12 @@ public class clsEmpleados {
         }
     } // fin del metodo
 public String asignarEntrenador(){
-    int posc= (int)(Math.random()*contadorE+0);
+    System.out.println(bdEmpleados[0].getNombreC());
+    String nombre="";
+    int posc= (int)(Math.random()*contadorE);
     System.out.println(posc);
-    System.out.println(bdEmpleados[posc].getNombreC());
-    String nombre = bdEmpleados[posc].getNombreC();
+    this.bdEmpleados[posc].toString();
+    //String nombre = this.bdEmpleados[posc].getNombreC();
     return nombre;
 }
 
