@@ -79,12 +79,12 @@ public class cls_funciones {
     }
 
     public int IMC(float altura, float peso) {
-        System.out.println(altura);
+        
         float imc = 0;
         imc = (float) (peso /Math.pow(altura, 2));
-        System.out.println(imc);
+        
         int IMC = Math.round(imc);
-        System.out.println(IMC);
+        
         return IMC;
     }
     

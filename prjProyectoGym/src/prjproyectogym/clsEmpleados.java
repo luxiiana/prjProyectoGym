@@ -668,7 +668,13 @@ public class clsEmpleados {
             JOptionPane.showMessageDialog(null, "No hay empleados registrados");
         }
     } // fin del metodo
-
+public String asignarEntrenador(){
+    int posc= (int)(Math.random()*contadorE+0);
+    System.out.println(posc);
+    System.out.println(bdEmpleados[posc].getNombreC());
+    String nombre = bdEmpleados[posc].getNombreC();
+    return nombre;
+}
 
     @Override
     public String toString() {
