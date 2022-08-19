@@ -671,7 +671,22 @@ public class clsEmpleados {
     } // fin del metodo
 
     public String asignarEntrenador() {
+        int contE=0;
+        for (int j = 0; j < bdEmpleados.length; j++) {
+            if(bdEmpleados[j] != null){
+                contE++;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "aaa "+contE);
         String nombre = "";
+        /*
+        if (contadorE == 0) {
+            nombre = "No asignado";
+        } else if (contadorE > 0) {
+            int posc = (int) (Math.random() * contadorE);
+            nombre = bdEmpleados[posc].getNombreC();
+        }
+        */
         if (contadorE == 0) {
             nombre = "No asignado";
         } else if (contadorE > 0) {
@@ -679,7 +694,6 @@ public class clsEmpleados {
             nombre = bdEmpleados[posc].getNombreC();
         }
         return nombre;
-        
     }//----FIN ASIGNAR ENTRENADOR
 
     @Override

@@ -42,7 +42,6 @@ public class clsCliente {
     //----------INSTANCIAS-------------------
     public clsRutina clsR = new clsRutina();
     clsRutina rutina;
-    
 
     clsEmpleados clsE = new clsEmpleados();
     clsCliente bdClientes[] = new clsCliente[9999999];
@@ -419,8 +418,10 @@ public class clsCliente {
             case "B": //----PASE MAX---------
                 tipoDePase = "Max";
                 pago = 15000;
-                //------ASIGNACION DE ENTRENADOR-----------cñ
-                entrenador=clsE.asignarEntrenador();
+                //------ASIGNACION DE ENTRENADOR-----------
+                int cont=clsE.contadorE;
+                JOptionPane.showMessageDialog(null, cont);
+                entrenador = clsE.asignarEntrenador();
                 //----Se crea el cliente-----
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null, 0);
                 JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
@@ -506,10 +507,11 @@ public class clsCliente {
                 rutina = new clsRutina();
                 clsR.agregarRutina(rutina);
                 int IMC = clsF.IMC(estaturaCm / 100, pesoKg);
-                //--CALORIAS OBJETIVO
+                //----ASIGNACION ENTRENADOR
+                entrenador = clsE.asignarEntrenador();
 
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina, IMC);
-               JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
+                JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
                 break;
         }///--------------FIN PASES----------------
 
@@ -1706,7 +1708,7 @@ public class clsCliente {
                                     + "\ntelefono=" + bdClientes[j].getTelefono()
                                     + "\nTipo de Pase=" + bdClientes[j].getTipoDePase()
                                     + "\nPago= " + bdClientes[j].getPago()
-                                    + "\nEntrenador= " +bdClientes[j].getEntrenador());
+                                    + "\nEntrenador= " + bdClientes[j].getEntrenador());
                             break;
                         case "Ultra":
                             JOptionPane.showMessageDialog(null, "Nombre=" + bdClientes[j].getNombreC()
@@ -1715,7 +1717,7 @@ public class clsCliente {
                                     + "\nedad=" + bdClientes[j].getEdad()
                                     + "\ntelefono=" + bdClientes[j].getTelefono()
                                     + "\nTipo de Pase=" + bdClientes[j].getTipoDePase()
-                                    + "\nEntrenador= " +bdClientes[j].getEntrenador()
+                                    + "\nEntrenador= " + bdClientes[j].getEntrenador()
                                     + "\nPago=" + bdClientes[j].getPago()
                                     + "\nSomatipo=" + bdClientes[j].getSomatotipo()
                                     + "\nObjetivo=" + bdClientes[j].getObjetivo()
