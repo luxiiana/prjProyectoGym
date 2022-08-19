@@ -8,10 +8,11 @@ public class main {
 
     public static void main(String[] args) {
         
-        
-
-        //---INICIAR DIRECTAMENTE EL PROGRAMA
         clsMenu clsM = new clsMenu();
+        JF_inicioSesion JFIS = new JF_inicioSesion();
+        clsEmpleados clsE = new clsEmpleados();
+      
+        //---INICIAR DIRECTAMENTE EL PROGRAMA
         clsM.menuPrincipal();
         
         //Pruebas calculos--
@@ -21,14 +22,14 @@ public class main {
         
         
         //---INCIAR PROGRAMA CON INCIO SESION
-        //JF_inicioSesion JFIS = new JF_inicioSesion();
         //JFIS.setVisible(true);
         
         //---------RUTINAS----------
         //clsRutina clsr = new clsRutina();
         //JOptionPane.showMessageDialog(null, clsr.rutina6);
         
-
+        //----entrenado
+        //clsE.asignarEntrenador();
     }
 
 }

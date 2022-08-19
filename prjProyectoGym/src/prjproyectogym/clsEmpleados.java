@@ -306,6 +306,7 @@ public class clsEmpleados {
             bdEmpleados[contadorE] = new clsEmpleados(nombre, identificacion, origen, correoE, telefono, puesto, edad, sexo);
             contadorE++;
             JOptionPane.showMessageDialog(null, "Empleado agregado correctamente");
+            asignarEntrenador();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al agregar empleado");
         }
@@ -319,7 +320,7 @@ public class clsEmpleados {
                 imprimir += bdEmpleados[i].toString() + "\n";
             }
             JOptionPane.showMessageDialog(null, imprimir);
-           
+
         } else {
             JOptionPane.showMessageDialog(null, "No hay empleados agregados");
         }
@@ -668,6 +669,7 @@ public class clsEmpleados {
             JOptionPane.showMessageDialog(null, "No hay empleados registrados");
         }
     } // fin del metodo
+
 public String asignarEntrenador(){
     String nombre="";
     int posc= (int)(Math.random()*contadorE);
@@ -675,6 +677,7 @@ public String asignarEntrenador(){
     return nombre;
     // 
 }
+
 
     @Override
     public String toString() {
