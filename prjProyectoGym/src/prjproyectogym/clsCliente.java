@@ -412,7 +412,7 @@ public class clsCliente {
                 //---Se crea el cliente-----
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, null, pago, null, null, 0, 0, 0, 0, null, 0);
 
-                JOptionPane.showMessageDialog(null, "USUARIO CREADO");
+                JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
 
                 break;
             case "B": //----PASE MAX---------
@@ -422,7 +422,7 @@ public class clsCliente {
 
                 //----Se crea el cliente-----
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, null, null, 0, 0, 0, 0, null, 0);
-
+                JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
                 break;
 
             case "C": //--------PASE ULTRA------------
@@ -508,7 +508,7 @@ public class clsCliente {
                 //--CALORIAS OBJETIVO
 
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina, IMC);
-
+               JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
                 break;
         }///--------------FIN PASES----------------
 
@@ -1514,7 +1514,7 @@ public class clsCliente {
                                         break;
                                     case "G":
                                         while (objetivo.equals("") || !objetivo.equals("A") && !objetivo.equals("B") && !objetivo.equals("C")) {
-                                            objetivo = clsF.cadena("Digite el obejtivo"
+                                            objetivo = clsF.cadena("Digite el objetivo"
                                                     + "\nA. Subir de peso"
                                                     + "\nB. Bajar de peso"
                                                     + "\nC. Mantener peso").toUpperCase();
@@ -1546,6 +1546,7 @@ public class clsCliente {
                                             default:
                                                 break;
                                         }//----FIN OBJETIVO
+                                        JOptionPane.showMessageDialog(null, "Objetivo editado correctamente");
 
                                         break;
                                     case "H":
@@ -1564,6 +1565,7 @@ public class clsCliente {
                                         bdClientes[j].setCaloriasObjetivo(clsF.CaloriasObjetivo(bdClientes[j].getObjetivo(), bdClientes[j].getCaloriasDiarias()));
                                         int IMC = clsF.IMC(bdClientes[j].getEstaturaMts() / 100, bdClientes[j].getPesoKg());
                                         bdClientes[j].setIMC(IMC);
+                                        JOptionPane.showMessageDialog(null, "Peso editado correctamente");
 
                                         break;
                                     case "I":
@@ -1581,6 +1583,7 @@ public class clsCliente {
                                         bdClientes[j].setCaloriasObjetivo(clsF.CaloriasObjetivo(bdClientes[j].getObjetivo(), bdClientes[j].getCaloriasDiarias()));
                                         IMC = clsF.IMC(bdClientes[j].getEstaturaMts() / 100, bdClientes[j].getPesoKg());
                                         bdClientes[j].setIMC(IMC);
+                                        JOptionPane.showInputDialog("Estatura editada correctamente");
                                         break;
                                     case "J":
                                         bandera = 0;
@@ -1588,7 +1591,7 @@ public class clsCliente {
                                             mensaje = JOptionPane.showInputDialog("A. Ver rutina \nB. Cambiar Rutina\nS. Salir");
                                             switch (mensaje) {
                                                 case "A":
-                                                    JOptionPane.showMessageDialog(null,"\nDIAS PARA EJERCITARSE: " + bdClientes[j].rutina.getDiasEjercicio()
+                                                    JOptionPane.showMessageDialog(null, "\nDIAS PARA EJERCITARSE: " + bdClientes[j].rutina.getDiasEjercicio()
                                                             + "\nDIAS DESCANSO: " + bdClientes[j].rutina.getDiasDescanso()
                                                             + "\n---------------------------RUTINA------------------------------------------"
                                                             + "\n" + bdClientes[j].rutina.getEjercicios());
@@ -1597,6 +1600,7 @@ public class clsCliente {
                                                     rutina = new clsRutina();
                                                     clsR.agregarRutina(rutina);
                                                     bdClientes[j].setRutina(rutina);
+                                                    JOptionPane.showInputDialog("Rutina editada correctamente");
                                                     break;
                                                 case "S":
                                                     bandera = 1;
