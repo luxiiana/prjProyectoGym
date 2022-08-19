@@ -671,22 +671,20 @@ public class clsEmpleados {
     } // fin del metodo
 
     public String asignarEntrenador() {
+         String nombre = "";
+        /* recorro la amtriz de empleado directamente dentro del clase
+        esto tiene 2 resultados 
+        1.Si yo ejecuto esta funcion estando dentro de la clase Empleados se ejecuta correctamente y identifica cuantos empleados
+        2.Si yo ejecuto esta funcion afuera de la clase empleados se ejecuta pero lee todas las variables por defecto y no detecta ningun empleados
+        
         int contE=0;
         for (int j = 0; j < bdEmpleados.length; j++) {
             if(bdEmpleados[j] != null){
                 contE++;
             }
         }
-        JOptionPane.showMessageDialog(null, "aaa "+contE);
-        String nombre = "";
-        /*
-        if (contadorE == 0) {
-            nombre = "No asignado";
-        } else if (contadorE > 0) {
-            int posc = (int) (Math.random() * contadorE);
-            nombre = bdEmpleados[posc].getNombreC();
-        }
-        */
+        JOptionPane.showMessageDialog(null, "aaa "+contE);*/
+
         if (contadorE == 0) {
             nombre = "No asignado";
         } else if (contadorE > 0) {

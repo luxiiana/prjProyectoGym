@@ -1753,4 +1753,10 @@ public class clsCliente {
             JOptionPane.showMessageDialog(null, "No hay empleados registrados");
         }//fin clsClientes
     }
+    
+    
+    //-----------TO STRING---------
+    
+    
 }
+
