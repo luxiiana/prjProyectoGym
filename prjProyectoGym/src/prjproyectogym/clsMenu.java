@@ -36,6 +36,7 @@ public class clsMenu {
                                     clsC.BuscarCliente();
                                     break;
                                 case "E":
+                                    clsC.listarClientes();
                                     break;
                                 case "F":
                                     break;

@@ -685,11 +685,11 @@ public class clsEmpleados {
         }
         JOptionPane.showMessageDialog(null, "aaa "+contE);*/
 
-        if (contadorE == 0) {
+        if (this.contadorE == 0) {
             nombre = "No asignado";
-        } else if (contadorE > 0) {
-            int posc = (int) (Math.random() * contadorE);
-            nombre = bdEmpleados[posc].getNombreC();
+        } else if (this.contadorE > 0) {
+            int posc = (int) (Math.random() * this.contadorE);
+            nombre = this.bdEmpleados[posc].getNombreC();
         }
         return nombre;
     }//----FIN ASIGNAR ENTRENADOR
