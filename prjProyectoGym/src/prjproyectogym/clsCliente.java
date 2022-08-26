@@ -471,15 +471,12 @@ public class clsCliente {
                 switch (objetivo) {
                     case "A":
                         objetivo = "Subir de peso";
-                        
                         break;
                     case "B":
                         objetivo = "Bajar de peso";
-                        
                         break;
                     case "C":
                         objetivo = "Mantener de peso";
-                        
                         break;
                 }//----FIN OBJETIVO
 
@@ -487,7 +484,7 @@ public class clsCliente {
                 while (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0) {
                     pesoKgS = JOptionPane.showInputDialog("Digite su peso en Kg: ");
                     if (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0) {
-                        JOptionPane.showMessageDialog(null, "Dato invalido");
+                        JOptionPane.showMessageDialog(null, "PESO INVALIDO");
                     }
                 }
                 pesoKg = Float.parseFloat(pesoKgS);
@@ -497,7 +494,7 @@ public class clsCliente {
                 while (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0 && Float.parseFloat(pesoKgS) >= 500) {
                     estaturaCmS = JOptionPane.showInputDialog("Digite su estatura en cm: ");
                     if (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0) {
-                        JOptionPane.showMessageDialog(null, "Dato invalido");
+                        JOptionPane.showMessageDialog(null, "ESTATURA INVALIDA");
                     }
                 }
                 estaturaCm = (Float.parseFloat(estaturaCmS));
@@ -1734,7 +1731,7 @@ public class clsCliente {
                     BDCleinte, el numero cliente y el tipo de pase*/
                     clsF.impListaClientes(bdClientes, v, pase);
                     
-                } //--SI EL CLIENTES ES PASE MAX-------
+                } //--SI EL CLIENTE ES PASE MAX-------
                 else if (bdClientes[v].getTipoDePase().equals("Max")) {
                     String pase = bdClientes[v].getTipoDePase();
                     clsF.impListaClientes(bdClientes, v, pase);
