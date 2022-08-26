@@ -22,11 +22,11 @@ public class clsEmpleados {
     clsEmpleados bdEmpleados[] = new clsEmpleados[99999];
 
     //---------CONSTRUCTOR---------------------------
-    public clsEmpleados(String NombreC, String identificacion, String origen, String correoE, String telefono, String puesto, int edad, String sexo) {
+    public clsEmpleados(String NombreC, String identificacion, String origen, String telefono, String puesto, int edad, String sexo) {
         this.NombreC = NombreC;
         this.identificacion = identificacion;
         this.origen = origen;
-        this.correoE = correoE;
+
         this.numeroTelefonico = telefono;
         this.puesto = puesto;
         this.edad = edad;
@@ -69,14 +69,6 @@ public class clsEmpleados {
         this.origen = origen;
     }
 
-    public String getCorreoE() {
-        return correoE;
-    }
-
-    public void setCorreoE(String correoE) {
-        this.correoE = correoE;
-    }
-
     public String getNumeroTelefonico() {
         return numeroTelefonico;
     }
@@ -104,7 +96,7 @@ public class clsEmpleados {
     public void AgregarEmpleado() {
 
         //------------------------VARIABLES-----------------------
-        String nombre = "", identificacion = "", sexo = "", origen = "", correoE = "", telefono = "", puesto = "Entrenador", controlador = "", edadS = "";
+        String nombre = "", identificacion = "", sexo = "", origen = "", telefono = "", puesto = "Entrenador", controlador = "", edadS = "";
         int edad = 0;
         int bandera = 0;
 
@@ -227,8 +219,8 @@ public class clsEmpleados {
                 }
             } while (!controlador.equals("Z"));
             //fin numero telefonico
-
-            bdEmpleados[contadorE] = new clsEmpleados(nombre, identificacion, origen, correoE, telefono, puesto, edad, sexo);
+            // correoElectronico
+            bdEmpleados[contadorE] = new clsEmpleados(nombre, identificacion, origen, telefono, puesto, edad, sexo);
             contadorE++;
             JOptionPane.showMessageDialog(null, "Empleado agregado correctamente");
             asignarEntrenador();
@@ -268,7 +260,7 @@ public class clsEmpleados {
                 }
                 if (bandera == 1) {
                     JOptionPane.showMessageDialog(null, "Puesto de trabajo: " + bdEmpleados[j].getPuesto() + "\nNombre Completo: " + bdEmpleados[j].getNombreC() + "\nEdad: " + bdEmpleados[j].getEdad() + "\nSexo: " + bdEmpleados[j].getSexo() + "\nOrigen: " + bdEmpleados[j].getOrigen() + "\nIdentificacion: " + bdEmpleados[j].getIdentificacion()
-                            + "\nCorreo Electronico: " + bdEmpleados[j].getCorreoE() + "\nNumero Telefonico: " + bdEmpleados[j].getNumeroTelefonico());
+                            + "\nNumero Telefonico: " + bdEmpleados[j].getNumeroTelefonico());
                 } else {
                     JOptionPane.showMessageDialog(null, "! Identificacion no encontrada ¡");
                 }
@@ -290,7 +282,7 @@ public class clsEmpleados {
     } // Finaliza el metodo de buscar empleado.
 
     public void editarEmpleado() {
-        String controlador = "",telefono="";
+        String controlador = "", telefono = "";
         String identificacion = "";
         String salir = "";
         String origen = "";
@@ -311,7 +303,7 @@ public class clsEmpleados {
                     String opcion = "";
                     while (!opcion.equals("S")) {
                         opcion = JOptionPane.showInputDialog(null, "A. Puesto de trabajo: " + bdEmpleados[posc].getPuesto() + "\nB. Nombre Completo: " + bdEmpleados[posc].getNombreC() + "\nC. Edad: " + bdEmpleados[posc].getEdad() + "\nD. Sexo: " + bdEmpleados[posc].getSexo() + "\nOrigen: " + bdEmpleados[posc].getOrigen() + "\nE. Identificacion: " + bdEmpleados[posc].getIdentificacion()
-                                + "\nF. Correo Electronico: " + bdEmpleados[posc].getCorreoE() + "\nG. Numero Telefonico: " + bdEmpleados[posc].getNumeroTelefonico() + "\nS. Salir").toUpperCase(Locale.ITALY);
+                                + "\nG. Numero Telefonico: " + bdEmpleados[posc].getNumeroTelefonico() + "\nS. Salir").toUpperCase(Locale.ITALY);
 
                         switch (opcion) {
                             case "A":
@@ -421,7 +413,7 @@ public class clsEmpleados {
                                 bandera = 0;
                                 do {
                                     do {
-                                telefono = JOptionPane.showInputDialog("Digite el numero de telefono del empleado");
+                                        telefono = JOptionPane.showInputDialog("Digite el numero de telefono del empleado");
                                         for (int j = 0; j < telefono.length(); j++) { // Ciclo para recorrer desde la posición 2
                                             if ((int) telefono.charAt(j) > 47 && (int) telefono.charAt(j) < 58) {// Evaluar que esten entre el 0 al 9, ya que se hizo con código ASCII.
                                                 bandera = 1;
