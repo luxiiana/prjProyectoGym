@@ -52,8 +52,11 @@ public class JF_inicioSesion extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -107,6 +110,12 @@ public class JF_inicioSesion extends javax.swing.JFrame {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 250, 10));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 250, 10));
 
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vector1.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, -70, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vector1.png"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-100, 120, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 360));
 
         pack();
@@ -119,18 +128,24 @@ public class JF_inicioSesion extends javax.swing.JFrame {
 
     private void btn_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginMouseClicked
 
-        String usernameIni = jtf_user.getText();
-        String passwordIni = String.valueOf(jpf_pass.getPassword());
+        String usernameIni = "";
+        usernameIni = jtf_user.getText();
+        String passwordIni = "";
+        passwordIni = String.valueOf(jpf_pass.getPassword());
         cls_inicioSesion clsI = new cls_inicioSesion(usernameIni, passwordIni);
 
         if (clsI.inicioSesion() == true) {
             dispose();
-            clsM.menuPrincipal();
-        }/*else{
-            clsM.limpiarInicioSesion();
+            JF_menuPrincipal JFMP = new JF_menuPrincipal();
+            JFMP.setVisible(true);
+            //clsM.menuPrincipal();
+        } /*else {
+            borrar();
+            
         }*/
     }//GEN-LAST:event_btn_loginMouseClicked
-
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -176,6 +191,8 @@ public class JF_inicioSesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
