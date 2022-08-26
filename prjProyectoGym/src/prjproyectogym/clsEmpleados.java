@@ -157,132 +157,57 @@ public class clsEmpleados {
                     DIMEX []
                     OTRO []
              */
-            do {
-                controlador = " ";
-                controlador = JOptionPane.showInputDialog("A. Nacional\nB. Dimex\nC. otro").toUpperCase();
-                if (controlador.equals("A") || controlador.equals("B")) {
-                    switch (controlador) {
-                        case "A":
-                            origen = "Nacional";
-                            controlador = "";
-                            bandera = 0;
-                            do {
-                                do {
-                                    identificacion = JOptionPane.showInputDialog("Digite el numero de cedula del empleado");
-                                    if (identificacion.length() == 9 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
-                                        for (int j = 1; j < identificacion.length(); j++) {
-                                            if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
-                                                bandera = 1;
-                                            } else {
-                                                bandera = 0;
-                                                JOptionPane.showMessageDialog(null, "!Numero de Cedula invalido!\nDigite un numero de cedula valido");
-                                                break;
-                                            }
-                                        }
-
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "!Numero de Cedula invalido!\nDigite un numero de cedula valido");
-                                    }
-
-                                } while (bandera != 1);
-                                if (contadorE == 0) {
-                                    controlador = "Z";
-                                } else {
-                                    for (int k = 0; k < contadorE; k++) {
-                                        if (!identificacion.equals(bdEmpleados[k].getIdentificacion())) {
-                                            controlador = "Z";
-                                        } else {
-                                            controlador = "";
-                                            JOptionPane.showMessageDialog(null, "! El numero de cedula ya fue registrado ¡\nVerifique eh intente de nuevo");
-                                            bandera = 0;
-                                            break;
-                                        }
-
-                                    }
-                                }
-
-                            } while (!controlador.equals("Z"));
-                            break;
-                        case "B":
-                            origen = "Extranjero";
-                            controlador = "";
-                            bandera = 0;
-                            do {
-                                do {
-                                    identificacion = JOptionPane.showInputDialog("Digite el numero de cedula del empleado");
-                                    if (identificacion.length() == 12 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
-                                        for (int j = 1; j < identificacion.length(); j++) {
-                                            if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
-                                                bandera = 1;
-                                            } else {
-                                                bandera = 0;
-                                                JOptionPane.showMessageDialog(null, "!Numero de Cedula invalido!\nDigite un numero de cedula valido");
-                                                break;
-                                            }
-                                        }
-
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "!Numero de Cedula invalido!\nDigite un numero de cedula valido");
-                                    }
-
-                                } while (bandera != 1);
-                                if (contadorE == 0) {
-                                    controlador = "Z";
-                                } else {
-                                    for (int k = 0; k < contadorE; k++) {
-                                        if (!identificacion.equals(bdEmpleados[k].getIdentificacion())) {
-                                            controlador = "Z";
-                                        } else {
-                                            controlador = "";
-                                            JOptionPane.showMessageDialog(null, "! El numero de cedula ya fue registrado ¡\nVerifique eh intente de nuevo");
-                                            bandera = 0;
-                                            break;
-                                        }
-
-                                    }
-                                }
-
-                            } while (!controlador.equals("Z"));
-
-                            break;
-                        case "C":
-                            origen = "Extranjero";
-                            identificacion = JOptionPane.showInputDialog("Digite el numero de identificacion del empleado");
-                        default:
-                            JOptionPane.showMessageDialog(null, "Opcion invalida");
-                            break;
-                    }
-                    controlador = "Z";
-                } else {
-                    JOptionPane.showMessageDialog(null, "Opcion invalida");
+            bandera = 0;
+            while (bandera != 1) {
+                origen = JOptionPane.showInputDialog("A. Nacional\nB. Dimex\nC. otro").toUpperCase();
+                switch (origen) {
+                    case "A":
+                        bandera = 1;
+                        origen = "Nacional";
+                        break;
+                    case "B":
+                        bandera = 1;
+                        origen = "Extranjero";
+                        break;
+                    case "C":
+                        bandera = 1;
+                        origen = "Otro";
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Opcion invalida");
+                        break;
                 }
+            }
+            boolean correcto = false;
+            while (!correcto) {
+                identificacion
+                        = JOptionPane.showInputDialog("Digite la identificacion del empleado");
+                correcto = clsF.verificarCedula(identificacion, origen);
+                if (correcto) {
+                    correcto = clsF.verificarbdEmpleados(bdEmpleados, identificacion, contadorE);
+                    if (!correcto) {
+                        JOptionPane.showMessageDialog(null, "El numero de cedula ya fue registrado\n Verifiquelo eh intente de nuevo");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Numero de cedula invalido");
+                }
+            }
 
-            } while (!controlador.equals("Z"));
             //--fin cedula empleado
-
             //------------------NUMERO TELEFONICO
             controlador = "";
             bandera = 0;
             do {
                 do {
                     telefono = JOptionPane.showInputDialog("Digite el numero de telefono del empleado");
-                    if (telefono.length() == 8) { // Numero telefonico tiene que tener 8 digitos.
-                        if ((int) telefono.charAt(0) == 56 || (int) telefono.charAt(0) == 55 || (int) telefono.charAt(0) == 54) { // Evaluando  que tiene  que empezar con 8, 7 o 6, de acuerdo a las compañias que hay en el pais.
-                            for (int j = 1; j < telefono.length(); j++) { // Ciclo para recorrer desde la posición 2
-                                if ((int) telefono.charAt(j) > 47 && (int) telefono.charAt(j) < 58) {// Evaluar que esten entre el 0 al 9, ya que se hizo con código ASCII.
-                                    bandera = 1;
-                                } else {
-                                    bandera = 0;
-                                    JOptionPane.showMessageDialog(null, "!Telefono invalido¡\nDigite un numero de telefono valido");
-                                    break;
-                                }
-                            }
-
+                    for (int j = 0; j < telefono.length(); j++) { // Ciclo para recorrer desde la posición 2
+                        if ((int) telefono.charAt(j) > 47 && (int) telefono.charAt(j) < 58) {// Evaluar que esten entre el 0 al 9, ya que se hizo con código ASCII.
+                            bandera = 1;
                         } else {
+                            bandera = 0;
                             JOptionPane.showMessageDialog(null, "!Telefono invalido¡\nDigite un numero de telefono valido");
+                            break;
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "!Telefono invalido¡\nDigite un numero de telefono valido");
                     }
                 } while (bandera != 1);
                 if (contadorE == 0) {
@@ -365,8 +290,10 @@ public class clsEmpleados {
     } // Finaliza el metodo de buscar empleado.
 
     public void editarEmpleado() {
+        String controlador = "",telefono="";
         String identificacion = "";
         String salir = "";
+        String origen = "";
         int bandera = 0;
         int posc = 0;
 
@@ -448,146 +375,61 @@ public class clsEmpleados {
                     DIMEX []
                     OTRO []
                                  */
-                                String controlador = " ";
-                                do {
-
-                                    controlador = JOptionPane.showInputDialog("A. Nacional\nB. Dimex\nC. otro").toUpperCase();
-                                    if (controlador.equals("A") || controlador.equals("B")) {
-                                        switch (controlador) {
-                                            case "A":
-                                                String origen = "Nacional";
-                                                bdEmpleados[posc].setOrigen(origen);
-                                                controlador = "";
-                                                bandera = 0;
-                                                do {
-                                                    do {
-                                                        identificacion = JOptionPane.showInputDialog("Digite el numero de cedula del empleado");
-                                                        if (identificacion.length() == 9 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
-                                                            for (int j = 1; j < identificacion.length(); j++) {
-                                                                if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
-                                                                    bandera = 1;
-                                                                } else {
-                                                                    bandera = 0;
-                                                                    JOptionPane.showMessageDialog(null, "!Numero de Cedula invalido!\nDigite un numero de cedula valido");
-                                                                    break;
-                                                                }
-                                                            }
-
-                                                        } else {
-                                                            JOptionPane.showMessageDialog(null, "!Numero de Cedula invalido!\nDigite un numero de cedula valido");
-                                                        }
-
-                                                    } while (bandera != 1);
-                                                    if (contadorE == 0) {
-                                                        controlador = "Z";
-                                                    } else {
-                                                        for (int k = 0; k < contadorE; k++) {
-                                                            if (!identificacion.equals(bdEmpleados[k].getIdentificacion())) {
-                                                                controlador = "Z";
-                                                                bdEmpleados[posc].setIdentificacion(identificacion);
-                                                            } else {
-                                                                controlador = "";
-                                                                JOptionPane.showMessageDialog(null, "! El numero de cedula ya fue registrado ¡\nVerifique eh intente de nuevo");
-                                                                bandera = 0;
-                                                                break;
-                                                            }
-
-                                                        }
-                                                    }
-
-                                                } while (!controlador.equals("Z"));
-
-                                                break;
-                                            case "B":
-                                                origen = "Extranjero";
-                                                bdEmpleados[posc].setOrigen(origen);
-                                                controlador = "";
-                                                bandera = 0;
-                                                do {
-                                                    do {
-                                                        identificacion = JOptionPane.showInputDialog("Digite el numero de cedula del empleado");
-                                                        if (identificacion.length() == 12 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
-                                                            for (int j = 1; j < identificacion.length(); j++) {
-                                                                if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
-                                                                    bandera = 1;
-                                                                } else {
-                                                                    bandera = 0;
-                                                                    JOptionPane.showMessageDialog(null, "!Numero de Cedula invalido!\nDigite un numero de cedula valido");
-                                                                    break;
-                                                                }
-                                                            }
-
-                                                        } else {
-                                                            JOptionPane.showMessageDialog(null, "!Numero de Cedula invalido!\nDigite un numero de cedula valido");
-                                                        }
-
-                                                    } while (bandera != 1);
-                                                    if (contadorE == 0) {
-                                                        controlador = "Z";
-                                                    } else {
-                                                        for (int k = 0; k < contadorE; k++) {
-                                                            if (!identificacion.equals(bdEmpleados[k].getIdentificacion())) {
-                                                                controlador = "Z";
-                                                                bdEmpleados[posc].setIdentificacion(identificacion);
-                                                            } else {
-                                                                controlador = "";
-                                                                JOptionPane.showMessageDialog(null, "! El numero de cedula ya fue registrado ¡\nVerifique eh intente de nuevo");
-                                                                bandera = 0;
-                                                                break;
-                                                            }
-
-                                                        }
-                                                    }
-
-                                                } while (!controlador.equals("Z"));
-
-                                                break;
-                                            case "C":
-                                                origen = "Extranjero";
-                                                bdEmpleados[posc].setOrigen(origen);
-                                                identificacion = JOptionPane.showInputDialog("Digite el numero de identificacion del empleado");
-                                                bdEmpleados[posc].setIdentificacion(identificacion);
-                                                controlador = "Z";
-                                            default:
-                                                JOptionPane.showMessageDialog(null, "Opcion invalida");
-                                                break;
-                                        }
-                                        controlador = "Z";
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "Opcion invalida");
+                                bandera = 0;
+                                while (bandera != 1) {
+                                    origen = JOptionPane.showInputDialog("A. Nacional\nB. Dimex\nC. otro").toUpperCase();
+                                    switch (origen) {
+                                        case "A":
+                                            bandera = 1;
+                                            origen = "Nacional";
+                                            break;
+                                        case "B":
+                                            bandera = 1;
+                                            origen = "Extranjero";
+                                            break;
+                                        case "C":
+                                            bandera = 1;
+                                            origen = "Otro";
+                                            break;
+                                        default:
+                                            JOptionPane.showMessageDialog(null, "Opcion invalida");
+                                            break;
                                     }
-
-                                } while (!controlador.equals("Z"));
+                                }
+                                boolean correcto = false;
+                                while (!correcto) {
+                                    identificacion
+                                            = JOptionPane.showInputDialog("Digite la identificacion del empleado");
+                                    correcto = clsF.verificarCedula(identificacion, origen);
+                                    if (correcto) {
+                                        correcto = clsF.verificarbdEmpleados(bdEmpleados, identificacion, contadorE);
+                                        if (!correcto) {
+                                            JOptionPane.showMessageDialog(null, "El numero de cedula ya fue registrado\n Verifiquelo eh intente de nuevo");
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Numero de cedula invalido");
+                                    }
+                                }
+                                bdEmpleados[posc].setIdentificacion(identificacion);
                                 //--fin cedula empleado
-
                                 break;
                             case "F":
                                 break;
                             case "G":
                                 //------------------NUMERO TELEFONICO
-                                String telefono = "";
                                 controlador = "";
                                 bandera = 0;
                                 do {
                                     do {
-                                        telefono = JOptionPane.showInputDialog("Digite el numero de telefono del empleado");
-                                        if (telefono.length() == 8) { // Numero telefonico tiene que tener 8 digitos.
-                                            if ((int) telefono.charAt(0) == 56 || (int) telefono.charAt(0) == 55 || (int) telefono.charAt(0) == 54) { // Evaluando  que tiene  que empezar con 8, 7 o 6, de acuerdo a las compañias que hay en el pais.
-                                                for (int j = 1; j < telefono.length(); j++) { // Ciclo para recorrer desde la posición 2
-                                                    if ((int) telefono.charAt(j) > 47 && (int) telefono.charAt(j) < 58) {// Evaluar que esten entre el 0 al 9, ya que se hizo con código ASCII.
-                                                        bandera = 1;
-                                                    } else {
-                                                        bandera = 0;
-                                                        JOptionPane.showMessageDialog(null, "!Telefono invalido¡\nDigite un numero de telefono valido");
-                                                        break;
-                                                    }
-                                                }
-
+                                telefono = JOptionPane.showInputDialog("Digite el numero de telefono del empleado");
+                                        for (int j = 0; j < telefono.length(); j++) { // Ciclo para recorrer desde la posición 2
+                                            if ((int) telefono.charAt(j) > 47 && (int) telefono.charAt(j) < 58) {// Evaluar que esten entre el 0 al 9, ya que se hizo con código ASCII.
+                                                bandera = 1;
                                             } else {
+                                                bandera = 0;
                                                 JOptionPane.showMessageDialog(null, "!Telefono invalido¡\nDigite un numero de telefono valido");
+                                                break;
                                             }
-                                        } else {
-                                            JOptionPane.showMessageDialog(null, "!Telefono invalido¡\nDigite un numero de telefono valido");
                                         }
                                     } while (bandera != 1);
                                     if (contadorE == 0) {
@@ -596,7 +438,6 @@ public class clsEmpleados {
                                         for (int k = 0; k < contadorE; k++) { // Ciclo para recorrer las posiciones del arreglo.
                                             if (!telefono.equals(bdEmpleados[k].getNumeroTelefonico())) { // Evaluar si hay un numero telefonico igual en los empleados agregados.
                                                 controlador = "Z";
-                                                bdEmpleados[posc].setNumeroTelefonico(telefono);
                                             } else {
                                                 controlador = "";
                                                 JOptionPane.showMessageDialog(null, "! El numero de telefono ya fue registrado ¡\nVerifique eh intente de nuevo");
@@ -607,6 +448,7 @@ public class clsEmpleados {
                                         }
                                     }
                                 } while (!controlador.equals("Z"));
+                                bdEmpleados[posc].setNumeroTelefonico(telefono);
                                 //fin numero telefonico
                                 break;
 
@@ -671,7 +513,7 @@ public class clsEmpleados {
     } // fin del metodo
 
     public String asignarEntrenador() {
-         String nombre = "";
+        String nombre = "";
         /* recorro la amtriz de empleado directamente dentro del clase
         esto tiene 2 resultados 
         1.Si yo ejecuto esta funcion estando dentro de la clase Empleados se ejecuta correctamente y identifica cuantos empleados

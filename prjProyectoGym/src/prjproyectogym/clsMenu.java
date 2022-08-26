@@ -8,7 +8,6 @@ public class clsMenu {
     //------INSTANCIAS-------
     clsCliente clsC = new clsCliente();
     clsEmpleados clsE = new clsEmpleados();
-
     /*
         añadir comprobar si usario tiene acceso al gym
      */

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package prjproyectogym;
 
 import javax.swing.JOptionPane;
@@ -97,7 +93,7 @@ public class cls_funciones {
                     + "\nSexo Cliente: " + bdClientes[v].getSexo()
                     + "\nEdad Cliente: " + bdClientes[v].getEdad()
                     + "\nTipo de Pase: " + bdClientes[v].getTipoDePase()
-                    + "\nCantidad de Pago: " + bdClientes[v].getPago());
+                    + "\nCantidad de Pago: " + bdClientes[v].getPago()+" colones");
         } else if (pase.equals("Max")) {
             JOptionPane.showMessageDialog(null, "Nombre Cliente: " + bdClientes[v].getNombreC()
                     + "\nIdentificacion Cliente: " + bdClientes[v].getIdentificacion()
@@ -105,24 +101,24 @@ public class cls_funciones {
                     + "\nSexo Cliente: " + bdClientes[v].getSexo()
                     + "\nEdad Cliente: " + bdClientes[v].getEdad()
                     + "\nTipo de Pase: " + bdClientes[v].getTipoDePase()
-                    + "\nCantidad de Pago: " + bdClientes[v].getPago()
+                    + "\nCantidad de Pago: " + bdClientes[v].getPago()+" colones"
                     + "\nEntrenador: " + bdClientes[v].getEntrenador());
         } else {
             JOptionPane.showMessageDialog(null, "Nombre Cliente: " + bdClientes[v].getNombreC()
                     + "\nIdentificacion Cliente: " + bdClientes[v].getIdentificacion()
-                    + "\nTelefono Cliente: "+bdClientes[v].getTelefono()
+                    + "\nTelefono Cliente: " + bdClientes[v].getTelefono()
                     + "\nSexo Cliente: " + bdClientes[v].getSexo()
                     + "\nEdad Cliente: " + bdClientes[v].getEdad()
                     + "\nTipo de Pase: " + bdClientes[v].getTipoDePase()
-                    + "\nCantidad de Pago: " + bdClientes[v].getPago()
+                    + "\nCantidad de Pago: " + bdClientes[v].getPago()+" colones"
                     + "\nEntrenador: " + bdClientes[v].getEntrenador()
                     + "\nSomatotipo del Cliente: " + bdClientes[v].getSomatotipo()
                     + "\nObjetivo del Cliente: " + bdClientes[v].getObjetivo()
-                    + "\nPeso del Cliente: " + bdClientes[v].getPesoKg()
-                    + "\nEstatura del Cliente: " + bdClientes[v].getEstaturaMts()
-                    + "\nCalorias Diarias: " + bdClientes[v].getCaloriasDiarias()
-                    + "\nCalorias Objetivo: " + bdClientes[v].getCaloriasObjetivo()
-                    + "\nIMC del Cleinte: " + bdClientes[v].getIMC()
+                    + "\nPeso del Cliente: " + bdClientes[v].getPesoKg()+" kg"
+                    + "\nEstatura del Cliente: " + bdClientes[v].getEstaturaMts()+" cm"
+                    + "\nCalorias Diarias: " + bdClientes[v].getCaloriasDiarias()+" kcal"
+                    + "\nCalorias Objetivo: " + bdClientes[v].getCaloriasObjetivo()+" kcal"
+                    + "\nIMC del Cliente: " + bdClientes[v].getIMC()
                     + "\nDIAS PARA EJERCITARSE: " + bdClientes[v].rutina.getDiasEjercicio()
                     + "\nDIAS DESCANSO: " + bdClientes[v].rutina.getDiasDescanso()
                     + "\n-----------------------RUTINA-----------------------------\n"
@@ -131,5 +127,85 @@ public class cls_funciones {
 
         //return imp;
     }
+
+    // Metodo  validar cedula
+    public boolean verificarCedula(String identificacion, String origen) {
+        boolean correcto = false;
+        switch (origen) {
+            case "Nacional":
+                if (identificacion.length() == 9 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
+                    for (int j = 1; j < identificacion.length(); j++) {
+                        if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
+                            correcto = true;
+                        } else {
+                            correcto = false;
+                            break;
+                        }
+                    }
+                }
+                break;
+            case "Extranjero":
+                if (identificacion.length() == 12 && ((int) identificacion.charAt(0) > 48 && (int) identificacion.charAt(0) < 58)) {
+                    for (int j = 1; j < identificacion.length(); j++) {
+                        if (((int) identificacion.charAt(j) > 47 && (int) identificacion.charAt(j) < 58)) {
+                            correcto = true;
+                        } else {
+                            correcto = false;
+                            break;
+                        }
+                    }
+                }
+                break;
+            case "Otro":
+                correcto = true;
+                break;
+            default:
+                break;
+
+        }
+        return correcto;
+    }
+
+    // fin verificar cedula
+    //Verificar que no existan cedulas repetidas
+    public boolean verificarbdEmpleados(clsEmpleados bd[], String identificacion, int contador) {
+        boolean correcto = false;
+        if (contador == 0) {
+            correcto=true;
+        } else {
+            for (int k = 0; k < contador; k++) {
+                if (!identificacion.equals(bd[k].getIdentificacion())) {
+                    correcto=true;
+                } else {
+                    correcto=false;
+                    break;
+                }
+
+            }
+        }
+        return correcto;
+
+    }
+        public boolean verificarbdClientes(clsCliente bd[], String identificacion, int contador) {
+        boolean correcto = false;
+        if (contador == 0) {
+            correcto=true;
+        } else {
+            for (int k = 0; k < contador; k++) {
+                if (!identificacion.equals(bd[k].getIdentificacion())) {
+                    correcto=true;
+                } else {
+                    correcto=false;
+                    break;
+                }
+
+            }
+        }
+        return correcto;
+
+    }
+     // Fin de verificar cedulas repeidas
+        // INICIO VERIFICAR TELEFONO
+        
 
 }//----fin cls_funciones------
