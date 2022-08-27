@@ -14,7 +14,7 @@ public class clsEmpleados {
     private String identificacion;
     private String sexo;
     private String origen;
-    private String correoE;
+   
     private String numeroTelefonico;
     private String puesto;
     private int edad;
@@ -530,7 +530,7 @@ public class clsEmpleados {
 
     @Override
     public String toString() {
-        return puesto + "  " + NombreC + " || " + edad + " || " + sexo + " || " + origen + " || " + identificacion + " || " + correoE + " || " + numeroTelefonico;
+        return puesto + "  " + NombreC + " || " + edad + " || " + sexo + " || " + origen + " || " + identificacion + " || " + " || " + numeroTelefonico;
     }
 
 }
