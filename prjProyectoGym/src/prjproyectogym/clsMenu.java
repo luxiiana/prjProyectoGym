@@ -18,7 +18,7 @@ public class clsMenu {
         if (opcion == "A") {
             do {
                 opcion = JOptionPane.showInputDialog("Digite la opción que desea: \nA. Añadir cliente \nB. Editar cliente \nC. Eliminar cliente "
-                        + "\nD. Buscar cliente \nE. Ver lista de clientes \nF.Volver al menú principal").toUpperCase();
+                        + "\nD. Buscar cliente \nE. Ver lista de clientes \nF.Ver estadistícas de los clientes \nG.Volver al menú principal ").toUpperCase();
                 switch (opcion) {
                     case "A":
                         clsC.agregarCliente();
@@ -36,6 +36,10 @@ public class clsMenu {
                         clsC.listarClientes();
                         break;
                     case "F":
+                        clsInfoGym clsI = new clsInfoGym();
+                        clsI.estadisticasClientes();
+                        break;
+                    case "G":
                         JF_menuPrincipal JFMP = new JF_menuPrincipal();
                         JFMP.setVisible(true);
                         break;
