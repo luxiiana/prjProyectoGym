@@ -265,7 +265,7 @@ public class clsCliente {
         boolean correcto = false;
         while (!correcto) {
             identificacion
-                    = JOptionPane.showInputDialog("Digite la identificacion del empleado");
+                    = JOptionPane.showInputDialog("Digite la identificacion del cliente");
             correcto = clsF.verificarCedula(identificacion, origen);
             if (correcto) {
                 correcto = clsF.verificarbdClientes(bdClientes, identificacion, contadorC);
