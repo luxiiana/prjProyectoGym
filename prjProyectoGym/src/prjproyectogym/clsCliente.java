@@ -25,6 +25,13 @@ public class clsCliente {
     public static int contSubir;
     public static int contMantener;
     public static int contBajar;
+    public static int contBasico;
+    public static int contMax;
+    public static int contUltra;
+    public static int contPeso;
+    public static int contEstatura;
+    public static int contHombres;
+    public static int contMujeres;
     /*  
         Basico [] solo acceso a gym || no ucpa ningun calculo pago=10000
         Max [] pichudo pero ocupa entrenado ||  no ocupa ningun calculo pago=15000
@@ -291,9 +298,11 @@ public class clsCliente {
         switch (sexo) {// se asigna el sexo dependiendo de lo que escogio el usuario
             case "A":
                 sexo = "Masculino";
+                contHombres++;
                 break;
             case "B":
                 sexo = "Femenino";
+                contMujeres++;
                 break;
 
         }
@@ -349,6 +358,7 @@ public class clsCliente {
             case "A": //----PASE BASICO-------
                 tipoDePase = "Basico";
                 pago = 10000;
+                contBasico++;
                 //---Se crea el cliente-----
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, null, pago, null, null, 0, 0, 0, 0, null, 0);
 
@@ -358,6 +368,7 @@ public class clsCliente {
             case "B": //----PASE MAX---------
                 tipoDePase = "Max";
                 pago = 15000;
+                contMax++;
                 //------ASIGNACION DE ENTRENADOR-----------
                 int cont = clsE.contadorE;
                 entrenador = clsE.asignarEntrenador();
@@ -369,6 +380,7 @@ public class clsCliente {
             case "C": //--------PASE ULTRA------------
                 tipoDePase = "Ultra";
                 pago = 20000;
+                contUltra++;
                 contCC++;
                 //---------SOMATIPO------------------------------------
                 while (somatotipo.equals("") || !somatotipo.equals("A") && !somatotipo.equals("B") && !somatotipo.equals("C")) {
@@ -423,6 +435,7 @@ public class clsCliente {
                 //-------PesoKg------------
                 while (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0) {
                     pesoKgS = JOptionPane.showInputDialog("Digite su peso en Kg: ");
+                    contPeso++;
                     if (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0) {
                         JOptionPane.showMessageDialog(null, "PESO INVALIDO");
                     }
@@ -433,6 +446,7 @@ public class clsCliente {
                 //-------EstaturaCm------------
                 while (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0 && Float.parseFloat(pesoKgS) >= 500) {
                     estaturaCmS = JOptionPane.showInputDialog("Digite su estatura en cm: ");
+                    contEstatura++;
                     if (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0) {
                         JOptionPane.showMessageDialog(null, "ESTATURA INVALIDA");
                     }
@@ -561,11 +575,15 @@ public class clsCliente {
                                         switch (sexo) {
                                             case "A":
                                                 sexo = "Masculino";
+                                                 contHombres++;
+                                                 contMujeres--;
                                                 bdClientes[j].setSexo(sexo);
                                                 JOptionPane.showMessageDialog(null, "Sexo editado correctamente");
                                                 break;
                                             case "B":
                                                 sexo = "Femenino";
+                                                contMujeres++;
+                                                contHombres--;
                                                 bdClientes[j].setSexo(sexo);
                                                 JOptionPane.showMessageDialog(null, "Sexo editado correctamente");
                                                 break;
