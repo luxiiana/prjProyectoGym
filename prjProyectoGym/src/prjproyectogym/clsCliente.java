@@ -17,9 +17,6 @@ public class clsCliente {
     private float pago;
     ///---------------------Contadores----------------------///
     public static int contCC;
-    public static int contNacionales;
-    public static int contExtranjeros;
-    public static int contOtro;
     public static int contEcto;
     public static int contMeso;
     public static int contEndo;
@@ -29,8 +26,6 @@ public class clsCliente {
     public static int contBasico;
     public static int contMax;
     public static int contUltra;
-    public static int contPeso;
-    public static int contEstatura;
     public static int contHombres;
     public static int contMujeres;
     /*  
@@ -55,7 +50,7 @@ public class clsCliente {
     /////
     ////
     ///
-    
+
     //private float pesoIdeal; FUTURA EMPLEMETACION
     //----------INSTANCIAS-------------------
     public clsRutina clsR = new clsRutina();
@@ -247,17 +242,14 @@ public class clsCliente {
                 case "A":
                     bandera = 1;
                     origen = "Nacional";
-                    contNacionales++;
                     break;
                 case "B":
                     bandera = 1;
                     origen = "Extranjero";
-                    contExtranjeros++;
                     break;
                 case "C":
                     bandera = 1;
                     origen = "Otro";
-                    contOtro++;
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Opcion invalida");
@@ -363,9 +355,8 @@ public class clsCliente {
                 contBasico++;
                 //---Se crea el cliente-----
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, null, pago, null, null, 0, 0, 0, 0, null, 0);
-
                 JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
-
+                contCC++;
                 break;
             case "B": //----PASE MAX---------
                 tipoDePase = "Max";
@@ -437,7 +428,6 @@ public class clsCliente {
                 //-------PesoKg------------
                 while (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0) {
                     pesoKgS = JOptionPane.showInputDialog("Digite su peso en Kg: ");
-                    contPeso++;
                     if (!clsF.esNumero(pesoKgS) || Float.parseFloat(pesoKgS) <= 0) {
                         JOptionPane.showMessageDialog(null, "PESO INVALIDO");
                     }
@@ -448,7 +438,6 @@ public class clsCliente {
                 //-------EstaturaCm------------
                 while (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0 && Float.parseFloat(pesoKgS) >= 500) {
                     estaturaCmS = JOptionPane.showInputDialog("Digite su estatura en cm: ");
-                    contEstatura++;
                     if (!clsF.esNumero(estaturaCmS) || Float.parseFloat(estaturaCmS) <= 0) {
                         JOptionPane.showMessageDialog(null, "ESTATURA INVALIDA");
                     }
@@ -472,10 +461,9 @@ public class clsCliente {
                 //----CREACION DE CLIENTE----
                 bdClientes[contadorC] = new clsCliente(nombre, identificacion, sexo, edad, telefono, tipoDePase, entrenador, pago, somatotipo, objetivo, caloriasDiarias, caloriasObjetivo, pesoKg, estaturaCm, rutina, IMC);
                 JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
+                contadorC++;
                 break;
         }///--------------FIN PASES----------------
-        contadorC++;
-
     }//fin agregar
 
     public void editarCliente() { //Luciana
@@ -514,7 +502,7 @@ public class clsCliente {
                                         + "\nD. edad = " + bdClientes[j].getEdad()
                                         + "\nE. telefono = " + bdClientes[j].getTelefono()
                                         + "\nF. Tipo de Pase = " + bdClientes[j].getTipoDePase()
-                                        + "\n    Pago = " + bdClientes[j].getPago()+" colones"
+                                        + "\n    Pago = " + bdClientes[j].getPago() + " colones"
                                         + "\nS. Salir").toUpperCase();
                                 switch (mensaje) {
                                     case "A":
@@ -577,17 +565,17 @@ public class clsCliente {
                                         switch (sexo) {
                                             case "A":
                                                 sexo = "Masculino";
-                                                 contHombres++;
-                                                 contMujeres--;
                                                 bdClientes[j].setSexo(sexo);
                                                 JOptionPane.showMessageDialog(null, "Sexo editado correctamente");
+                                                contHombres++;
+                                                contMujeres--;
                                                 break;
                                             case "B":
                                                 sexo = "Femenino";
-                                                contMujeres++;
-                                                contHombres--;
                                                 bdClientes[j].setSexo(sexo);
                                                 JOptionPane.showMessageDialog(null, "Sexo editado correctamente");
+                                                contMujeres++;
+                                                contHombres--;
                                                 break;
 
                                         }
@@ -788,7 +776,7 @@ public class clsCliente {
                                         + "\nE. telefono = " + bdClientes[j].getTelefono()
                                         + "\nF. Tipo de Pase = " + bdClientes[j].getTipoDePase()
                                         + "\nG. Entrenador = " + bdClientes[j].getEntrenador()
-                                        + "\n   Pago = " + bdClientes[j].getPago()+" colones"
+                                        + "\n   Pago = " + bdClientes[j].getPago() + " colones"
                                         + "\nS. Salir").toUpperCase();
                                 switch (mensaje) {
                                     case "A":
@@ -853,11 +841,15 @@ public class clsCliente {
                                                 sexo = "Masculino";
                                                 bdClientes[j].setSexo(sexo);
                                                 JOptionPane.showMessageDialog(null, "Sexo editado correctamente");
+                                                contMujeres--;
+                                                contHombres++;
                                                 break;
                                             case "B":
                                                 sexo = "Femenino";
                                                 bdClientes[j].setSexo(sexo);
                                                 JOptionPane.showMessageDialog(null, "Sexo editado correctamente");
+                                                contMujeres++;
+                                                contHombres--;
                                                 break;
 
                                         }
@@ -1050,14 +1042,14 @@ public class clsCliente {
                                         + "\nE. telefono = " + bdClientes[j].getTelefono()
                                         + "\nF. Tipo de Pase = " + bdClientes[j].getTipoDePase()
                                         + "\nG. Objetivo = " + bdClientes[j].getObjetivo()
-                                        + "\nH. Peso Kg = " + bdClientes[j].getPesoKg()+" kg"
-                                        + "\nI. Estatura  = " + bdClientes[j].getEstaturaMts()+" cm"
+                                        + "\nH. Peso Kg = " + bdClientes[j].getPesoKg() + " kg"
+                                        + "\nI. Estatura  = " + bdClientes[j].getEstaturaMts() + " cm"
                                         + "\nJ. Rutina = " + bdClientes[j].rutina.getDiasEjercicio()
                                         + "\n   Somatipo = " + bdClientes[j].getSomatotipo()
-                                        + "\n   Calorias Diarias = " + bdClientes[j].getCaloriasDiarias()+" kcal"
-                                        + "\n   Calorias Objetivo  =" + bdClientes[j].getCaloriasObjetivo()+" kcal"
+                                        + "\n   Calorias Diarias = " + bdClientes[j].getCaloriasDiarias() + " kcal"
+                                        + "\n   Calorias Objetivo  =" + bdClientes[j].getCaloriasObjetivo() + " kcal"
                                         + "\n   IMC: " + bdClientes[j].getIMC()
-                                        + "\n   Pago = " + bdClientes[j].getPago()+" colones"
+                                        + "\n   Pago = " + bdClientes[j].getPago() + " colones"
                                         + "\nS. Salir").toUpperCase();
 
                                 switch (mensaje) {
@@ -1123,11 +1115,15 @@ public class clsCliente {
                                                 sexo = "Masculino";
                                                 bdClientes[j].setSexo(sexo);
                                                 JOptionPane.showMessageDialog(null, "Sexo editado correctamente");
+                                                contHombres++;
+                                                contMujeres--;
                                                 break;
                                             case "B":
                                                 sexo = "Femenino";
                                                 bdClientes[j].setSexo(sexo);
                                                 JOptionPane.showMessageDialog(null, "Sexo editado correctamente");
+                                                contHombres--;
+                                                contMujeres++;
                                                 break;
 
                                         }

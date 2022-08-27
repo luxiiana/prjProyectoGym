@@ -47,7 +47,7 @@ public class clsMenu {
                         JOptionPane.showMessageDialog(null, "Opción no válida");
                         break;
                 }//fin de switch Clientes
-            } while (!opcion.equals("F"));
+            } while (!opcion.equals("G"));
         } else {//----empleados
             do {
                 opcion = JOptionPane.showInputDialog("Digite la opción que desea: \nA. Agregar empleado \nB. Editar editar \nC. Eliminar empleado "
