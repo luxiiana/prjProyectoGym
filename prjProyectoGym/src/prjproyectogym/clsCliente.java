@@ -15,6 +15,16 @@ public class clsCliente {
     private String entrenador;
     int contadorC = 0;
     private float pago;
+    ///---------------------Contadores----------------------///
+    public static int contCC;
+    public static int contNacionales;
+    public static int contExtranjeros;
+    public static int contEcto;
+    public static int contMeso;
+    public static int contEndo;
+    public static int contSubir;
+    public static int contMantener;
+    public static int contBajar;
     /*  
         Basico [] solo acceso a gym || no ucpa ningun calculo pago=10000
         Max [] pichudo pero ocupa entrenado ||  no ocupa ningun calculo pago=15000
@@ -37,7 +47,7 @@ public class clsCliente {
     /////
     ////
     ///
-
+    
     //private float pesoIdeal; FUTURA EMPLEMETACION
     //----------INSTANCIAS-------------------
     public clsRutina clsR = new clsRutina();
@@ -229,10 +239,12 @@ public class clsCliente {
                 case "A":
                     bandera = 1;
                     origen = "Nacional";
+                    contNacionales++;
                     break;
                 case "B":
                     bandera = 1;
                     origen = "Extranjero";
+                    contExtranjeros++;
                     break;
                 case "C":
                     bandera = 1;
@@ -357,6 +369,7 @@ public class clsCliente {
             case "C": //--------PASE ULTRA------------
                 tipoDePase = "Ultra";
                 pago = 20000;
+                contCC++;
                 //---------SOMATIPO------------------------------------
                 while (somatotipo.equals("") || !somatotipo.equals("A") && !somatotipo.equals("B") && !somatotipo.equals("C")) {
                     somatotipo = clsF.cadena("Digite su tipo de Somatotipo"
@@ -370,15 +383,15 @@ public class clsCliente {
                 switch (somatotipo) {
                     case "A":
                         somatotipo = "Ectomorfo";
-
+                        contEcto++;
                         break;
                     case "B":
                         somatotipo = "Mesomorfo";
-
+                        contMeso++;
                         break;
                     case "C":
                         somatotipo = "Endomorfo";
-
+                        contEndo++;
                         break;
                 }
 
@@ -395,12 +408,15 @@ public class clsCliente {
                 switch (objetivo) {
                     case "A":
                         objetivo = "Subir de peso";
+                        contSubir++;
                         break;
                     case "B":
                         objetivo = "Bajar de peso";
+                        contBajar++;
                         break;
                     case "C":
                         objetivo = "Mantener de peso";
+                        contMantener++;
                         break;
                 }//----FIN OBJETIVO
 
@@ -1160,9 +1176,10 @@ public class clsCliente {
                                                 bdClientes[j] = new clsCliente(bdClientes[j].getNombreC(), bdClientes[j].getIdentificacion(), bdClientes[j].getSexo(), bdClientes[j].getEdad(), bdClientes[j].getTelefono(), bdClientes[j].getTipoDePase(), null, bdClientes[j].getPago(), null, null, 0, 0, 0, 0, null, 0);
                                                 JOptionPane.showMessageDialog(null, "Pase editado correctamente");
                                                 bandera = 2;
+                                                contCC++;
                                                 break;
 
-                                            case "B": //--------PASE Max------------
+                                            case "B": //--------PASE MAX------------
                                                 tipoDePase = "Max";
                                                 bdClientes[j].setTipoDePase(tipoDePase);
                                                 pago = 15000;
@@ -1173,6 +1190,7 @@ public class clsCliente {
                                                 bdClientes[j] = new clsCliente(bdClientes[j].getNombreC(), bdClientes[j].getIdentificacion(), bdClientes[j].getSexo(), bdClientes[j].getEdad(), bdClientes[j].getTelefono(), bdClientes[j].getTipoDePase(), bdClientes[j].getEntrenador(), bdClientes[j].getPago(), null, null, 0, 0, 0, 0, null, 0);
                                                 JOptionPane.showMessageDialog(null, "Pase editado correctamente");
                                                 bandera = 2;
+                                                contCC++;
                                                 break;
                                         }
                                         break;
