@@ -19,6 +19,7 @@ public class clsCliente {
     public static int contCC;
     public static int contNacionales;
     public static int contExtranjeros;
+    public static int contOtro;
     public static int contEcto;
     public static int contMeso;
     public static int contEndo;
@@ -256,6 +257,7 @@ public class clsCliente {
                 case "C":
                     bandera = 1;
                     origen = "Otro";
+                    contOtro++;
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, "Opcion invalida");

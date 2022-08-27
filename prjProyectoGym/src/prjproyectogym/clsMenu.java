@@ -9,6 +9,7 @@ public class clsMenu {
     //------INSTANCIAS-------
     clsCliente clsC = new clsCliente();
     clsEmpleados clsE = new clsEmpleados();
+    clsInfoGym clsI = new clsInfoGym();
 
     /*
         añadir comprobar si usario tiene acceso al gym
@@ -36,7 +37,6 @@ public class clsMenu {
                         clsC.listarClientes();
                         break;
                     case "F":
-                        clsInfoGym clsI = new clsInfoGym();
                         clsI.estadisticasClientes();
                         break;
                     case "G":

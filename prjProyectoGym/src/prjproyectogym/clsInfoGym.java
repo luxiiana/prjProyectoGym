@@ -23,7 +23,8 @@ public class clsInfoGym {
                 + "\n La cantidad total de clientes de sexo Masculino: " + Ccliente.contHombres
                 + "\n La cantidad total de clientes de sexo Femenino: " + Ccliente.contMujeres
                 + "\n La cantidad total de clientes de nacionales es: " + Ccliente.contNacionales
-                + "\n La cantidad total de clientes de nacionales es: " + Ccliente.contExtranjeros
+                + "\n La cantidad total de clientes de nacionalidad extranjera es: " + Ccliente.contExtranjeros
+                + "\n La cantidad total de clientes de otra nacionalidad es: " + Ccliente.contOtro
                 + "\n La cantidad total de clientes que agregaron su estatura: " + Ccliente.contEstatura
                 + "\n La cantidad total de clientes que agregaron su peso: " + Ccliente.contPeso
                 + "\n La cantidad total de clientes con el Somatipo de Ectomorfo es : " + Ccliente.contEcto
@@ -35,7 +36,7 @@ public class clsInfoGym {
                 + "\n La cantidad total de clientes que eligieron pase basico: " + Ccliente.contBasico
                 + "\n La cantidad total de clientes que eligieron pase Max: " + Ccliente.contMax
                 + "\n La cantidad total de clientes que eligieron pase Ultra: " + Ccliente.contUltra);
-        //-----Estadistícas según género------//
+//------Estadistícas según género------//
         JOptionPane.showMessageDialog(null, "Estadistícas según género");
         if (clsCliente.contHombres > clsCliente.contMujeres) {
             JOptionPane.showMessageDialog(null, "La mayoría de clientes son Hombres");
@@ -47,17 +48,103 @@ public class clsInfoGym {
         } else if (clsCliente.contHombres == clsCliente.contMujeres) {
             JOptionPane.showMessageDialog(null, "La cantidad de clientes Hombres es igual al de la de Mujeres");
         }
-//------Estadistícas según nacionalidad  ---------------------------//
+//------ Estadistícas según nacionalidad  ---------------------------//
         JOptionPane.showMessageDialog(null, "Estadistícas según nacionalidad");
-        if (clsCliente.contNacionales > clsCliente.contExtranjeros) {
+//------ La mayoría de nacionales ----------------------------------//
+        if (clsCliente.contNacionales > clsCliente.contExtranjeros && clsCliente.contNacionales > clsCliente.contOtro) {
             JOptionPane.showMessageDialog(null, "La mayoría de clientes son Nacionales");
-            JOptionPane.showMessageDialog(null, "La minoría de clientes son Extranjeros");
-        } else if (clsCliente.contExtranjeros > clsCliente.contNacionales) {
+        } else if (clsCliente.contExtranjeros > clsCliente.contNacionales && clsCliente.contExtranjeros > clsCliente.contOtro) {
+//------ La mayoría de extranjeros ----------------------------------//
             JOptionPane.showMessageDialog(null, "La mayoría de clientes son Extranjeros");
+        } else if (clsCliente.contOtro > clsCliente.contNacionales && clsCliente.contOtro > clsCliente.contExtranjeros) {
+//------ La mayoría de otras nacionalidades----------------------------------//
+            JOptionPane.showMessageDialog(null, "La mayoría de clientes son de otras nacionalidades");
+        }
+//------ La minoría de nacionales ----------------------------------//
+        if (clsCliente.contNacionales < clsCliente.contExtranjeros && clsCliente.contNacionales < clsCliente.contOtro) {
             JOptionPane.showMessageDialog(null, "La minoría de clientes son Nacionales");
-            //----- La cantidad de clientes nacionales y extranjeros es igual ---------//
-        } else if (clsCliente.contNacionales == clsCliente.contExtranjeros) {
-            JOptionPane.showMessageDialog(null, "La cantidad de clientes nacionales es igual al de la de extranjeros");
+        } else if (clsCliente.contExtranjeros < clsCliente.contNacionales && clsCliente.contExtranjeros < clsCliente.contOtro) {
+//------ La minoría de extranjeros ----------------------------------//
+            JOptionPane.showMessageDialog(null, "La minoría de clientes son Extranjeros");
+        } else if (clsCliente.contOtro < clsCliente.contNacionales && clsCliente.contOtro < clsCliente.contExtranjeros) {
+//------ La minoría de otras nacionalidades ----------------------------------//
+            JOptionPane.showMessageDialog(null, "La minoría de clientes son de otras nacionalidades");
+        }
+//------------------------------------------------------------------------------------------------------------------//                
+        if (clsCliente.contNacionales == clsCliente.contExtranjeros
+                && clsCliente.contNacionales < clsCliente.contOtro
+                && clsCliente.contExtranjeros < clsCliente.contOtro) {
+            JOptionPane.showMessageDialog(null, "La cantidad de clientes nacionales es igual a la de clientes extranjeros"
+                    + " y estos son menores a los clientes de otras nacionalidades");
+        } else if (clsCliente.contNacionales == clsCliente.contExtranjeros
+                && clsCliente.contNacionales > clsCliente.contOtro
+                && clsCliente.contExtranjeros > clsCliente.contOtro) {
+            JOptionPane.showMessageDialog(null, "La cantidad de clientes nacionales es igual a la de clientes extranjeros"
+                    + " y estos son mayores a los clientes de otras nacionalidades");
+        } else if (clsCliente.contNacionales == clsCliente.contExtranjeros
+                && clsCliente.contNacionales < clsCliente.contOtro
+                && clsCliente.contExtranjeros > clsCliente.contOtro) {
+            JOptionPane.showMessageDialog(null, "La cantidad de clientes nacionales es igual a la de clientes extranjeros"
+                    + " donde los clientes extranjeros son mayores a los clientes de otras nacionalidades "
+                    + " y estos mayores los clientes nacionales ");
+        } else if (clsCliente.contNacionales == clsCliente.contExtranjeros
+                && clsCliente.contNacionales > clsCliente.contOtro
+                && clsCliente.contExtranjeros < clsCliente.contOtro) {
+            JOptionPane.showMessageDialog(null, "La cantidad de clientes nacionales es igual a la de clientes extranjeros"
+                    + " donde los clientes extranjeros son menores a los clientes de otras nacionalidades "
+                    + " y estos menores los clientes nacionales ");
+        }
+        if (clsCliente.contExtranjeros == clsCliente.contOtro
+                && clsCliente.contExtranjeros < clsCliente.contNacionales
+                && clsCliente.contOtro < clsCliente.contNacionales) {
+            JOptionPane.showMessageDialog(null, "La cantidad de clientes extranjero es igual a la de clientes de otras nacionalidades"
+                    + " y estos son menores a los clientes nacionales y estos son mayores a los extranjeros");
+        } else if (clsCliente.contExtranjeros == clsCliente.contOtro
+                && clsCliente.contExtranjeros > clsCliente.contNacionales
+                && clsCliente.contOtro > clsCliente.contNacionales) {
+            JOptionPane.showMessageDialog(null, "La cantidad de clientes extranjero es igual a la de clientes de otras nacionalidades"
+                    + " y estos son mayores a los clientes nacionales y estos son mayores a los extranjeros");
+        } else if (clsCliente.contExtranjeros == clsCliente.contOtro
+                && clsCliente.contExtranjeros < clsCliente.contNacionales
+                && clsCliente.contOtro > clsCliente.contNacionales) {
+            JOptionPane.showMessageDialog(null, "La cantidad de clientes extranjero es igual a la de clientes de otras nacionalidades"
+                    + " donde los clientes de otras nacionalidades son mayores a los clientes nacionales"
+                    + " y estos son menores a los clientes nacionales");
+        } else if (clsCliente.contNacionales == clsCliente.contOtro
+                && clsCliente.contExtranjeros > clsCliente.contNacionales
+                && clsCliente.contOtro < clsCliente.contNacionales) {
+            JOptionPane.showMessageDialog(null, "La cantidad de clientes extranjero es igual a la de clientes de otras nacionalidades"
+                    + " donde los clientes de otras nacionalidades son menores a los clientes nacionales"
+                    + " y estos son mayores a los clientes nacionales");
+        }
+        if (clsCliente.contNacionales == clsCliente.contOtro
+                && clsCliente.contNacionales < clsCliente.contExtranjeros
+                && clsCliente.contOtro < clsCliente.contExtranjeros) {
+            JOptionPane.showMessageDialog(null, "La cantidad de clientes nacionales es igual a la de clientes de otras nacionalidades"
+                    + " y estos son menores a los clientes extranjeros y estos son mayores a los nacionales");
+        } else if (clsCliente.contNacionales == clsCliente.contOtro
+                && clsCliente.contNacionales > clsCliente.contExtranjeros
+                && clsCliente.contOtro > clsCliente.contExtranjeros) {
+            JOptionPane.showMessageDialog(null, "La cantidad de clientes nacionales es igual a la de clientes de otras nacionalidades"
+                    + " y estos son mayores a los clientes extranjeros y estos son mayores a los nacionales");
+        } else if (clsCliente.contNacionales == clsCliente.contOtro
+                && clsCliente.contNacionales < clsCliente.contExtranjeros
+                && clsCliente.contOtro > clsCliente.contExtranjeros) {
+            JOptionPane.showMessageDialog(null, "La cantidad de clientes nacionales es igual a la de clientes de otras nacionalidades"
+                    + " donde los clientes de otras nacionalidades son mayores a los clientes extranjeros"
+                    + " y estos son menores a los clientes nacionales");
+        } else if (clsCliente.contNacionales == clsCliente.contOtro
+                && clsCliente.contNacionales > clsCliente.contExtranjeros
+                && clsCliente.contOtro < clsCliente.contExtranjeros) {
+            JOptionPane.showMessageDialog(null, "La cantidad de clientes nacionales es igual a la de clientes de otras nacionalidades"
+                    + " donde los clientes de otras nacionalidades son menores a los clientes extranjeros"
+                    + " y estos son menores a los clientes nacionales");
+        }
+//----- La cantidad de clientes nacionales, extranjeros y de otras nacionalidades es igual ---------//
+        if (clsCliente.contNacionales == clsCliente.contExtranjeros
+                && clsCliente.contNacionales == clsCliente.contOtro
+                && clsCliente.contExtranjeros == clsCliente.contOtro) {
+            JOptionPane.showMessageDialog(null, "La cantidad de clientes nacionales es igual al de la de extranjeros y a los de otras nacionalidades");
         }
 //-----------------------Somatotipos--------------------------------//
 //-----Somatotipo más elegido------//
@@ -82,84 +169,84 @@ public class clsInfoGym {
                 && clsCliente.contEcto < clsCliente.contMeso
                 && clsCliente.contEndo < clsCliente.contMeso) {
             JOptionPane.showMessageDialog(null, "Existe la misma cantidad de clientes con el somatotipo Ectomorfo y Endomorfo"
-                    + "estos a su vez son menores que la cantidad de clientes con el somatotipo Mesomorfo");
+                    + " estos a su vez son menores que la cantidad de clientes con el somatotipo Mesomorfo");
 
 //------Dos somatotipos iguales pero mayores al tercero------//
         } else if (clsCliente.contEcto == clsCliente.contEndo
                 && clsCliente.contEcto > clsCliente.contMeso
                 && clsCliente.contEndo > clsCliente.contMeso) {
             JOptionPane.showMessageDialog(null, "Existe la misma cantidad de clientes con el somatotipo Ectomorfo y Endomorfo"
-                    + "estos a su vez son mayores que la cantidad de clientes con el somatotipo Mesomorfo");
+                    + " estos a su vez son mayores que la cantidad de clientes con el somatotipo Mesomorfo");
 
 //-------Dos somatotipos iguales pero uno menor y otro mayor al tercero------//
         } else if (clsCliente.contEcto == clsCliente.contEndo
                 && clsCliente.contEcto < clsCliente.contMeso
                 && clsCliente.contEndo > clsCliente.contMeso) {
             JOptionPane.showMessageDialog(null, "Existe la misma cantidad de clientes con el somatotipo Ectomorfo y Endomorfo"
-                    + "donde el somatotipo Mesomorfo es mayor a Ectomorfo y menor a Endomorfo");
+                    + " donde el somatotipo Mesomorfo es mayor a Ectomorfo y menor a Endomorfo");
 
 //------Dos somatotipos iguales pero uno menor y otro mayor al tercero------//
         } else if (clsCliente.contEcto == clsCliente.contEndo
                 && clsCliente.contEcto > clsCliente.contMeso
                 && clsCliente.contEndo < clsCliente.contMeso) {
             JOptionPane.showMessageDialog(null, "Existe la misma cantidad de clientes con el somatotipo Ectomorfo y Endomorfo"
-                    + "donde el somatotipo Mesomorfo es menor a Ectomorfo y mayor a Endomorfo");
+                    + " donde el somatotipo Mesomorfo es menor a Ectomorfo y mayor a Endomorfo");
 
 //-------Dos somatotipos iguales pero menores al tercero------//
         } else if (clsCliente.contEcto == clsCliente.contMeso
                 && clsCliente.contEcto < clsCliente.contEndo
                 && clsCliente.contMeso < clsCliente.contEndo) {
             JOptionPane.showMessageDialog(null, "Existe la misma cantidad de clientes con el somatotipo Ectomorfo y Mesomorfo"
-                    + "estos a su vez son menores que la cantidad de clientes con el somatotipo Endomorfo");
+                    + " estos a su vez son menores que la cantidad de clientes con el somatotipo Endomorfo");
 
 //------Dos somatotipos iguales pero mayores al tercero------//
         } else if (clsCliente.contEcto == clsCliente.contMeso
                 && clsCliente.contEcto > clsCliente.contEndo
                 && clsCliente.contMeso > clsCliente.contEndo) {
             JOptionPane.showMessageDialog(null, "Existe la misma cantidad de clientes con el somatotipo Ectomorfo y Mesomorfo"
-                    + "estos a su vez son mayores que la cantidad de clientes con el somatotipo Endomorfo");
+                    + " estos a su vez son mayores que la cantidad de clientes con el somatotipo Endomorfo");
 
 //-------Dos somatotipos iguales pero uno menor y otro mayor al tercero------//
         } else if (clsCliente.contEcto == clsCliente.contMeso
                 && clsCliente.contEcto < clsCliente.contEndo
                 && clsCliente.contMeso > clsCliente.contEndo) {
             JOptionPane.showMessageDialog(null, "Existe la misma cantidad de clientes con el somatotipo Ectomorfo y Mesomorfo"
-                    + "donde el somatotipo Endomorfo es mayor a Ectomorfo y menor a Mesomorfo");
+                    + " donde el somatotipo Endomorfo es mayor a Ectomorfo y menor a Mesomorfo");
 
 //------Dos somatotipos iguales pero uno menor y otro mayor al tercero------//
         } else if (clsCliente.contEcto == clsCliente.contMeso
                 && clsCliente.contEcto > clsCliente.contEndo
                 && clsCliente.contMeso < clsCliente.contEndo) {
             JOptionPane.showMessageDialog(null, "Existe la misma cantidad de clientes con el somatotipo Ectomorfo y Mesomorfo"
-                    + "donde el somatotipo Mesomorfo es menor a Endomorfo y menor a Ectomorfo");
+                    + " donde el somatotipo Mesomorfo es menor a Endomorfo y menor a Ectomorfo");
 
 //-------Dos somatotipos iguales pero menores al tercero------//
         } else if (clsCliente.contEndo == clsCliente.contMeso
                 && clsCliente.contEndo < clsCliente.contEcto
                 && clsCliente.contMeso < clsCliente.contEcto) {
             JOptionPane.showMessageDialog(null, "Existe la misma cantidad de clientes con el somatotipo Endomorfo y Mesomorfo"
-                    + "estos a su vez son menores que la cantidad de clientes con el somatotipo Ectomorfo");
+                    + " estos a su vez son menores que la cantidad de clientes con el somatotipo Ectomorfo");
 
 //------Dos somatotipos iguales pero mayores al tercero------//
         } else if (clsCliente.contEndo == clsCliente.contMeso
                 && clsCliente.contEndo > clsCliente.contEcto
                 && clsCliente.contMeso > clsCliente.contEcto) {
             JOptionPane.showMessageDialog(null, "Existe la misma cantidad de clientes con el somatotipo Endomorfo y Mesomorfo"
-                    + "estos a su vez son mayores que la cantidad de clientes con el somatotipo Ectomorfo");
+                    + " estos a su vez son mayores que la cantidad de clientes con el somatotipo Ectomorfo");
 
 //-------Dos somatotipos iguales pero uno menor y otro mayor al tercero------//
         } else if (clsCliente.contEndo == clsCliente.contMeso
                 && clsCliente.contEndo < clsCliente.contEcto
                 && clsCliente.contMeso > clsCliente.contEcto) {
             JOptionPane.showMessageDialog(null, "Existe la misma cantidad de clientes con el somatotipo Endomorfo y Mesomorfo"
-                    + "donde el somatotipo Ectomorfo es mayor a Endomorfo y menor a Mesomorfo");
+                    + " donde el somatotipo Ectomorfo es mayor a Endomorfo y menor a Mesomorfo");
 
 //------Dos somatotipos iguales pero uno menor y otro mayor al tercero------//
         } else if (clsCliente.contEndo == clsCliente.contMeso
                 && clsCliente.contEndo > clsCliente.contEcto
                 && clsCliente.contMeso < clsCliente.contEcto) {
             JOptionPane.showMessageDialog(null, "Existe la misma cantidad de clientes con el somatotipo Endomorfo y Mesomorfo"
-                    + "donde el somatotipo Mesomorfo es menor a Ectomorfo y menor a Endomorfo");
+                    + " donde el somatotipo Mesomorfo es menor a Ectomorfo y menor a Endomorfo");
         }
 
         //------La cantidad de clientes de los somatotipos son iguales-------// 
