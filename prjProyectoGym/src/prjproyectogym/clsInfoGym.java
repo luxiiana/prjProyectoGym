@@ -380,5 +380,10 @@ public class clsInfoGym {
                 && clsCliente.contUltra == clsCliente.contMax) {
             JOptionPane.showMessageDialog(null, "La cantidad de clientes por tipo de pase es igual");
         }
+//----------Estadistíca ingresos--------//
+//----------Ganancias del Gimnasio--------//
+        JOptionPane.showMessageDialog(null, "Estadistícas de ganancias del gimnasio");
+        int ingresos = (clsCliente.contBasico * 10000) + (clsCliente.contMax * 15000) + (clsCliente.contUltra * 20000);
+        JOptionPane.showMessageDialog(null, "La ganancia total del gimnasio es: " + ingresos);
     }
 }
